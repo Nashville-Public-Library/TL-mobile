@@ -54,7 +54,7 @@ class DataFetcher extends StatelessWidget {
             final data = snapshot.data!;
             return Text('Now Playing: ${data['title']}');
           } else {
-            return Text('No data found');
+            return Text('Program name not available');
           }
         },
       ),
@@ -160,6 +160,7 @@ class _RadioPlayerState extends State<RadioPlayer> {
 
               // NOW PLAYING HERE!
               DataFetcher(),
+              Logo(),
 
             ],
           ], 
@@ -168,6 +169,54 @@ class _RadioPlayerState extends State<RadioPlayer> {
     );
   }
 }
+
+class Logo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+
+
+  return Padding(
+    padding: EdgeInsets.only(top: 35, right: 10, left: 10),
+    child: Container(
+        height: 200,
+        child: Column(
+          children: <Widget>[
+            Container(
+              // don't forget about height
+              height: 200,
+              width: 200,
+              child: Image.asset(
+                'assets/img/NTL_fav.png', 
+                width: 100,
+                height: 100,
+                fit:BoxFit.fill)),
+            
+          ],
+        ),
+      ),
+  );
+  }
+
+  //   return Scaffold(
+  //       body: Container(
+  //         decoration: BoxDecoration(color: Colors.deepOrangeAccent),
+  //           height: 50,
+  //           width: 50,
+  //           child: 
+  //             Column(
+  //           Container( Image.asset('assets/img/NTL_fav.png', 
+  //                                         width: 100,
+  //                                         height: 100,
+  //                                         fit:BoxFit.fill)),
+  //             )
+  //       )
+  //       )
+  //     );
+  // }
+
+
+}
+
 
 Future<Map<String, dynamic>> fetchData() async {
   final url = Uri.parse('https://api.nashvilletalkinglibrary.com/stream/status'); // Example API endpoint
