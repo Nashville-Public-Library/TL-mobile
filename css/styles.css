@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: aliceblue;
+  }
+  
+  nav {
+    background: #333;
+    color: white;
+    padding: 1em;
+    display: flex;
+    gap: 1em;
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  main {
+    padding: 1em;
+    min-height: calc(100vh - 120px);
+  }
+  
+  #player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #222;
+    color: white;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .scheduleLinks a {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px; /* optional spacing between links */
+  }
