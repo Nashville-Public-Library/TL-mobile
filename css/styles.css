@@ -12,8 +12,16 @@ body {
   }
   
   nav a {
+    background-color: rgb(34, 104, 161);
+    padding: 22px;
+    margin: 0%;
     color: white;
     text-decoration: none;
+    /* border: red; */
+    /* border-style: solid;
+    border-color: red; */
+    
+    border-radius: 100%;
   }
   
   main {
@@ -32,16 +40,21 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-align: center;
+    font-size: large;
   }
 
   .scheduleLinks a {
     display: block;
     margin-top: 20px;
-    margin-bottom: 20px; /* optional spacing between links */
+    margin-bottom: 20px;
   }
-
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 28%;
+}
   .NTL-logo {
-    padding-top: 25%;
     width: 325px;
     height: 325px;
   }
