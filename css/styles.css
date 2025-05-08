@@ -1,7 +1,6 @@
 body {
     margin: 0;
     font-family: sans-serif;
-    background-color: aliceblue;
   }
   
   nav {
@@ -39,4 +38,10 @@ body {
     display: block;
     margin-top: 20px;
     margin-bottom: 20px; /* optional spacing between links */
+  }
+
+  .NTL-logo {
+    padding-top: 25%;
+    width: 325px;
+    height: 325px;
   }
