@@ -6,9 +6,9 @@ from app.pwa.pod import Podcast
 
 VERSION = "0.4.9"
 
-@app.route('/pwa', methods=['GET'])
+@app.route('/', methods=['GET'])
 def pwa():
-    return app.send_static_file("pwa/pages/index.html")
+    return app.send_static_file("/pages/index.html")
 
 @app.route('/pwa/version', methods=['POST'])
 def version():
@@ -28,7 +28,7 @@ def serve_app_js():
     response.headers["Cache-Control"] = "no-cache"
     return response
 
-@app.route('/pwa/podcasts', methods=['POST'])
+@app.route('/podcasts', methods=['POST'])
 def podcasts():
     shows = {"AARP Report": "aarp", "Able Living": "able", "Around the World": "aroundworld", "Atlantic": "atlantic", "Book Page": "bookpage", 
              "Checklist": "checklist", "Hourly Weather Forecast": "cirrus", "Community News": "community", "Consumer Reports": "consumer", 
@@ -43,7 +43,7 @@ def podcasts():
              "Vanity Fair": "vanity", "Wired": "wired", "Woman's World": "woman", "Wall Street Journal": "wsj"}
     return {"shows": shows}
 
-@app.route('/pwa/podcasts/info/<podcast>', methods=['POST'])
+@app.route('/podcasts/info/<podcast>', methods=['POST'])
 def podcasts_info(podcast):
     try:
         pod = Podcast(show=podcast)
