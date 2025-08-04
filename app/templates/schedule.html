@@ -1,0 +1,117 @@
+{% extends 'home.html' %}
+
+{% block content %}
+
+<div class="schedule-fonts">
+
+    <div id="calendarContainer" style="text-align: center; display: none;">
+        <input id="calendar" type="date" style="font-size: large;">
+        <button id="calendarButton" onclick="submitCalendar()">submit</button>
+        <script>
+            function setDate() {
+                let date1 = new Date()
+                let year = date1.getFullYear()
+                let month = date1.getMonth()
+                let day = date1.getDay()
+
+                const date2 = new Date(Date.UTC(year, month, day))
+                const result = date1.toISOString().split('T')[0]
+                let calendar = document.getElementById("calendar");
+                calendar.value = result
+            }
+            setDate()
+        </script>
+    </div>
+
+    <br>
+
+    <div style="left: 50%;" class="dot-elastic" id="dots"></div>
+
+    <div style="margin-left: 50pt;" id="newspaper"></div>
+    <br>
+
+    <div style="text-align: center;">
+
+        <div class="schedule-top">Time</div>
+        <div class="schedule-top">Booth 1</div>
+        <div class="schedule-top">Booth 2</div>
+        <div class="schedule-top">Booth 3</div>
+        <hr>
+
+    </div>
+    <br>
+
+    <div style="text-align: center;" id="9">
+        <div class="schedule-top">09am</div>
+
+        <div class="schedule-top" id="9-booth1"></div>
+        <div class="schedule-top" id="9-booth2"></div>
+        <div class="schedule-top" id="9-booth3"></div>
+    </div>
+    <br>
+
+    <div style="text-align: center;" id="10">
+        <div class="schedule-top">10am</div>
+
+        <div class="schedule-top" id="10-booth1"></div>
+        <div class="schedule-top" id="10-booth2"></div>
+        <div class="schedule-top" id="10-booth3"></div>
+    </div>
+
+    <br>
+
+    <div style="text-align: center;" id="11">
+        <div class="schedule-top">11am</div>
+
+        <div class="schedule-top" id="11-booth1"></div>
+        <div class="schedule-top" id="11-booth2"></div>
+        <div class="schedule-top" id="11-booth3"></div>
+    </div>
+
+    <br>
+
+    <div style="text-align: center;" id="12">
+        <div class="schedule-top">12pm</div>
+
+        <div class="schedule-top" id="12-booth1"></div>
+        <div class="schedule-top" id="12-booth2"></div>
+        <div class="schedule-top" id="12-booth3"></div>
+    </div>
+
+    <br>
+
+    <div style="text-align: center;" id="13">
+        <div class="schedule-top">01pm</div>
+
+        <div class="schedule-top" id="13-booth1"></div>
+        <div class="schedule-top" id="13-booth2"></div>
+        <div class="schedule-top" id="13-booth3"></div>
+    </div>
+
+
+    <br>
+
+    <div style="text-align: center;" id="14">
+        <div class="schedule-top">02pm</div>
+
+        <div class="schedule-top" id="14-booth1"></div>
+        <div class="schedule-top" id="14-booth2"></div>
+        <div class="schedule-top" id="14-booth3"></div>
+    </div>
+
+
+    <br>
+
+    <div style="text-align: center;" id="15">
+        <div class="schedule-top">03pm</div>
+        <div class="schedule-top" id="15-booth1"></div>
+        <div class="schedule-top" id="15-booth2"></div>
+        <div class="schedule-top" id="15-booth3"></div>
+    </div>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='js/schedule.js') }}"></script>
+
+{% endblock %}

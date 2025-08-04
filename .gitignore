@@ -1,0 +1,9 @@
+# pointless
+__pycache__
+
+venv
+
+# too big
+chromedriver.exe
+
+banner.db

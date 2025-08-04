@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dots.css') }}">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='img/NTL_fav.png') }}">
+  <title>Who's in the booth?</title>
+
+</head>
+
+<body>
+
+  <div id="container" class="container">
+
+  <div class="anchor">
+    <div id="message" class="message"></div>
+
+    <hr>
+
+    <div id="dayOfWeek" class="dayOfWeek"></div>
+    <div id="date" class="date"></div>
+
+    <div class="separatingDots">&#x2022; &#x2022; &#x2022; &#x2022;</div>
+
+    <div id="time" class="time"></div>
+    <div id="weather" class="weather"></div>
+
+    <div class="separatingDots">&#x2022; &#x2022; &#x2022; &#x2022;</div>
+
+    <div class="onAir">On-Air</div>
+    <div id="nowPlaying" class="nowPlaying"></div>
+
+    <hr>
+
+    <div class="footerImages">
+      <img src="/static/img/NTL_new_white_trim.png" class="footer_image_NTL" alt="NTL logo">
+      <img src="/static/img/NPL.svg" class="footer_image_NPL" alt="NPL logo">
+    </div>
+
+  </div>
+
+
+  {% block content %}
+  <div class="home_header">
+    <p>Perhaps you are looking for <a style="color: inherit;" href="/booth">Booth Finder</a>?</p>
+    <p style="font-size: 20pt;">Also, here's the <a style="color: inherit;" href="/booth/schedule">full schedule</a>,
+      the <a style="color: inherit;" href="/status">status page</a> and <a style="color: inherit;"
+        href="/booth/banner">banner page</a></p>
+  </div>
+  {% endblock %}
+  
+</div>
+
+  <script src="{{ url_for('static', filename='js/misc.js') }}"></script>
+
+</body>
+
+</html>

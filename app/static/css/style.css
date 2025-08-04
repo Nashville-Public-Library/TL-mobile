@@ -1,0 +1,337 @@
+html, body {
+    background-color: RGB(241, 101, 48);
+    padding: 0%;
+    margin: 0%;
+    font-family: sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.anchor {
+    background-color: RGB(46,56,143);
+    /* float: left; */
+    color: white;
+    text-align: center;
+    width: 25%;
+    min-width: 300px; /* if you want a minimum for narrow screens */
+    flex-shrink: 0;
+}
+
+.home_header {
+    flex-grow: 1;
+    /* justify-content: center; */
+    text-align: center;
+    font-size: 25pt;
+    color: white;
+    margin-top: 150pt;
+}
+
+.schedule {
+    flex-grow: 1;
+    display: block;
+    text-align: center;
+    background-color: RGB(241, 101, 48);;
+}
+
+.booth_container {
+    display: inline-block;
+    color: black;
+    width: 100%;
+}
+
+.booth_individual {
+    display: inline-block;
+    text-align: center;
+    background-color: white;
+    width: 315pt;
+    height: 275pt;
+    margin-left: 4.5pt;
+    margin-right: 4.5pt;
+}
+
+.booth_label {
+    margin-top: 10pt;
+    font-size: 19pt;
+    font-weight: bold;
+}
+
+.booth_data {
+    font-size: 23pt;
+    font-weight: bold;
+}
+
+.volunteerPhoto {
+    height: 150px;
+    margin-top: 25pt;
+    margin-bottom: 25pt;
+    border-radius: 50%;
+    border: 2px solid RGB(241, 101, 48);
+}
+
+.message {
+    height: 130pt;
+    text-align: left;
+    margin: 8pt;
+    font-size: 17.5pt;
+}
+
+.dayOfWeek {
+    font-size: 50pt;
+}
+
+.date {
+    font-size: 16pt;
+}
+
+.time {
+    font-size: 50pt;
+}
+
+.weather {
+    font-size: 16pt;
+}
+
+.onAir {
+    font-size: 50pt;
+}
+
+.nowPlaying {
+    font-size: 16pt;
+}
+
+.separatingDots {
+    color: gray;
+    padding-top: 10pt;
+}
+
+.weatherAlert {
+    margin-top: 14pt;
+    text-align: center;
+    color: white;
+    /* overflow: auto; */
+    font-size: 20.5pt;
+}
+
+hr {
+    color: RGB(241, 101, 48);
+    margin-top: 20pt;
+    margin-bottom: 20pt;
+    margin-left: 8pt;
+    margin-right: 8pt;
+}
+
+.div1 {
+    display: block;
+    text-align: center;
+    margin-bottom: 10pt;
+    margin-top: 10pt;
+}
+
+.div2 {
+    display: inline-block;
+    width: 220pt;
+}
+
+.boothTime {
+    text-align: center;
+    font-size: 24pt;
+    color: white;
+}
+
+.refresh {
+    text-align: center;
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    font-size: 25pt;
+    color: crimson;
+    animation: blink-animation .5s steps(5, start) infinite;
+}
+
+.footerImages {
+    margin-bottom: 25pt;
+}
+
+.footer_image_NPL {
+    height: 145px;
+    margin-right: 10pt;
+    margin-left: 10pt;
+}
+
+.footer_image_NTL {
+    height: 145px;
+    margin-right: 20pt;
+    margin-left: 10pt;
+}
+
+
+.home_text {
+    text-align: left;
+    margin-left: 5pt;
+    font-size: 12pt;
+    color: black;
+}
+
+.statsContainer {
+    max-width: 75%;
+    text-align:left;
+    display: flex;
+    justify-content:space-evenly;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    gap: 30px;
+    flex-direction: row;
+    font-size: large;
+    color: white;
+}
+
+.border {
+    border-style:solid; 
+    border-color: brown; 
+    border-radius: 30px; 
+    padding: 15px;
+}
+
+
+.meter {
+    width: 100px; /* Adjust the width of the meter as needed */
+    height: 30px; /* Adjust the height of the meter as needed */
+    background-color: #27bd22; /* Background color of the meter */
+    border: 5px solid #ccc; /* Border of the meter */
+}
+
+.schedule-top {
+    display: inline-block;
+    width: 185pt;
+}
+
+.schedule-fonts {
+    color: white;
+    font-size: 17pt;
+}
+
+/* @media screen and (max-width: 1200px) {
+    .refresh {
+        position: relative;
+    }
+
+    .nowPlayingContainer {
+        position: unset;
+    }
+  } */
+
+.bannerForgotPassword {
+    font-size: 20pt;
+    color: white;
+    text-align: center;
+    border: rgb(15, 131, 167);
+    border-style:dotted;
+    width: max-content;
+    margin: auto;
+    padding: 1%;
+    display: none;
+}
+
+.fourZeroFour {
+    flex-grow: 1; 
+    text-align: center; 
+    margin-top: 85pt; 
+    color: aliceblue;
+}
+
+/* for BrightSign */
+@media screen and (device-width:1920px) and (hover: none){
+
+    .booth_individual {
+        width: 347pt;
+        height: 327pt;
+        margin-left: 4pt;
+        margin-right: 4pt;
+    }
+
+    .booth_label {
+        font-size: 22pt;
+    }
+
+    .booth_data {
+        font-size: 25.6pt;
+        margin-left: 0%;
+        margin-right: 0%;
+        padding-left: 0%;
+        padding-right: 0%;
+    }
+
+    .message {
+        height: 150pt;
+        text-align: left;
+        margin: 8pt;
+        margin-top: 25pt;
+        font-size: 20.5pt;
+    }
+
+    .dayOfWeek {
+        font-size: 62pt;
+    }
+    
+    .date {
+        font-size: 28pt;
+    }
+    
+    .time {
+        font-size: 62.5pt;
+    }
+    
+    .weather {
+        font-size: 28pt;
+    }
+
+    .onAir {
+        font-size: 62.5pt
+    }
+    
+    .nowPlaying {
+        font-size: 28pt;
+    }
+
+    .boothTime {
+        text-align: center;
+        font-size: 27pt;
+        color: white;
+    }
+    
+    .separatingDots {
+        color: gray;
+        padding-top: 10pt;
+    }
+    
+    hr {
+        color: RGB(241, 101, 48);
+        margin-top: 20pt;
+        margin-bottom: 20pt;
+        margin-left: 8pt;
+        margin-right: 8pt;
+    }
+
+    .anchor {
+        padding-bottom: 10%;
+    }
+
+    .volunteerPhoto {
+        height: 225px;
+        width: 225px;
+        margin-top: 19pt;
+        margin-bottom: 19pt;
+    }
+    
+}
+
+@keyframes blink-animation {
+    to {
+        visibility: hidden;
+    }
+}

@@ -1,0 +1,68 @@
+{% extends 'home.html' %}
+
+    {% block content %}
+
+    <div class="schedule">
+
+    <div class="div1">
+        <div class="boothTime">
+            {{hour}}
+        </div>
+    </div>
+    
+    <div class="booth_container">
+        <div class="booth_individual">
+        <div class="booth_label">Booth 1</div>
+        <img src="{{url_for('static', filename='img/fallbackImage.jpg')}}" class="volunteerPhoto">
+        <div class="booth_data dot-elastic" id="Booth1_data"></div>
+        </div>
+
+        <div class="booth_individual">
+        <div class="booth_label">Booth 2</div>
+        <img src="{{url_for('static', filename='img/fallbackImage.jpg')}}" class="volunteerPhoto">
+        <div class="booth_data dot-elastic" id="Booth2_data"></div>
+        </div>
+
+        <div class="booth_individual">
+        <div class="booth_label">Booth 3</div>
+        <img src="{{url_for('static', filename='img/fallbackImage.jpg')}}" class="volunteerPhoto">
+        <div class="booth_data dot-elastic" id="Booth3_data"></div>
+        </div>
+    </div>
+
+
+    <div class="div1">
+        <div class="boothTime">{{hour2}}</div>
+    </div>
+
+    <div class="booth_container">
+        <div class="booth_individual">
+        <div class="booth_label">Booth 1</div>
+        <img src="{{url_for('static', filename='img/fallbackImage.jpg')}}" class="volunteerPhoto">
+        <div class="booth_data dot-elastic" id="Booth1_2_data"></div>
+        </div>
+
+        <div class="booth_individual">
+        <div class="booth_label">Booth 2</div>
+        <img src="{{url_for('static', filename='img/fallbackImage.jpg')}}" class="volunteerPhoto">
+        <div class="booth_data dot-elastic" id="Booth2_2_data"></div>
+        </div>
+
+        <div class="booth_individual">
+        <div class="booth_label">Booth 3</div>
+        <img src="{{url_for('static', filename='img/fallbackImage.jpg')}}" class="volunteerPhoto">
+        <div class="booth_data dot-elastic" id="Booth3_2_data"></div>
+        </div>
+    </div>
+
+    <div class="weatherAlert" id="weatherAlert"></div>
+
+</div>
+
+
+
+    <script src="{{url_for('static', filename='js/refresh.js')}}"></script>
+    <script src="{{url_for('static', filename='js/fetchBooths.js')}}"></script>
+
+    {% endblock %}
+

@@ -1,0 +1,263 @@
+<h1 style="text-align: center;">PODCASTS</h1>
+<div id="podcastsContainer" class="podcastsContainer">
+
+    <datalist id="podcastSearchList"></datalist>
+
+    <div class="categorySearch">
+
+    <select id="categorySelector" class="categorySelector" onchange="categorySelector(this.value)">
+        <option value="all" selected disabled hidden>Categories</option>
+        <option value="all">All</option>
+        <option value="local">Local</option>
+        <option value="news-politics">News & Politics</option>
+        <option value="business-finance">Business & Finance</option>
+        <option value="science-technology">Science & Technology</option>
+        <option value="literary">Literary</option>
+        <option value="health-fitness">Health & Fitness</option>
+        <option value="lifestyle-culture">Lifestyle & Culture</option>
+        <option value="arts-entertainment">Arts & Entertainment</option>
+        <option value="travel">Travel</option>
+        <option value="special">Special</option>
+    </select>
+
+    <input type="search" id="podcastSearch" name="podcastSearch" class="podcastSearch" placeholder="search" 
+        list="podcastSearchList" minlength="2" onchange="podcastSearch(this.value)"/>
+
+    </div>
+
+    <div id="aarp" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="health-fitness,lifestyle-culture">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/aarp/image.jpg">
+        <div class="podcastTitle">AARP Report</div>
+    </div>
+
+    <div id="able" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="health-fitness,lifestyle-culture">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/able/image.jpg">
+        <div class="podcastTitle">Able Living</div>
+    </div>
+
+    <div id="aroundworld" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="lifestyle-culture,travel">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/aroundworld/image.jpg">
+        <div class="podcastTitle">Around the World</div>
+    </div>
+
+    <div id="atlantic" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="lifestyle-culture,news-politics,science-technology">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/atlantic/image.jpg">
+        <div class="podcastTitle">The Atlantic</div>
+    </div>
+
+    <div id="bookpage" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="arts-entertainment,literary">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/bookpage/image.jpg">
+        <div class="podcastTitle">Book Page</div>
+    </div>
+
+    <div id="checklist" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="lifestyle-culture">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/checklist/image.jpg">
+        <div class="podcastTitle">Checklist</div>
+    </div>
+
+    <div id="community" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="local,news-politics">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/community/image.jpg">
+        <div class="podcastTitle">Community News</div>
+    </div>
+
+    <div id="consumer" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="business-finance,science-technology">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/consumer/image.jpg">
+        <div class="podcastTitle">Consumer Reports</div>
+    </div>
+
+    <div id="diabeties" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="health-fitness,lifestyle-culture">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/diabeties/image.jpg">
+        <div class="podcastTitle">Diabetic News</div>
+    </div>
+
+    <div id="discover" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="science-technology">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/discover/image.jpg">
+        <div class="podcastTitle">Discover</div>
+    </div>
+
+    <div id="economist" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="business-finance">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/economist/image.jpg">
+        <div class="podcastTitle">The Economist</div>
+    </div>
+
+    <div id="entertainment" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="arts-entertainment">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/entertainment/image.jpg">
+        <div class="podcastTitle">Entertainment Weekly</div>
+    </div>
+
+    <div id="eyes" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="health-fitness,lifestyle-culture,science-technology">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/eyes/image.jpg">
+        <div class="podcastTitle">Eyes on Success</div>
+    </div>
+
+    <div id="fortune" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="business-finance">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/fortune/image.jpg">
+        <div class="podcastTitle">Fortune</div>
+    </div>
+
+    <div id="historical" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="lifestyle-culture">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/historical/image.jpg">
+        <div class="podcastTitle">Historical View</div>
+    </div>
+
+    <div id="hourshortstories" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="literary">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/hourshortstories/image.jpg">
+        <div class="podcastTitle">An Hour of Short Stories</div>
+    </div>
+
+    <div id="cirrus" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="special">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/cirrus/image.jpg">
+        <div class="podcastTitle">Hourly Weather Forecast</div>
+    </div>
+
+    <div id="independent" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="health-fitness,lifestyle-culture">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/independent/image.jpg">
+        <div class="podcastTitle">Independent Living</div>
+    </div>
+
+       <div id="lgbt" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="lifestyle-culture">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/lgbt/image.jpg">
+        <div class="podcastTitle">LGBTQ News & Culture</div>
+    </div>
+
+    <div id="mens" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="health-fitness,lifestyle-culture,science-technology">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/mens/image.jpg">
+        <div class="podcastTitle">Men's Hour</div>
+    </div>
+
+    <div id="moneytalk" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="business-finance">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/moneytalk/image.jpg">
+        <div class="podcastTitle">Money Talk</div>
+    </div>
+
+    <div id="ledger" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="business-finance,local,news-politics">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/ledger/image.jpg">
+        <div class="podcastTitle">The Nashville Ledger</div>
+    </div>
+
+    <div id="scene" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="arts-entertainment,local,news-politics">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/scene/image.jpg">
+        <div class="podcastTitle">The Nashville Scene</div>
+    </div>
+
+    <div id="nationalgeo" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="science-technology,travel">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/nationalgeo/image.jpg">
+        <div class="podcastTitle">National Geographic</div>
+    </div>
+
+    <div id="science" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="science-technology">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/science/image.jpg">
+        <div class="podcastTitle">New Scientist</div>
+    </div>
+
+    <div id="nyt" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="news-politics">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/nyt/image.jpg">
+        <div class="podcastTitle">The New York Times</div>
+    </div>
+
+    <div id="newyorker" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="literary,news-politics">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/newyorker/image.jpg">
+        <div class="podcastTitle">The New Yorker</div>
+    </div>
+
+    <div id="newsweek" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="business-finance,news-politics,science-technology">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/newsweek/image.jpg">
+        <div class="podcastTitle">Newsweek</div>
+    </div>
+
+    <div id="people" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="arts-entertainment,lifestyle-culture">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/people/image.jpg">
+        <div class="podcastTitle">People</div>
+    </div>
+
+    <div id="pet" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="lifestyle-culture">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/pet/image.jpg">
+        <div class="podcastTitle">Pet Potpourri</div>
+    </div>
+
+    <div id="pnstalks" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="special">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/pnstalks/image.jpg">
+        <div class="podcastTitle">PNS 2025 Talks</div>
+    </div>
+
+    <div id="pns" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="special">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/pns/image.jpg">
+        <div class="podcastTitle">PNS Daily Newscast</div>
+    </div>
+
+    <div id="pnsyonder" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="special">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/pnsyonder/image.jpg">
+        <div class="podcastTitle">PNS Yonder Report</div>
+    </div>
+
+    <div id="poetry" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="arts-entertainment,literary">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/poetry/image.jpg">
+        <div class="podcastTitle">Poetry in the Air</div>
+    </div>
+
+    <div id="prevention" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="health-fitness,lifestyle-culture">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/prevention/image.jpg">
+        <div class="podcastTitle">Prevention</div>
+    </div>
+
+    <div id="readersdigest" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="arts-entertainment,literary,news-politics">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/readersdigest/image.jpg">
+        <div class="podcastTitle">Reader's Digest</div>
+    </div>
+
+    <div id="rollingstone" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="arts-entertainment,news-politics">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/rollingstone/image.jpg">
+        <div class="podcastTitle">Rolling Stone</div>
+    </div>
+
+    <div id="smithsonian" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="lifestyle-culture,literary,science-technology">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/smithsonian/image.jpg">
+        <div class="podcastTitle">The Smithsonian</div>
+    </div>
+
+    <div id="sports" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="arts-entertainment">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/sports/image.jpg">
+        <div class="podcastTitle">Spotlight on Sports</div>
+    </div>
+
+    <div id="tennessean" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="arts-entertainment,local,news-politics">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/tennessean/image.jpg">
+        <div class="podcastTitle">The Tennessean</div>
+    </div>
+
+    <div id="opinion" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="local,news-politics">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/opinion/image.jpg">
+        <div class="podcastTitle">Tennessean Opinions</div>
+    </div>
+
+    <div id="time" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="lifestyle-culture,news-politics">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/time/image.jpg">
+        <div class="podcastTitle">Time</div>
+    </div>
+
+    <div id="town" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="lifestyle-culture,travel">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/town/image.jpg">
+        <div class="podcastTitle">Town & Country</div>
+    </div>
+
+    <div id="vanity" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="lifestyle-culture">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/vanity/image.jpg">
+        <div class="podcastTitle">Vanity Fair</div>
+    </div>
+
+    <div id="wsj" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="business-finance,news-politics">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/wsj/image.jpg">
+        <div class="podcastTitle">The Wall Street Journal</div>
+    </div>
+
+    <div id="wired" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="science-technology">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/wired/image.jpg">
+        <div class="podcastTitle">Wired</div>
+    </div>
+
+    <div id="woman" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="health-fitness,lifestyle-culture,science-technology">
+        <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/woman/image.jpg">
+        <div class="podcastTitle">Woman's World</div>
+    </div>
+
+</div>

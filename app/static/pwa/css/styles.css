@@ -1,0 +1,348 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: sans-serif;
+    background-color: #2e388f;
+    overscroll-behavior: none;
+    touch-action: manipulation;
+    overflow-x: hidden;
+  }
+
+.installDialog {
+  background-color: RGB(46,56,143);
+  color: aliceblue;
+  padding: 10pt;
+}
+
+.installLogo {
+  width: 320px;
+  display: block;
+  margin: auto;
+}
+
+.shareButton {
+  width: 50px; 
+  height: 50px; 
+  vertical-align:middle;
+  margin: 0;
+  padding: 0;
+}
+
+.orientationChange {
+  display: none;
+  background-color: RGB(46,56,143);
+  font-size: 35pt;
+  color: aliceblue;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  padding-top: 15%;
+  z-index: 9999;
+}
+  
+nav {
+    background: inherit;
+    color: white;
+    padding-bottom: 10px;
+    display: flex; 
+    justify-content: space-around;
+    position: fixed;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    z-index: 1000;
+  }
+
+footer {
+  width: 100%;
+  height: 80px;
+  background-color: inherit;
+  color: white;
+  display: flex;
+  /* flex-grow: 1; */
+  align-items: center;
+  padding: 5px;
+  padding-top: 10px;
+  padding-bottom: 20px; /* account for bottom of mobile devices */
+  justify-content: flex-start;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.player {
+    color: white;
+    background-color: inherit;
+    border: 0;
+    margin-top: 5px;
+    /* display: flex; */
+  }
+
+.nowPlaying {
+    width: 100%;
+    margin-right: 18pt;
+    text-align: center;
+    font-size: 17pt;
+  }
+
+.muteButton {
+  padding: 3pt;
+}
+
+nav a {
+    color: unset;
+    text-decoration: none;    
+  }
+
+.icon-link svg {
+  width: 70px;
+  height: 70px;
+  fill: #ffffff; 
+  vertical-align: middle;
+  stroke: #333;
+  transition: fill 0.4s ease;
+}
+
+.icon-link:hover svg,
+.icon-link:focus svg {
+  fill: RGB(241, 101, 48);
+}
+  
+  main {
+    padding: 1em;
+    min-height: calc(100vh - 160px);
+    background-color: #ffffff;
+    transition: opacity 0.2s  ease-in-out;
+  }
+
+.onlineOfflineDot {
+  position: absolute;
+  bottom: 35px;
+  left: 8px; 
+  height: 15px;
+  width: 15px;
+  background-color: #00fc37;
+  border-radius: 50%;
+}
+
+.aboutLink {
+  position: absolute;
+  bottom: 100px;
+  right: 25px;
+  font-size: 40pt;
+  border-radius: 25%;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: black;
+  color: aliceblue;
+  text-decoration: none;
+}
+
+.aboutContent {
+  margin-top: 20pt;
+  font-size: 15pt;
+}
+
+.aboutIconsContainer {
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  column-gap: 32px;
+}
+
+.aboutIcons {
+  width: 40px;
+  height: 40px;
+}
+
+.aboutIconsCustom {
+  width: 45px;
+  height: 45px;
+}
+
+.appVersion {
+  float: right;
+  color: RGB(241, 101, 48);
+}
+
+.backButton {
+  width: 30px;
+  height: 30px;
+  margin-top: 4pt;
+  color: aliceblue;
+  position: fixed;
+  z-index: 10;
+}
+
+.dailyScheduleLinksContainer {
+  margin-top: 10pt;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  column-gap: 165pt;
+  row-gap: 10pt;
+}
+
+.dailyScheduleLinks {
+  text-decoration: none;
+  color: aliceblue;
+  font-size: 20pt;
+  background-color: RGB(241, 101, 48);
+  width: 40%;
+  text-align: center;
+  border-radius: 3%;
+  padding-top: 12pt;
+  padding-bottom: 12pt;
+  padding-right: 50pt;
+  padding-left: 50pt;
+}
+
+.dailyScheduleContainer {
+  margin-top: 0;
+  margin-bottom: 60px;
+}
+
+
+.dailyScheduleHeader {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  font-size: 25pt;
+  text-align: center;
+  font-weight: bold;  
+  background-color: #ffffff;
+  margin-top: 0%;
+  padding-top: 0%;
+}
+
+.tapProgramNameToListen {
+  font-size: 12pt;
+  text-align: center;
+}
+
+.dailyScheduleContainerIndividual {
+  border-bottom: 2.5pt solid black;
+  padding-top: 15pt;
+  padding-bottom: 15pt;
+}
+
+.halfHourNoBorder {
+  border-width: .1pt;
+}
+
+.dailyScheduleHour {
+  display: inline-block;
+  font-size: 15pt;
+  padding-right: 4pt;
+}
+
+.dailyScheduleTitle {
+  display: inline-block;
+  font-size: 17pt;
+  border-left: 1pt solid black;  
+  padding-left: 8pt;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 28%;
+}
+  .NTL-logo {
+    width: 300px;
+    height: 300px;
+  }
+
+.podcastsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 50px;
+    column-gap: 200px;
+    margin-bottom: 80px;
+    justify-content: center;    
+}
+
+.categorySearch {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  row-gap: 8px;
+  margin-bottom: 0%;
+}
+
+.categorySelector {
+  font-size: 18pt;
+  width: 65%; 
+}
+
+.podcastSearch {
+  text-align: left;
+  font-size: 18pt;
+  width: 65%;
+}
+
+.podcastIndividual {
+  text-align: center;
+  opacity: 1;
+  transition: opacity 0.25s ease, max-height 0.3s ease;
+}
+
+.podcastImages {
+  width: 300px;
+  height: 300px;
+}
+
+.podcastTitle {
+  font-size: 25pt;
+}
+
+.podcastLoadingDots {
+  margin-left: 50%; 
+  margin-top: 50%
+}
+
+.podcastIndividualContainer {
+  margin-bottom: 50pt;
+}
+
+.podcastIndividualImage {
+  display: block;
+  margin-top: 10pt;
+  margin-left: auto;
+  margin-right: auto;
+  width: 250px;
+  height: 250px;
+}
+
+.podcastIndividualTitle {
+  text-align: center;
+  font-size: 20pt;
+}
+
+.podcastIndividualDescription {
+  font-size: 15pt;
+}
+
+.podcastEpisodeTitle {
+  font-size: 13pt;
+}
+
+.podcastEpisodeDuration {
+  font-size: 11pt;
+}
+
+.podcastEpisodeEnclosure {
+  text-align: center;
+}

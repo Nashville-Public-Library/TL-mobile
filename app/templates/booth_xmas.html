@@ -1,0 +1,85 @@
+{% extends 'home.html' %}
+
+{% block header %} Who's in the booth? {% endblock %}
+
+{% block refresh %}
+
+<div class="refresh" id="refresh" style="z-index: 100; margin-top: 10.5%;">REFRESHING THE SCHEDULE...JUST A MOMENT</div>
+<div class="nowPlayingContainer" id="nowPlayingContainer" style="margin: 0%;">
+    <h3 style="display: inline-block;">On the Air: </h3>
+    <h3 style="display: inline-block;" class="nowPlaying" id="nowPlaying"></h3>
+</div>
+
+<img src="{{ url_for('static', filename='img/garland.png') }}" alt="" style="
+height: 300px;
+width: 83.2%; 
+display: block;
+margin-left: 5.25%;
+margin-top: 7.25%;
+position: fixed;
+">
+{% endblock %}
+
+    {% block content %}
+
+    
+    <div class="div1" style="margin-top: 140px;">
+        <div class="booth_label">
+            {{hour}}
+        </div>
+    </div>
+    
+    <div class="div1">
+        <div class="div2">
+        <div class="booth_label">Booth 1</div>
+        <b><div class="booth_data dot-elastic" id="Booth1_data"></div></b>
+        </div>
+
+        <div class="div2">
+        <div class="booth_label">Booth 2</div>
+        <b><div class="booth_data dot-elastic" id="Booth2_data"></div></b>
+        </div>
+
+        <div class="div2">
+        <div class="booth_label">Booth 3</div>
+        <b><div class="booth_data dot-elastic" id="Booth3_data"></div></b>
+        </div>
+    </div>
+
+    <hr style="width: 78%;">
+
+    <br>
+
+    <div class="div1">
+        <div class="booth_label">{{hour2}}</div>
+    </div>
+
+    <div class="div1">
+        <div class="div2">
+        <div class="booth_label">Booth 1</div>
+        <b><div class="booth_data dot-elastic" id="Booth1_2_data"></div></b>
+        </div>
+
+        <div class="div2">
+        <div class="booth_label">Booth 2</div>
+        <b><div class="booth_data dot-elastic" id="Booth2_2_data"></div></b>
+        </div>
+
+        <div class="div2">
+        <div class="booth_label">Booth 3</div>
+        <b><div class="booth_data dot-elastic" id="Booth3_2_data"></div></b>
+        </div>
+    </div>
+
+    <div class="weatherAlert" id="weatherAlert" style="display: none;"></div>
+
+    <br>
+
+    <div class="banner" role="alert" id="banner" style="display: none;"></div>
+
+
+    <script src="{{url_for('static', filename='js/refresh.js')}}"></script>
+    <script src="{{url_for('static', filename='js/fetchBooths.js')}}"></script>
+
+    {% endblock %}
+
