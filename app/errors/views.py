@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import redirect
 
 from app import app
 
@@ -10,7 +10,7 @@ def bad_request(e):
 
 @app.errorhandler(404)
 def not_found(e):
-    return "NOT FOUND", 404
+    return redirect(location="/")
 
 @app.errorhandler(405)
 def not_allowed(e):
