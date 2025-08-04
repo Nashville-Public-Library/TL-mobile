@@ -71,7 +71,7 @@ self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
 
   const url = new URL(event.request.url);
-  if (url.pathname.startsWith('/stream/') || url.pathname.endsWith('.mp3') ) return; // Don't cache or intercept audio
+  if (url.pathname.endsWith('.mp3')) return; // Don't cache or intercept audio
 
   event.respondWith(
     caches.match(event.request, { ignoreSearch: true }).then(cached => {
@@ -89,7 +89,7 @@ self.addEventListener('fetch', event => {
     }).catch(() => {
       console.log('[SW] Fetch failed; returning fallback for:', event.request.url);
       if (event.request.headers.get('accept').includes('text/html')) {
-        return caches.match('/static/pwa/pages/home.html');
+        return caches.match('/static/pages/home.html');
       }
     })
   );
