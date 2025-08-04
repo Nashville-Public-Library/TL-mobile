@@ -1,5 +1,4 @@
-from flask import send_from_directory, render_template, make_response
-import time
+from flask import render_template, make_response
 
 from app import app
 from app.pwa.pod import Podcast
@@ -8,9 +7,10 @@ VERSION = "0.4.9"
 
 @app.route('/', methods=['GET'])
 def pwa():
-    return app.send_static_file("/pages/index.html")
+    print("i am here!")
+    return app.send_static_file("pages/index.html")
 
-@app.route('/pwa/version', methods=['POST'])
+@app.route('/version', methods=['POST'])
 def version():
     return {"version": VERSION}
 
@@ -49,6 +49,6 @@ def podcasts_info(podcast):
         pod = Podcast(show=podcast)
         pod = pod.to_client()
 
-        return render_template("pwa/podcast-individual.html", pod=pod)  
+        return render_template("podcast-individual.html", pod=pod)  
     except:
         return "", 500

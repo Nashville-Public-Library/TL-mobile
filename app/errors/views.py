@@ -10,7 +10,7 @@ def bad_request(e):
 
 @app.errorhandler(404)
 def not_found(e):
-    return render_template('404.html'), 404
+    return "NOT FOUND", 404
 
 @app.errorhandler(405)
 def not_allowed(e):
@@ -18,4 +18,4 @@ def not_allowed(e):
 
 @app.errorhandler(500)
 def handle_exception(e):
-    return render_template("broken.html"), 500
+    return "SOMETHING BAD HAPPENED!", 500
