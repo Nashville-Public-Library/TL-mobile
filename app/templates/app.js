@@ -5,20 +5,20 @@ function openlinkExternalWindow(url) {
 } 
 
 const routes = {
-    '/': '/static/pwa/pages/home.html',
-    '/about': 'static/pwa/pages/about.html',
-    '/schedule': '/static/pwa/pages/schedule.html',
-    '/podcasts': '/static/pwa/pages/podcasts.html',
-    '/podcasts-individual': '/static/pwa/pages/podcast-loading.html',
-    '/broadcast-schedule': '/static/pwa/pages/broadcastSchedule.html',
-    '/program-guide': '/static/pwa/pages/programGuide.html',
-    '/schedule/monday': '/static/pwa/pages/daily/monday.html',
-    '/schedule/tuesday': '/static/pwa/pages/daily/tuesday.html',
-    '/schedule/wednesday': '/static/pwa/pages/daily/wednesday.html',
-    '/schedule/thursday': '/static/pwa/pages/daily/thursday.html',
-    '/schedule/friday': '/static/pwa/pages/daily/friday.html',
-    '/schedule/saturday': '/static/pwa/pages/daily/saturday.html',
-    '/schedule/sunday': '/static/pwa/pages/daily/sunday.html'
+    '/': '/static/pages/home.html',
+    '/about': 'static/pages/about.html',
+    '/schedule': '/static/pages/schedule.html',
+    '/podcasts': '/static/pages/podcasts.html',
+    '/podcasts-individual': '/static/pages/podcast-loading.html',
+    '/broadcast-schedule': '/static/pages/broadcastSchedule.html',
+    '/program-guide': '/static/pages/programGuide.html',
+    '/schedule/monday': '/static/pages/daily/monday.html',
+    '/schedule/tuesday': '/static/pages/daily/tuesday.html',
+    '/schedule/wednesday': '/static/pages/daily/wednesday.html',
+    '/schedule/thursday': '/static/pages/daily/thursday.html',
+    '/schedule/friday': '/static/pages/daily/friday.html',
+    '/schedule/saturday': '/static/pages/daily/saturday.html',
+    '/schedule/sunday': '/static/pages/daily/sunday.html'
   };
   
   async function loadRoute() {
@@ -60,7 +60,7 @@ const routes = {
     let livestream = document.getElementById("audio");
     let notAvailable = "Program Name Not Available";
     try {
-        const url = "/stream/status";
+        const url = "https://api.nashvilletalkinglibrary.com/stream/status";
         let response = await fetch(url, { method: "POST" });
         let icecast = await response.json();
         let nowPlaying = icecast.title;
@@ -92,7 +92,7 @@ const routes = {
     if (audio.paused) {
       if (!navigator.onLine){return;}
       nowPlaying()
-      audio.src = "/stream/livestream.mp3"
+      audio.src = "https://api.nashvilletalkinglibrary.com/stream/livestream.mp3"
       audio.play();
       switchPlayPauseIcon()
       button.setAttribute('aria-label', 'Pause');
@@ -189,7 +189,7 @@ function loadAppVersion() {
     location.hash = "/podcasts-individual"
     const app = document.getElementById("app");
 
-    const url = "/pwa/podcasts/info/" + show;
+    const url = "/podcasts/info/" + show;
     let response = await fetch(url, { method: "POST", headers: {'Content-Type': 'text/html'}});
     if (response.ok) {
       let responseHTML = await response.text();
@@ -258,7 +258,7 @@ async function podcastSearch(title) {
   const titleTrim = title.trim()
   if (titleTrim == "") {return;}
 
-  const url = "/pwa/podcasts"
+  const url = "/podcasts"
   let response = await fetch(url, { method: "POST" });
   let responseJSON = await response.json();
   let show = responseJSON.shows[titleTrim]
@@ -272,7 +272,7 @@ async function podcastSearch(title) {
 async function loadShowNamesInSearchInput() {
   const datalist = document.getElementById("podcastSearchList");
 
-  const url = "/pwa/podcasts"
+  const url = "/podcasts"
   let response = await fetch(url, { method: "POST" });
   let responseJSON = await response.json();
   let shows = responseJSON.shows

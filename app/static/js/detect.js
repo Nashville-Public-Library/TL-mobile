@@ -73,7 +73,7 @@ async function detect() {
     // const installed = true;
     if (!installed) {
         console.log('not installed, fetching page');
-        let response = await fetch('/static/pwa/pages/install.html');
+        let response = await fetch('/static/pages/install.html');
         let text = await response.text()
 
         document.body.innerHTML = text;
