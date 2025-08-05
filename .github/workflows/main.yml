@@ -1,24 +1,16 @@
-# name: Test and Deploy
+name: Test and Deploy
 
-# on:
-#   push:
-#     branches:
-#       - main
+on:
+  push:
+    branches:
+      - main
 
-# permissions:
-#   contents: read
+permissions:
+  contents: read
 
-# jobs:
+jobs:
   # test:
-  #   runs-on: ubuntu-latest
-  #   env:
-  #     icecast_user: ${{ secrets.icecast_user }}
-  #     icecast_pass: ${{ secrets.icecast_pass }}
-  #     VIC_user: ${{ secrets.VIC_USER }}
-  #     VIC_password: ${{ secrets.VIC_PASSWORD }}
-  #     BF_pass: ${{ secrets.BF_pass }}
-  #     IPInfoToken: ${{ secrets.IPINFOTOKEN }}
-      
+  #   runs-on: ubuntu-latest      
   #   steps:
 
   #   - name: prep action  
@@ -35,60 +27,27 @@
   #   - name: Test with pytest
   #     run: pytest
 
-  # deploy:
-  #   # needs: test
-  #   runs-on: ubuntu-latest
+  deploy:
+    # needs: test
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #   - name: Checkout code
-  #     uses: actions/checkout@v4
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-  #   - name: Set up SSH key
-  #     run: |
-  #       mkdir -p ~/.ssh
-  #       echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/ntl_web_app.pem
-  #       chmod 600 ~/.ssh/ntl_web_app.pem
+    - name: Set up SSH key
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/ntl_mobile_app.pem
+        chmod 600 ~/.ssh/ntl_mobile_app.pem
 
-  #   - name: Add EC2 to known hosts
-  #     run: |
-  #       ssh-keyscan -H 3.129.4.158 >> ~/.ssh/known_hosts
+    - name: Add EC2 to known hosts
+      run: |
+        ssh-keyscan -H 3.129.4.158 >> ~/.ssh/known_hosts
 
-  #   - name: Deploy to EC2
-  #     run: |
-  #       ssh -o StrictHostKeyChecking=no -i ~/.ssh/ntl_web_app.pem ubuntu@3.129.4.158 << 'EOF'
-  #         cd /home/booth
-  #         git pull origin main
-          
-  #         source /home/booth/venv/bin/activate
-  #         pip install -r requirements.txt
-
-  #         sudo systemctl restart ntl_web_app
-  #         sudo systemctl restart nginx
-  #       EOF
-
-
-  # deploy:
-  #   needs: test
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: prep action  
-  #       uses: actions/checkout@v4
-
-  #     - name: Set up Python
-  #       uses: actions/setup-python@v5
-  #       with:
-  #         python-version: "3.10"
-
-  #     - name: Generate deployment package
-  #       run: zip -r deploy.zip . -x "*.git*" "venv/*" ".pytest_cache/*" "__pycache__/*"
-
-  #     - name: Deploy to AWS
-  #       uses: einaregilsson/beanstalk-deploy@v21
-  #       with:
-  #         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  #         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  #         application_name: ntlbooth
-  #         environment_name: Ntlbooth-env
-  #         version_label: ${{ github.sha }}
-  #         region: us-east-2
-  #         deployment_package: deploy.zip
+    - name: Deploy to EC2
+      run: |
+        ssh -o StrictHostKeyChecking=no -i ~/.ssh/ntl_mobile_app.pem ubuntu@3.129.4.158 << 'EOF'
+          cd /home
+          ls -la
+        EOF
