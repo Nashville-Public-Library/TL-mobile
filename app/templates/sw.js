@@ -18,6 +18,8 @@ const FILES_TO_CACHE = [
     '/static/pages/daily/sunday.html',
     '/static/img/NTL_new-192.jpg',
     '/static/img/NTL_new-512.jpg',
+    '/static/img/NTL-white-trim.png',
+    '/static/img/NPL.svg',
     '/static/img/instagram.png',
     '/static/img/facebook.png',
     '/static/img/website.png',
