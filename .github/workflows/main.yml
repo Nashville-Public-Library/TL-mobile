@@ -43,11 +43,11 @@ jobs:
 
     - name: Add EC2 to known hosts
       run: |
-        ssh-keyscan -H 3.129.4.158 >> ~/.ssh/known_hosts
+        ssh-keyscan -H app.nashvilletalkinglibrary.com >> ~/.ssh/known_hosts
 
     - name: Deploy to EC2
       run: |
-        ssh -o StrictHostKeyChecking=no -i ~/.ssh/ntl_mobile_app.pem ubuntu@3.129.4.158 << 'EOF'
+        ssh -o StrictHostKeyChecking=no -i ~/.ssh/ntl_mobile_app.pem ubuntu@app.nashvilletalkinglibrary.com << 'EOF'
           cd /home/TL-mobile
           git pull origin main
           
