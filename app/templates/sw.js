@@ -27,7 +27,10 @@ const FILES_TO_CACHE = [
     '/static/img/phone.png',
     '/static/img/broadcastSchedulePreview.png',
     '/static/img/programGuidePreview.png',
-    '/static/img/back-button.png'
+    '/static/img/back-button.png',
+    '/static/img/location.png',
+    '/static/img/about.png',
+    '/static/img/rotate-phone.png'
 ];
 
 // Install — cache all static assets

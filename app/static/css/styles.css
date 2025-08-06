@@ -135,16 +135,7 @@ nav a {
 .aboutLink {
   position: absolute;
   bottom: 100px;
-  right: 25px;
-  font-size: 40pt;
-  border-radius: 25%;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  padding-left: 10px;
-  padding-right: 10px;
-  background-color: black;
-  color: aliceblue;
-  text-decoration: none;
+  right: 20px;
 }
 
 .aboutContent {
