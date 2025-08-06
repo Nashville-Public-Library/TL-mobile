@@ -154,9 +154,11 @@ nav a {
 
 .aboutIconsContainer {
   display: flex; 
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content:center;
   align-items: center;
-  column-gap: 32px;
+  column-gap: 75px;
+  row-gap: 30px;
 }
 
 .aboutIcons {
@@ -165,8 +167,8 @@ nav a {
 }
 
 .aboutIconsCustom {
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
 }
 
 .appVersion {
