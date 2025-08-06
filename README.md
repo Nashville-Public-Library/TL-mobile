@@ -19,3 +19,33 @@ Don't forget to continually update your `requirement.txt` file as you go:
 ````python
 pip freeze > requirements.txt
 ````
+## Development
+
+First, setup a virtual environment:
+````python 
+python -m venv venv
+````
+
+Then activate it:
+````python
+venv\scripts\activate
+````
+
+Next, install the "Flask" library:
+
+````python
+pip install Flask
+````
+
+And finally, install the "requests" module:
+
+````python
+pip install requests
+````
+
+You may have to update to the latest version of Python as well. To do so, run:
+
+````python
+python.exe -m pip install --upgrade pip
+````
+
