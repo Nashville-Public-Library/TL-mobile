@@ -16,36 +16,51 @@ Run `pytest` at the top level directory to run the basic tests.
 ## Misc
 
 Don't forget to continually update your `requirement.txt` file as you go: 
-````python
+````bash
 pip freeze > requirements.txt
 ````
 ## Development
 
-First, setup a virtual environment:
-````python 
-python -m venv venv
-````
+- Clone this depository
+    ````bash
+    https://github.com/Nashville-Public-Library/TL-mobile.git
+    ````
 
-Then activate it:
-````python
-venv\scripts\activate
-````
+- cd into the folder in the terminal or open the folder in your IDE
+    ````bash
+    cd TL-mobile
+    ````
 
-Next, install the "Flask" library:
+- Create a virtual environment
+    ````bash 
+    py -m venv venv
+    ````
+    - Depending on your OS, you may need to use `python` or `python3` instead of `py`
 
-````python
-pip install Flask
-````
+- Activate virtual environment
+    - On Windows:
 
-And finally, install the "requests" module:
+    ````bash
+    venv\Scripts\activate
+    ````
+    - On Mac:
 
-````python
-pip install requests
-````
+    ````bash
+    source venv/bin/activate
+    ````
 
-You may have to update to the latest version of Python as well. To do so, run:
+    >[IMPORTANT]
+    >If done correctly, you should see `(venv)` in the terminal. Don't run the rest of these commands unless you see `(venv)` in the terminal.
 
-````python
-python.exe -m pip install --upgrade pip
-````
+- Install the requirements file
+    ````bash
+    pip install -r requirements.txt
+    ````
+
+- Update pip
+    ````bash
+    py -m pip install --upgrade pip
+    ````
+
+    - Depending on your OS, you may need to run `pip3` instead of `pip`
 
