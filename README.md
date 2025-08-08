@@ -37,6 +37,7 @@ pip freeze > requirements.txt
     ````
     - Depending on your OS, you may need to use `python` or `python3` instead of `py`
 
+
 - Activate virtual environment
     - On Windows:
 
@@ -52,15 +53,9 @@ pip freeze > requirements.txt
     >[IMPORTANT]
     >If done correctly, you should see `(venv)` in the terminal. Don't run the rest of these commands unless you see `(venv)` in the terminal.
 
-- Install the requirements file
+
+- Install 3rd party libraries
     ````bash
     pip install -r requirements.txt
     ````
-
-- Update pip
-    ````bash
-    py -m pip install --upgrade pip
-    ````
-
-    - Depending on your OS, you may need to run `pip3` instead of `pip`
 
