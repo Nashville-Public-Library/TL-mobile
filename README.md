@@ -23,7 +23,7 @@ pip freeze > requirements.txt
 
 - Clone this depository
     ````bash
-    https://github.com/Nashville-Public-Library/TL-mobile.git
+    git clone https://github.com/Nashville-Public-Library/TL-mobile.git
     ````
 
 - cd into the folder in the terminal or open the folder in your IDE
@@ -54,7 +54,7 @@ pip freeze > requirements.txt
     >If done correctly, you should see `(venv)` in the terminal. Don't run the rest of these commands unless you see `(venv)` in the terminal.
 
 
-- Install 3rd party libraries
+- Install Dependencies
     ````bash
     pip install -r requirements.txt
     ````
