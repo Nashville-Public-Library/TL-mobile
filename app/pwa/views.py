@@ -32,7 +32,7 @@ def serve_app_js():
 def podcasts():
     shows = {"AARP Report": "aarp", "Able Living": "able", "Around the World": "aroundworld", "Atlantic": "atlantic", "Book Page": "bookpage", 
              "Checklist": "checklist", "Hourly Weather Forecast": "cirrus", "Community News": "community", "Consumer Reports": "consumer", 
-             "Diabetic News": "diabeties", "Discover": "discover", "Economist": "economist", "Entertainment Weekly": "entertainment", 
+             "Diabetic News": "diabetes", "Discover": "discover", "Economist": "economist", "Entertainment Weekly": "entertainment", 
              "Eyes on Success": "eyes", "Fortune": "fortune", "Historical View": "historical", "An Hour of Short Stories": "hourshortstories", 
              "Independent Living": "independent", "Nashville Ledger": "ledger", "LGBTQ News & Culture": "lgbt", "Men's Hours": "mens", 
              "Money Talk": "moneytalk", "National Geographic": "nationalgeo", "Newsweek": "newsweek", "New Yorker": "newyorker", 
