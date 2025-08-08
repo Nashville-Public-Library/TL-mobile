@@ -16,6 +16,46 @@ Run `pytest` at the top level directory to run the basic tests.
 ## Misc
 
 Don't forget to continually update your `requirement.txt` file as you go: 
-````python
+````bash
 pip freeze > requirements.txt
 ````
+## Development
+
+- Clone this depository
+    ````bash
+    https://github.com/Nashville-Public-Library/TL-mobile.git
+    ````
+
+- cd into the folder in the terminal or open the folder in your IDE
+    ````bash
+    cd TL-mobile
+    ````
+
+- Create a virtual environment
+    ````bash 
+    py -m venv venv
+    ````
+    - Depending on your OS, you may need to use `python` or `python3` instead of `py`
+
+
+- Activate virtual environment
+    - On Windows:
+
+    ````bash
+    venv\Scripts\activate
+    ````
+    - On Mac:
+
+    ````bash
+    source venv/bin/activate
+    ````
+
+    >[IMPORTANT]
+    >If done correctly, you should see `(venv)` in the terminal. Don't run the rest of these commands unless you see `(venv)` in the terminal.
+
+
+- Install 3rd party libraries
+    ````bash
+    pip install -r requirements.txt
+    ````
+
