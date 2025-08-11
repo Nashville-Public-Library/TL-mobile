@@ -148,18 +148,20 @@ nav a {
   flex-wrap: wrap;
   justify-content:center;
   align-items: center;
-  column-gap: 75px;
-  row-gap: 50px;
+  column-gap: 60px;
+  row-gap: 60px;
+  padding-top: 25px;
+  padding-bottom: 30px;
 }
 
 .aboutIcons {
-  width: 40px;
-  height: 40px;
+  width: 55px;
+  height: 55px;
 }
 
 .aboutIconsCustom {
-  width: 40px;
-  height: 40px;
+  width: 55px;
+  height: 55px;
 }
 
 .appVersion {
