@@ -5,20 +5,10 @@
 [![last-commit](https://img.shields.io/github/last-commit/Nashville-Public-Library/TL-mobile)](https://github.com/Nashville-Public-Library/TL-mobile/commits/main)
 
 
-[app.nashvilletalkinglibrary.com (NOT WORKING YET)](https://app.nashvilletalkinglibrary.com)
+[app.nashvilletalkinglibrary.com](https://app.nashvilletalkinglibrary.com)
 
  a simple mobile app for TL listeners...
 
-
-## Testing
-Run `pytest` at the top level directory to run the basic tests.
-
-## Misc
-
-Don't forget to continually update your `requirement.txt` file as you go: 
-````bash
-pip freeze > requirements.txt
-````
 ## Development
 
 - Clone this depository
@@ -59,3 +49,9 @@ pip freeze > requirements.txt
     pip install -r requirements.txt
     ````
 
+## Misc
+
+Don't forget to continually update your `requirements.txt` file as you go: 
+````bash
+pip freeze > requirements.txt
+````
