@@ -293,3 +293,8 @@ async function loadShowNamesInSearchInput() {
     datalist.appendChild(option)
   }
 }
+
+async function copyToClipboard(text) {
+  await navigator.clipboard.writeText(text);
+  alert("RSS Feed copied to clipboard :)")
+}

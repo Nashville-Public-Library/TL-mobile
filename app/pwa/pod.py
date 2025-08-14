@@ -47,7 +47,7 @@ class Podcast:
         return image
     
     def get_RSS_link(self):
-        RSS_link: str = "itpc://assets.library.nashville.org/talkinglibrary/shows/" + self.show + "/feed.xml"
+        RSS_link: str = "https://assets.library.nashville.org/talkinglibrary/shows/" + self.show + "/feed.xml"
         return RSS_link
     
     def get_episodes(self):

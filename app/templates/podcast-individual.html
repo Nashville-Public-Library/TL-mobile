@@ -8,7 +8,8 @@
     <br>
     <div id="podcastIndividualDescription" class="podcastIndividualDescription">{{ pod.description }}</div>
     <br>
-    <a href="{{pod.RSSLink}}">Subscribe in your podcast app?</a>
+    
+    <button id="copyToClipboard" name="{{pod.RSSLink}}" onclick="copyToClipboard(this.name)">Copy RSS URL</button>
     <br>
     <br>
     <div id="podcastIndividualAllEpisodes" class="podcastIndividualAllEpisodes">
