@@ -53,6 +53,16 @@ const routes = {
   
   window.addEventListener('hashchange', loadRoute);
   window.addEventListener('DOMContentLoaded', loadRoute);
+
+  function highlightNavBarIcon(icon) {
+    icon.classList.add("icon-link-selected");
+    const navLinks = document.getElementsByClassName("icon-link");
+    for (var i = 0, len = navLinks.length; i < len; i++) {
+      if (navLinks[i] != icon) {
+        navLinks[i].classList.remove("icon-link-selected");
+      }
+    }
+  }
   
 
   async function nowPlaying() {
