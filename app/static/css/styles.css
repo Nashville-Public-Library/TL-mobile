@@ -208,6 +208,8 @@ nav a {
 .dailyScheduleContainer {
   margin-top: 0;
   margin-bottom: 60px;
+  margin-left: 0;
+
 }
 
 
@@ -231,9 +233,13 @@ nav a {
 }
 
 .dailyScheduleContainerIndividual {
+  display: grid;
+  grid-template-columns: 90px auto;
+  align-items: center;
   border-bottom: 2.5pt solid black;
   padding-top: 15pt;
   padding-bottom: 15pt;
+  margin-left: 0;
 }
 
 .halfHourNoBorder {
@@ -241,16 +247,16 @@ nav a {
 }
 
 .dailyScheduleHour {
-  display: inline-block;
+  text-align: right;
   font-size: 15pt;
-  padding-right: 4pt;
+  padding-right: 6pt;
+  border-right: 1pt solid black;
 }
 
 .dailyScheduleTitle {
   display: inline-block;
   font-size: 17pt;
-  border-left: 1pt solid black;  
-  padding-left: 8pt;
+  padding-left: 9pt;
 }
 
 .logo-container {
