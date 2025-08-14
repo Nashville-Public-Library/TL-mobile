@@ -8,6 +8,9 @@
     <br>
     <div id="podcastIndividualDescription" class="podcastIndividualDescription">{{ pod.description }}</div>
     <br>
+    <a href="{{pod.RSSLink}}">Subscribe in your podcast app?</a>
+    <br>
+    <br>
     <div id="podcastIndividualAllEpisodes" class="podcastIndividualAllEpisodes">
         {% for episode in pod.episodes %}
             <div class="podcastEpisodeTitle">{{ episode.title }}</div>

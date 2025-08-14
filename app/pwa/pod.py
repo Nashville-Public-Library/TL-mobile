@@ -9,6 +9,7 @@ class Podcast:
         self.show_name = self.get_show_name()
         self.description = self.get_description()
         self.image = self.get_image()
+        self.RSS_link = self.get_RSS_link()
         self.episodes = self.get_episodes()
 
     def to_client(self):
@@ -16,6 +17,7 @@ class Podcast:
             "title": self.show_name,
             "description": self.description,
             "image": self.image,
+            "RSSLink": self.RSS_link,
             "episodes": self.episodes
         }
 
@@ -43,6 +45,10 @@ class Podcast:
         feed = self.tree
         image = feed.find("image").find("url").text
         return image
+    
+    def get_RSS_link(self):
+        RSS_link: str = "itpc://assets.library.nashville.org/talkinglibrary/shows/" + self.show + "/feed.xml"
+        return RSS_link
     
     def get_episodes(self):
         feed = self.tree
