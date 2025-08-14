@@ -82,8 +82,13 @@ footer {
     background-color: inherit;
     border: 0;
     margin-top: 5px;
-    /* display: flex; */
+    margin-left: 5px;
   }
+
+.player svg {
+  transform: scale(1.49);
+  transform-origin: center;
+}
 
 .nowPlaying {
     width: 100%;
