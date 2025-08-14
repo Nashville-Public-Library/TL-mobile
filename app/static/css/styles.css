@@ -250,14 +250,14 @@ nav a {
 .dailyScheduleHour {
   text-align: right;
   font-size: 15pt;
-  padding-right: 6pt;
+  padding-right: 10pt;
   border-right: 1pt solid black;
 }
 
 .dailyScheduleTitle {
   display: inline-block;
   font-size: 17pt;
-  padding-left: 9pt;
+  padding-left: 19pt;
 }
 
 .logo-container {
