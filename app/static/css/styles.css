@@ -139,7 +139,8 @@ nav a {
 .aboutLink {
   position: absolute;
   bottom: 100px;
-  right: 20px;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .aboutContent {
