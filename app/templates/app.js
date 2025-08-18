@@ -62,6 +62,7 @@ const routes = {
         navLinks[i].classList.remove("icon-link-selected");
       }
     }
+    document.getElementById("app").scrollTo({top: 0, behavior: "smooth"});
   }
   
 
