@@ -321,7 +321,7 @@ nav a {
 }
 
 .podcastIndividualContainer {
-  margin-bottom: 50pt;
+  margin-bottom: 10pt;
 }
 
 .podcastIndividualImage {
@@ -343,13 +343,18 @@ nav a {
 }
 
 .podcastEpisodeTitle {
-  font-size: 13pt;
+  font-size: 14pt;
 }
 
 .podcastEpisodeDuration {
-  font-size: 11pt;
+  font-size: 12pt;
 }
 
 .podcastEpisodeEnclosure {
   text-align: center;
+}
+
+audio {
+  transform: scale(1.2);
+  transform-origin: top left;
 }
