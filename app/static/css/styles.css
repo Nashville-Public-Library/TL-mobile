@@ -355,6 +355,6 @@ nav a {
 }
 
 audio {
-  transform: scale(1.2);
-  transform-origin: top left;
+  zoom: 1.25;
+  max-width: 98%;
 }
