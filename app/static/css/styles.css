@@ -97,10 +97,6 @@ footer {
     font-size: 17pt;
   }
 
-.muteButton {
-  padding: 3pt;
-}
-
 nav a {
     color: unset;
     text-decoration: none;    
