@@ -66,18 +66,13 @@
 
     <div id="onlineOfflineDot" class="onlineOfflineDot"></div>
 
-    <button id="playPauseButton" class="player" aria-label="Play">
-      <!-- Play Icon -->
-      <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="65" height="65">
-        <path d="M8 5v14l11-7z" />
-      </svg>
+    <div id="playPauseButton" aria-label="Play">
+s
+      <img src="/static/img/streamPlay.png" id="playIcon" class="player">
+
+      <img src="/static/img/streamPause.png" id="pauseIcon" class="player" style="display: none;">
     
-      <!-- Stop Icon (hidden initially) -->
-      <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="65" height="65" style="display: none; margin-left: 9px;">
-        <path d="M6 6h12v12H6z" />
-      </svg>
-    
-    </button>
+    </div>
 
     <div id="nowPlaying" class="nowPlaying"></div>
     <audio preload="none" id="audio"></audio> 
