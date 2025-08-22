@@ -200,7 +200,7 @@ nav a {
 
 .dailyScheduleContainer {
   margin-top: 0;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
   margin-left: 0;
 
 }
@@ -227,7 +227,8 @@ nav a {
 
 .dailyScheduleContainerIndividual {
   display: grid;
-  grid-template-columns: 90px auto;
+  grid-template-columns: 65pt auto;
+  /* grid-template-columns: 90px auto; */
   align-items: center;
   border-bottom: 2.5pt solid black;
   padding-top: 15pt;
