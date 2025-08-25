@@ -227,7 +227,7 @@ nav a {
 
 .dailyScheduleContainerIndividual {
   display: grid;
-  grid-template-columns: 65pt auto;
+  grid-template-columns: 75pt auto;
   /* grid-template-columns: 90px auto; */
   align-items: center;
   border-bottom: 2.5pt solid black;
@@ -243,7 +243,7 @@ nav a {
 .dailyScheduleHour {
   text-align: right;
   font-size: 15pt;
-  padding-right: 10pt;
+  padding-right: 15pt;
   border-right: 1pt solid black;
 }
 
