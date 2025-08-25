@@ -334,6 +334,18 @@ nav a {
   font-size: 15pt;
 }
 
+.RSSLinkContainer {
+  display: flex; 
+  justify-content: center;
+}
+
+.RSSLink {
+  background-color: #f16530;
+  color: #ffffff;
+  padding: 8px;
+  font-size: 12pt;
+}
+
 .podcastEpisodeTitle {
   font-size: 14pt;
 }

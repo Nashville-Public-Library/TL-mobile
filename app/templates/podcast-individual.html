@@ -9,7 +9,10 @@
     <div id="podcastIndividualDescription" class="podcastIndividualDescription">{{ pod.description }}</div>
     <br>
     
-    <button id="copyToClipboard" name="{{pod.RSSLink}}" onclick="copyToClipboard(this.name)">Copy RSS URL</button>
+    <div class="RSSLinkContainer">
+    <button id="copyToClipboard" name="{{pod.RSSLink}}" class="RSSLink" onclick="copyToClipboard(this.name)">Copy RSS URL</button>
+    </div>
+
     <br>
     <br>
     <div id="podcastIndividualAllEpisodes" class="podcastIndividualAllEpisodes">
