@@ -30,7 +30,9 @@ const FILES_TO_CACHE = [
     '/static/img/back-button.png',
     '/static/img/location.png',
     '/static/img/about.png',
-    '/static/img/rotate-phone.png'
+    '/static/img/rotate-phone.png',
+    'app/static/img/streamPlay.png',
+    '/static/img/streamPause.png'
 ];
 
 // Install — cache all static assets
