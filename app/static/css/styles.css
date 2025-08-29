@@ -170,7 +170,7 @@ nav a {
   width: 30px;
   height: 30px;
   margin-top: 4pt;
-  padding-top: 30px;
+  padding-top: 25px;
   color: aliceblue;
   position: fixed;
   z-index: 10;
@@ -222,7 +222,7 @@ nav a {
   font-weight: bold;  
   background-color: #ffffff;
   margin-top: 0%;
-  padding-top: 30px;
+  padding-top: 25px;
 }
 
 .tapProgramNameToListen {
