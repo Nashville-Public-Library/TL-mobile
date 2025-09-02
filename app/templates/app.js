@@ -11,8 +11,6 @@ const routes = {
     '/schedule': '/static/pages/schedule.html',
     '/podcasts': '/static/pages/podcasts.html',
     '/podcasts-individual': '/static/pages/podcast-loading.html',
-    '/broadcast-schedule': '/static/pages/broadcastSchedule.html',
-    '/program-guide': '/static/pages/programGuide.html',
     '/schedule/monday': '/static/pages/daily/monday.html',
     '/schedule/tuesday': '/static/pages/daily/tuesday.html',
     '/schedule/wednesday': '/static/pages/daily/wednesday.html',

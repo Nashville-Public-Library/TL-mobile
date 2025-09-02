@@ -7,8 +7,6 @@ const FILES_TO_CACHE = [
     '/static/pages/schedule.html',
     '/static/pages/podcasts.html',
     '/static/pages/podcast-loading.html',
-    '/static/pages/broadcastSchedule.html',
-    '/static/pages/programGuide.html',
     '/static/pages/daily/monday.html',
     '/static/pages/daily/tuesday.html',
     '/static/pages/daily/wednesday.html',
