@@ -160,6 +160,14 @@ nav a {
   height: 55px;
 }
 
+.privacyLink {
+  font-size: 14pt; 
+  text-decoration: none; 
+  color: #ffffff; 
+  background-color: #f16530;
+  padding: 8px;
+}
+
 .appVersion {
   font-size: 15pt;
   float: right;
