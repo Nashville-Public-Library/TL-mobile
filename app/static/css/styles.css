@@ -162,8 +162,9 @@ nav a {
 }
 
 .appVersion {
+  font-size: 15pt;
   float: right;
-  color: RGB(241, 101, 48);
+  color: #f16530;
 }
 
 .backButton {
