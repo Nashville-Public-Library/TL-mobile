@@ -135,8 +135,8 @@ function updatePlayerMetadata(nowPlayingTitle) {
       artist: 'Nashville Talking Library',
       album: 'Live Stream',
       artwork: [
-        { src: '/static/img/NTL_new-192.jpg', sizes: '192x192', type: 'image/jpg' },
-        { src: '/static/img/NTL_new-512.jpg', sizes: '512x512', type: 'image/jpg' }
+        { src: '/static/img/ntl-logo-192x192.png', sizes: '192x192', type: 'image/png' },
+        { src: '/static/img/ntl-logo-512x512.png', sizes: '512x512', type: 'image/png' }
       ]
     });
     // Only expose play/pause, disable seek
