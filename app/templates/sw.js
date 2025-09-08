@@ -29,7 +29,7 @@ const FILES_TO_CACHE = [
     '/static/img/location.png',
     '/static/img/about.png',
     '/static/img/rotate-phone.png',
-    'app/static/img/streamPlay.png',
+    '/static/img/streamPlay.png',
     '/static/img/streamPause.png'
 ];
 
