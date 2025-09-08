@@ -7,7 +7,6 @@ VERSION = "0.5.2"
 
 @app.route('/', methods=['GET'])
 def pwa():
-    print("i am here!")
     return app.send_static_file("pages/index.html")
 
 @app.route('/version', methods=['POST'])
