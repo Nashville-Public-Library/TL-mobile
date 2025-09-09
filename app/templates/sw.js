@@ -66,7 +66,7 @@ self.addEventListener('activate', (event) => {
         })
       )
     ).then(() => {
-      return self.clients.claim();  // ✅ moved inside
+      return self.clients.claim();
     })
   );
 });
@@ -76,7 +76,7 @@ self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
 
   const url = new URL(event.request.url);
-  if (url.pathname.endsWith('.mp3')) return; // Don't cache or intercept audio
+  if (url.pathname.endsWith('.mp3')) return; // Don't cache or intercept audio. Too big and pointless.
 
   event.respondWith(
     caches.match(event.request, { ignoreSearch: true }).then(cached => {

@@ -6,7 +6,7 @@ if ('serviceWorker' in navigator) {
     // Always check for an update when the page becomes visible
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'visible') {
-        reg.update(); // 🔄 Triggers update check on visibility
+        reg.update(); // Triggers update check on visibility
       }
     });
 
@@ -15,10 +15,10 @@ if ('serviceWorker' in navigator) {
       const wantsUpdate = alert("Your app will now be updated to the newest version.");
         sw.addEventListener('statechange', () => {
           if (sw.state === 'activated') {
-            window.location.reload(); // ✅ Reload only after new SW takes control
+            window.location.reload();
           }
         });
-        sw.postMessage({ action: 'skipWaiting' }); // 🪄 Activates new SW
+        sw.postMessage({ action: 'skipWaiting' }); // Activates new SW
       
     }
 
@@ -36,8 +36,6 @@ if ('serviceWorker' in navigator) {
         }
       });
     });
-
-    // 🔥 Don't reload blindly on controllerchange — user decides!
   }).catch(err => {
     console.error('[SW] Registration failed:', err);
   });
@@ -70,7 +68,6 @@ async function detect() {
     }
 
     const installed = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
-    // const installed = true;
     if (!installed) {
         console.log('not installed, fetching page');
         let response = await fetch('/static/pages/install.html');

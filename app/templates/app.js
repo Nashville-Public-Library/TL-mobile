@@ -139,7 +139,6 @@ function updatePlayerMetadata(nowPlayingTitle) {
         { src: '/static/img/ntl-logo-512x512.png', sizes: '512x512', type: 'image/png' }
       ]
     });
-    // Only expose play/pause, disable seek
     navigator.mediaSession.setActionHandler('play', () => {
       audio.play();
       switchPlayPauseIcon();
@@ -148,7 +147,7 @@ function updatePlayerMetadata(nowPlayingTitle) {
       audio.pause();
       switchPlayPauseIcon();
     });
-    ['seekbackward', 'seekforward', 'previoustrack', 'nexttrack']
+    ['seekbackward', 'seekforward', 'previoustrack', 'nexttrack'] // we do not need these controls for the livestream.
       .forEach(a => { try { navigator.mediaSession.setActionHandler(a, null); } catch { } });
   }
 }
@@ -173,14 +172,12 @@ function loadAppVersion() {
 }
 
   async function loadPodcast(show) {  
-    // show the loading page, then go fetch the data from the server and render when ready
-
     if (!navigator.onLine) {
       alert("You cannot listen to podcasts while offline.");
       return;
     }
     location.hash = "/podcasts-individual"
-    const app = document.getElementById("app");
+    const app = document.getElementById("app"); // show the loading page, then go fetch the data from the server and render when ready
 
     const url = "/podcasts/info/" + show;
     let response = await fetch(url, { method: "POST", headers: {'Content-Type': 'text/html'}});
