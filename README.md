@@ -9,6 +9,14 @@
 
  a simple mobile app for TL listeners...
 
+## Requirements
+
+### [Python](https://www.python.org/downloads/)
+
+- Use version 3.10 or above
+- The production server is running version 3.12
+- Make sure to select "add to PATH" during installation.
+
 ## Development
 
 - Clone this depository
@@ -16,7 +24,7 @@
     git clone https://github.com/Nashville-Public-Library/TL-mobile.git
     ````
 
-- cd into the folder in the terminal or open the folder in your IDE
+- cd into the directory
     ````bash
     cd TL-mobile
     ````
@@ -25,7 +33,7 @@
     ````bash 
     py -m venv venv
     ````
-    - Depending on your OS, you may need to use `python` or `python3` instead of `py`
+    - Depending on your OS, instead of `py` you may need to use `python` or `python3`
 
 
 - Activate virtual environment
@@ -41,7 +49,7 @@
     ````
 
     >[IMPORTANT]
-    >If done correctly, you should see `(venv)` in the terminal. Don't run the rest of these commands unless you see `(venv)` in the terminal.
+    >If done correctly, you should see `(venv)` in the terminal. Do not continue unless you see `(venv)` in the terminal.
 
 
 - Install Dependencies
@@ -49,9 +57,15 @@
     pip install -r requirements.txt
     ````
 
+- Launch the app
+    ````bash
+    py application.py
+    ````
+    - Depending on your OS, instead of `py` you may need to use `python` or `python3`
+
 ## Misc
 
-Don't forget to continually update your `requirements.txt` file as you go: 
+If you add 3rd party libraries, don't forget to add them to the `requirements.txt` file as you go: 
 ````bash
 pip freeze > requirements.txt
 ````
