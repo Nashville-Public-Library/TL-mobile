@@ -4,6 +4,20 @@ function openlinkExternalWindow(url) {
   window.open(url, '_blank', 'noopener');
 } 
 
+function closeModalAlert() {
+  const modalElement = document.getElementById("modalAlert");
+  modalElement.style.display = "none";
+  return;
+}
+
+function modalAlert(message) {
+  const parent = document.getElementById("modalAlert");
+  const content = document.getElementById("modalAlertMessage");
+  content.innerText = message;
+  parent.style.display = "block";
+
+}
+
 const routes = {
     '/': '/static/pages/home.html',
     '/about': '/static/pages/about.html',
@@ -190,7 +204,8 @@ function loadAppVersion() {
     }
 
   function noPodcastWarning (show) {
-    alert(`We do not currently offer a podcast for ${show}.`)
+    const message = `We do not currently offer a podcast for ${show}.`
+    modalAlert(message);
   }
 
 
