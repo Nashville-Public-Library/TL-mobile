@@ -170,7 +170,7 @@ function onlineOffline() {
   const onlineOfflineDotColor = document.getElementById("onlineOfflineDot");
   if (!navigator.onLine) {
     onlineOfflineDotColor.style.backgroundColor = "#f31642";
-    alert("You are not connected to the internet. The stream and other features will not work until you are back online.");
+    modalAlert("You are not connected to the internet. The stream and other features will not work until you are back online.")
   } else {
     onlineOfflineDotColor.style.backgroundColor = "#00fc37";
   }
@@ -187,7 +187,7 @@ function loadAppVersion() {
 
   async function loadPodcast(show) {  
     if (!navigator.onLine) {
-      alert("You cannot listen to podcasts while offline.");
+      modalAlert("You cannot listen to podcasts while offline.")
       return;
     }
     location.hash = "/podcasts-individual"
@@ -204,8 +204,7 @@ function loadAppVersion() {
     }
 
   function noPodcastWarning (show) {
-    const message = `We do not currently offer a podcast for ${show}.`
-    modalAlert(message);
+    modalAlert(`We do not currently offer a podcast for ${show}.`);
   }
 
 
@@ -270,7 +269,7 @@ async function podcastSearch(title) {
   if (show) {
     loadPodcast(show)
   } else {
-    alert(`Sorry, we don't have a show called ${titleTrim}. (we can change this message to anything)`)
+    modalAlert(`Sorry, we don't have a show called ${titleTrim}. (we can change this message to anything)`)
   }
 }
 
@@ -291,5 +290,5 @@ async function loadShowNamesInSearchInput() {
 
 async function copyToClipboard(text) {
   await navigator.clipboard.writeText(text);
-  alert("RSS Feed copied to clipboard :)")
+  modalAlert("RSS Feed copied to clipboard :)")
 }
