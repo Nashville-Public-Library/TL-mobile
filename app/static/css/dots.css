@@ -35,6 +35,20 @@
     color: rgb(3, 3, 59);
     animation: dotElasticAfter 1s infinite linear;
     }
+
+    .nowPlayingDots {
+        position: fixed;
+        margin-left: 55%;
+        background-color: #ffffff;
+    }
+
+    .nowPlayingDots::after {
+        background-color: #ffffff;
+    }
+
+    .nowPlayingDots::before {
+        background-color: #ffffff;
+    }
     
     @keyframes dotElasticBefore {
     0% {

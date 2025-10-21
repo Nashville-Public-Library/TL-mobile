@@ -89,11 +89,13 @@ const routes = {
         let icecast = await response.json();
         let nowPlaying = icecast.title;
         if (nowPlaying.trim() == "") {
+            removeNowPlayingDots()
             titleElement.innerText = notAvailable;
             if (!livestream.paused) {updatePlayerMetadata(notAvailable);}
             return notAvailable;
         }
         else {
+            removeNowPlayingDots()
             titleElement.innerText = nowPlaying;
             if (!livestream.paused) { updatePlayerMetadata(nowPlaying);}
 
@@ -101,13 +103,22 @@ const routes = {
         }
     }
     catch (whoops) {
+        removeNowPlayingDots()
         titleElement.innerText = notAvailable;
         updatePlayerMetadata(notAvailable);
         return notAvailable;
     }
   }
-  nowPlaying()
+  nowPlaying() // call on page load
   setInterval(nowPlaying, 30000) // 30 seconds
+
+  function removeNowPlayingDots() {
+      const nowPlayingDots = document.getElementById("nowPlayingDots");
+      if (nowPlayingDots) {
+        nowPlayingDots.remove()
+      }
+
+  }
   
 
   const button = document.getElementById('playPauseButton');
@@ -266,6 +277,7 @@ async function podcastSearch(title) {
   let response = await fetch(url, { method: "POST" });
   let responseJSON = await response.json();
   let show = responseJSON.shows[titleTrim]
+  console.log(show);
   if (show) {
     loadPodcast(show)
   } else {
