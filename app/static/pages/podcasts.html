@@ -22,7 +22,7 @@
     </select>
 
     <input type="search" id="podcastSearch" name="podcastSearch" class="podcastSearch" placeholder="search" 
-        list="podcastSearchList" minlength="2" onchange="podcastSearch(this.value)"/>
+        list="podcastSearchList" minlength="2" oninput="showMatchingTitleOnTextInput(this.value)" onchange="podcastSearch(this.value)"/>
 
     </div>
 

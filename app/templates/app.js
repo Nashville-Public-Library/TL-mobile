@@ -269,21 +269,44 @@ function categorySelector(category) {
   }
 }
 
-async function podcastSearch(title) {
+function podcastSearch(title) {
   const titleTrim = title.trim()
   if (titleTrim == "") {return;}
 
-  const url = "/podcasts"
-  let response = await fetch(url, { method: "POST" });
-  let responseJSON = await response.json();
-  let show = responseJSON.shows[titleTrim]
-  console.log(show);
-  if (show) {
-    loadPodcast(show)
-  } else {
-    modalAlert(`Sorry, we don't have a show called ${titleTrim}. (we can change this message to anything)`)
+  const matchingElements = document.getElementsByClassName("podcastTitle");
+  for (const match of matchingElements) {
+    if (title == match.innerText) {
+      let parentElementID = match.parentElement.id; // the ID of the parent element has the value of the directory on the server (the directory name of the show)
+      loadPodcast(parentElementID);
+      return;
+    }
   }
+  return;
 }
+
+function showMatchingTitleOnTextInput(text) {
+  const textLower = text.toLowerCase()
+  const matchingElements = document.getElementsByClassName("podcastTitle");
+  for (const match of matchingElements) {
+    if (match.innerText.toLowerCase().includes(textLower)) {
+      match.parentElement.style.display = "block"
+    } else {
+      match.parentElement.style.display = "none"
+    }
+  }
+  return;
+}
+
+  // const url = "/podcasts"
+  // let response = await fetch(url, { method: "POST" });
+  // let responseJSON = await response.json();
+  // let show = responseJSON.shows[titleTrim]
+  // console.log(show);
+  // if (show) {
+  //   loadPodcast(show)
+  // } else {
+  //   modalAlert(`Sorry, we don't have a show called ${titleTrim}. (we can change this message to anything)`)
+  // }
 
 async function loadShowNamesInSearchInput() {
   const datalist = document.getElementById("podcastSearchList");
