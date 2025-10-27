@@ -4,6 +4,19 @@ function openlinkExternalWindow(url) {
   window.open(url, '_blank', 'noopener');
 } 
 
+function openDefaultMailApp() {
+  const toEmail = "ntl@nashville.gov";
+  const subject = "NTL App Feedback";
+  const userAgent = navigator.userAgent;
+  const screenWidth = screen.width;
+  const screenHeigt = screen.height;
+  const screenSize = `${screenWidth}x${screenHeigt}`
+  const version = appVersion;
+  const doNotDelete = "The information above will help us to troubleshoot your issue. Please describe your issue in detail below this line:";
+  const body = "Device: " + userAgent + "%0A" + "Version: " + version + "%0A" + "Screen: " + screenSize + "%0D%0A%0D%0A" + doNotDelete;
+  window.open(`mailto:${toEmail}?subject=${subject}&body=${body}`, '_blank', 'noopener');
+}
+
 function closeModalAlert() {
   const modalElement = document.getElementById("modalAlert");
   modalElement.style.display = "none";
