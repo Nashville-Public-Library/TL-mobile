@@ -35,6 +35,7 @@ const routes = {
     '/': '/static/pages/home.html',
     '/about': '/static/pages/about.html',
     '/privacy': '/static/pages/privacy.html',
+    '/feedback': '/static/pages/feedback.html',
     '/schedule': '/static/pages/schedule.html',
     '/podcasts': '/static/pages/podcasts.html',
     '/podcasts-individual': '/static/pages/podcast-loading.html',

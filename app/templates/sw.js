@@ -4,6 +4,8 @@ const FILES_TO_CACHE = [
     '/static/pages/index.html',
     '/static/pages/home.html',
     '/static/pages/about.html',
+    '/static/pages/privacy.html',
+    '/static/pages/feedback.html',
     '/static/pages/schedule.html',
     '/static/pages/podcasts.html',
     '/static/pages/podcast-loading.html',
