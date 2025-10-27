@@ -285,6 +285,11 @@ function podcastSearch(title) {
 }
 
 function showMatchingTitleOnTextInput(text) {
+  // first, reset the category selector so that any matching titles will be visible on the page.
+  categorySelector("all");
+  document.getElementById("categorySelector").value = "all";
+
+  // once all titles are on the page, you can start filtering.
   const textLower = text.toLowerCase()
   const matchingElements = document.getElementsByClassName("podcastTitle");
   for (const match of matchingElements) {
@@ -297,28 +302,13 @@ function showMatchingTitleOnTextInput(text) {
   return;
 }
 
-  // const url = "/podcasts"
-  // let response = await fetch(url, { method: "POST" });
-  // let responseJSON = await response.json();
-  // let show = responseJSON.shows[titleTrim]
-  // console.log(show);
-  // if (show) {
-  //   loadPodcast(show)
-  // } else {
-  //   modalAlert(`Sorry, we don't have a show called ${titleTrim}. (we can change this message to anything)`)
-  // }
-
 async function loadShowNamesInSearchInput() {
+  const podcastTitles = document.getElementsByClassName("podcastTitle");
   const datalist = document.getElementById("podcastSearchList");
 
-  const url = "/podcasts"
-  let response = await fetch(url, { method: "POST" });
-  let responseJSON = await response.json();
-  let shows = responseJSON.shows
-
-  for (const key in shows) {
+  for (const title of podcastTitles) {
     const option = document.createElement("option");
-    option.value = key;
+    option.value = title.innerText;
     datalist.appendChild(option)
   }
 }
