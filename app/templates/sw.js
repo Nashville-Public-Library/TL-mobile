@@ -25,6 +25,7 @@ const FILES_TO_CACHE = [
     '/static/img/website.png',
     '/static/img/email.png',
     '/static/img/phone.png',
+    '/static/img/scheduleLinePreview.png',
     '/static/img/broadcastSchedulePreview.png',
     '/static/img/programGuidePreview.png',
     '/static/img/back-button.png',
