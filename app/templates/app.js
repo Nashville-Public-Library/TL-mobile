@@ -47,7 +47,7 @@ const routes = {
     '/schedule/saturday': '/static/pages/daily/saturday.html',
     '/schedule/sunday': '/static/pages/daily/sunday.html'
   };
-  
+
   async function loadRoute() {
     const path = location.hash.slice(1) || '/';
     const route = routes[path];
@@ -60,7 +60,7 @@ const routes = {
       const html = await res.text();
       app.innerHTML = html;
       const scroll = sessionStorage.getItem(path);
-      if (scroll) {
+      if (scroll) { // if user has visited this page and we saved the last scroll position, scroll back to that position.
         app.scrollTo({top: scroll, behavior: "smooth"});
       }
     } else {
@@ -82,24 +82,23 @@ const routes = {
     }
   }
   
-  let currentRoute = location.hash.slice(1);
+  let currentRoute = location.hash.slice(1); // global variable to keep track of current page
   window.addEventListener('hashchange', () => {
     saveScrollPositionAndLoadRoute(currentRoute);
   });
   
   window.addEventListener('DOMContentLoaded', loadRoute);
 
-  function saveScrollPosition(route) {
-    // console.log(`previous route: ${previousRoute}`);
-    let scrollPosition = document.getElementById("app").scrollTop;
-    sessionStorage.setItem(route, scrollPosition);
-    return;
+  function saveScrollPositionAndLoadRoute(routeToUpdate) {
+    saveScrollPosition(routeToUpdate); // save scroll position on last visited page
+    loadRoute(); // load the new page
+    currentRoute = location.hash.slice(1); // update the global variable
   }
-  
-  async function saveScrollPositionAndLoadRoute(route) {
-    saveScrollPosition(route);
-    loadRoute();
-    currentRoute = location.hash.slice(1);
+
+  function saveScrollPosition(routeToSaveScrollPosition) {
+    let scrollPosition = document.getElementById("app").scrollTop;
+    sessionStorage.setItem(routeToSaveScrollPosition, scrollPosition);
+    return;
   }
 
   function highlightNavBarIcon(icon) {
