@@ -59,6 +59,10 @@ const routes = {
       const res = await fetch(route);
       const html = await res.text();
       app.innerHTML = html;
+      const scroll = sessionStorage.getItem(path);
+      if (scroll) {
+        app.scrollTo({top: scroll, behavior: "smooth"});
+      }
     } else {
       app.innerHTML = "<h1>We're so sorry, but something went wrong. Not Found.</h1>";
     }
@@ -78,8 +82,25 @@ const routes = {
     }
   }
   
-  window.addEventListener('hashchange', loadRoute);
+  let currentRoute = location.hash.slice(1);
+  window.addEventListener('hashchange', () => {
+    saveScrollPositionAndLoadRoute(currentRoute);
+  });
+  
   window.addEventListener('DOMContentLoaded', loadRoute);
+
+  function saveScrollPosition(route) {
+    // console.log(`previous route: ${previousRoute}`);
+    let scrollPosition = document.getElementById("app").scrollTop;
+    sessionStorage.setItem(route, scrollPosition);
+    return;
+  }
+  
+  async function saveScrollPositionAndLoadRoute(route) {
+    saveScrollPosition(route);
+    loadRoute();
+    currentRoute = location.hash.slice(1);
+  }
 
   function highlightNavBarIcon(icon) {
     icon.classList.add("icon-link-selected");
