@@ -70,6 +70,10 @@
   
   <footer>
 
+    <div id="nowPlayingDots" class="dot-elastic nowPlayingDots"><!-- Remove this element after "Now Playing" element loads --></div>
+    <div id="nowPlaying" class="nowPlaying"></div>
+    <audio preload="none" id="audio"></audio> 
+
     <div id="onlineOfflineDot" class="onlineOfflineDot"></div>
 
     <div id="playPauseButton" aria-label="Play">
@@ -79,10 +83,6 @@
       <img src="/static/img/streamPause.png" id="pauseIcon" class="player" style="display: none;">
     
     </div>
-
-    <div id="nowPlayingDots" class="dot-elastic nowPlayingDots"><!-- Remove this element after "Now Playing" element loads --></div>
-    <div id="nowPlaying" class="nowPlaying"></div>
-    <audio preload="none" id="audio"></audio> 
     
   </footer>
 
