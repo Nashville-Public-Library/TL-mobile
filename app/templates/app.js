@@ -161,13 +161,14 @@ const routes = {
     if (audio.paused) {
       if (!navigator.onLine){return;}
       nowPlaying()
-      audio.src = "https://api.nashvilletalkinglibrary.com/stream/livestream.mp3"
+      audio.src = "https://api.nashvilletalkinglibrary.com/stream/livestream.mp3";
       audio.play();
-      switchPlayPauseIcon()
+      switchPlayPauseIcon();
       button.setAttribute('aria-label', 'Pause');
     } else {
       audio.pause();
-      switchPlayPauseIcon()
+      audio.removeAttribute('src'); // or should we just set source to an empty string??  
+      switchPlayPauseIcon();
       button.setAttribute('aria-label', 'Play');
     }
   });
