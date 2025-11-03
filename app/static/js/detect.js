@@ -63,7 +63,9 @@ function handleOrientationChange() {
 
 async function detect() {
     if (!isMobileDevice()) {
-        document.body.innerHTML = "<div style='text-align: center; margin-top: 20%; font-size: 50pt; color: aliceblue;'>ONLY AVAILABLE ON MOBILE</div>";
+      let response = await fetch('/static/pages/mobile-only.html');
+      let text = await response.text();
+        document.body.innerHTML = text;
         return;
     }
 
