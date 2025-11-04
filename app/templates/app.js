@@ -36,6 +36,7 @@ const routes = {
     '/about': '/static/pages/about.html',
     '/privacy': '/static/pages/privacy.html',
     '/feedback': '/static/pages/feedback.html',
+    '/settings': '/static/pages/settings.html',
     '/schedule': '/static/pages/schedule.html',
     '/podcasts': '/static/pages/podcasts.html',
     '/podcasts-individual': '/static/pages/podcast-loading.html',
@@ -69,6 +70,10 @@ const routes = {
 
     if (path === "/about") {
       loadAppVersion()
+    }
+
+    if (path == "/settings") {
+      fillSpeechSynthesisVoiceSelector();
     }
 
     if (path === "/podcasts") {
@@ -359,14 +364,14 @@ function scheduleTextToSpeech() {
   const todayElement = document.getElementsByClassName("dailyScheduleHeader");
   const todayInnerText = todayElement[0].innerText;
   const synth = window.speechSynthesis;
-  const intro = new SpeechSynthesisUtterance(`Here is the schedule for ${todayInnerText}`);
+  const intro = getUserStoredVoiceSelection(`Here is the schedule for ${todayInnerText}`);
   synth.speak(intro);
   const allElements = document.getElementsByClassName("dailyScheduleContainerIndividual");
   let count = 0;
   for (let element of allElements) {
     let time = element.firstElementChild.innerText;
     let program = element.lastElementChild.innerText;
-    const utterance = new SpeechSynthesisUtterance(`${time}, ${program}`);
+    const utterance = getUserStoredVoiceSelection(`${time}, ${program}`)
     synth.speak(utterance);
     utterance.onend = () => { // onend fires when the actual voice finishes speaking.
       count++;
@@ -399,4 +404,36 @@ function hideScheduleStopTextToSpeechButton() {
       console.log(error);
     }
   }
+}
+
+function fillSpeechSynthesisVoiceSelector() {
+  const selectElement = document.getElementById("SpeechSynthesisVoiceSelector");
+  const voices = window.speechSynthesis.getVoices()
+  for (const voice of voices) {
+    if (voice.lang.includes("en")) {
+      const option = document.createElement("option");
+      option.textContent = voice.name
+      option.value = voice.name
+      selectElement.appendChild(option)
+    }
+  }
+  let previousSelection = localStorage.getItem("voice");
+  selectElement.value = previousSelection;
+}
+
+function storeUserVoiceSelection(voice) {
+  localStorage.setItem("voice", voice)
+}
+
+function getUserStoredVoiceSelection(toSpeak) {
+  const speech = new SpeechSynthesisUtterance(toSpeak);
+
+  let userSelectedVoice = localStorage.getItem("voice");
+  if (userSelectedVoice) {
+    const voices = window.speechSynthesis.getVoices();
+    const voice = voices.find(v => v.name == userSelectedVoice);
+    speech.voice = voice;
+    console.log(speech.voice);
+  }
+  return speech;
 }

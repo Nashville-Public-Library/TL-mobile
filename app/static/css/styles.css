@@ -157,6 +157,7 @@ nav a {
 
 .aboutContent {
   margin-top: 20pt;
+  margin-bottom: 35pt;
 }
 
 .aboutIconsContainer {
@@ -196,9 +197,19 @@ nav a {
   margin-left: 10px;
 }
 
+.settingsLink {
+  font-size: 14pt;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: #f16530;
+  padding: 8px;
+  margin-left: 10px;
+}
+
 .appVersion {
   font-size: 15pt;
   float: right;
+  margin-top: 25px;
   color: #f16530;
 }
 
