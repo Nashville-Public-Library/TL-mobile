@@ -277,6 +277,20 @@ nav a {
   text-align: center;
 }
 
+.textToSpeechScheduleListenButton {
+  display: inline-block;
+  background-color: #f16530;
+  color: #ffffff;
+  font-size: 16pt;
+}
+
+.textToSpeechScheduleStopButton {
+  display: none;
+  background-color: #f16530;
+  color: #ffffff;
+  font-size: 16pt;
+}
+
 .dailyScheduleContainerIndividual {
   display: grid;
   grid-template-columns: 75pt auto;
