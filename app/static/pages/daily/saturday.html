@@ -2,13 +2,20 @@
 
     <div class="dailyScheduleHeaderContainer">
 
-    <img src="/static/img/back-button.png" class="backButton" onclick="history.back()">
+        <img src="/static/img/back-button.png" class="backButton" onclick="history.back()">
 
-    <div class="dailyScheduleHeader">Saturday</div>
+        <div class="dailyScheduleHeader">Saturday</div>
 
     </div>
 
     <div class="tapProgramNameToListen">Tap Program Name to Listen</div>
+
+    <br>
+
+    <div style="text-align: center;">
+        <button onclick="scheduleTextToSpeech()" style="display: inline-block;">listen</button>
+        <button onclick="stopTextToSpeechGlobalAndHideButton();" style="display: none" id="stopTextToSpeechGlobal">stop</button>
+    </div>
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">12:00am</div>

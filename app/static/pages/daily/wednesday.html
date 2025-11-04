@@ -8,7 +8,14 @@
 
     </div>
 
-      <div class="tapProgramNameToListen">Tap Program Name to Listen</div>
+    <div class="tapProgramNameToListen">Tap Program Name to Listen</div>
+
+    <br>
+
+    <div style="text-align: center;">
+        <button onclick="scheduleTextToSpeech()" style="display: inline-block;">listen</button>
+        <button onclick="stopTextToSpeechGlobalAndHideButton();" style="display: none" id="stopTextToSpeechGlobal">stop</button>
+    </div>
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">12:00am</div>
@@ -67,7 +74,7 @@
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">7:30am</div>
-        <div onclick="loadPodcast('independent')" class="dailyScheduleTitle">independent Living</div>
+        <div onclick="loadPodcast('independent')" class="dailyScheduleTitle">Independent Living</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual halfHourNoBorder">

@@ -84,6 +84,7 @@ const routes = {
   
   let currentRoute = location.hash.slice(1); // global variable to keep track of current page
   window.addEventListener('hashchange', () => {
+    stopTextToSpeechGlobalAndHideButton(); // stop speaking whenever user loads new page
     saveScrollPositionAndLoadRoute(currentRoute);
   });
   
@@ -351,4 +352,51 @@ async function loadShowNamesInSearchInput() {
 async function copyToClipboard(text) {
   await navigator.clipboard.writeText(text);
   modalAlert("RSS Feed copied to clipboard :)")
+}
+
+function scheduleTextToSpeech() {
+  document.getElementById("stopTextToSpeechGlobal").style.display = "inline-block";
+  const todayElement = document.getElementsByClassName("dailyScheduleHeader");
+  const todayInnerText = todayElement[0].innerText;
+  const synth = window.speechSynthesis;
+  const intro = new SpeechSynthesisUtterance(`Here is the schedule for ${todayInnerText}`);
+  synth.speak(intro);
+  const allElements = document.getElementsByClassName("dailyScheduleContainerIndividual");
+  let count = 0;
+  for (let element of allElements) {
+    let time = element.firstElementChild.innerText;
+    let program = element.lastElementChild.innerText;
+    const utterance = new SpeechSynthesisUtterance(`${time}, ${program}`);
+    synth.speak(utterance);
+    utterance.onend = () => { // onend fires when the actual voice finishes speaking.
+      count++;
+      if(count == allElements.length) {
+        // once we've looped through every element. This feels hacky...
+        hideScheduleStopTextToSpeechButton();
+  }
+    }
+  }
+}
+
+function stopTextToSpeechGlobalAndHideButton() {
+  window.speechSynthesis.cancel();
+  hideScheduleStopTextToSpeechButton()
+}
+
+function stopTextToSpeechGlobal() {
+  window.speechSynthesis.cancel();
+}
+
+function hideScheduleStopTextToSpeechButton() {
+  try {
+  const stop = document.getElementById("stopTextToSpeechGlobal");
+  stop.style.display = "none";
+  }
+  catch (error) {
+    if (error instanceof TypeError) {
+    // not to worry
+    } else {
+      console.log(error);
+    }
+  }
 }

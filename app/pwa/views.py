@@ -3,7 +3,7 @@ from flask import render_template, make_response
 from app import app
 from app.pwa.pod import Podcast
 
-VERSION = "0.6.5"
+VERSION = "0.6.6"
 
 @app.route('/', methods=['GET'])
 def pwa():
