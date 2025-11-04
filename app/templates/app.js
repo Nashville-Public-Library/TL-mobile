@@ -375,6 +375,7 @@ function scheduleTextToSpeech() {
     synth.speak(utterance);
     utterance.onend = () => { // onend fires when the actual voice finishes speaking.
       count++;
+      console.log(count, allElements.length)
       if(count == allElements.length) {
         // once we've looped through every element. This feels hacky...
         hideScheduleStopTextToSpeechButton();
@@ -433,7 +434,6 @@ function getUserStoredVoiceSelection(toSpeak) {
     const voices = window.speechSynthesis.getVoices();
     const voice = voices.find(v => v.name == userSelectedVoice);
     speech.voice = voice;
-    console.log(speech.voice);
   }
   return speech;
 }
