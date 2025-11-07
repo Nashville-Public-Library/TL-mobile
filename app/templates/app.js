@@ -437,3 +437,13 @@ function getUserStoredVoiceSelection(toSpeak) {
   }
   return speech;
 }
+
+function mobileOnlyTextToSpeech() {
+  const elements = document.getElementsByClassName("mobileOnlySpeech");
+  const synth = window.speechSynthesis;
+  for (const element of elements) {
+    const speech = new SpeechSynthesisUtterance(element.innerText)
+    synth.speak(speech)
+  }
+
+}
