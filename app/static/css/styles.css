@@ -321,8 +321,9 @@ nav a {
 
 .logo-container {
   display: flex;
-  justify-content: center;
-  margin-top: 28%;
+  flex-wrap: wrap;
+  justify-content:center;
+  margin-top: 25%;
 }
   .NTL-logo {
     width: 300px;

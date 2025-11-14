@@ -68,6 +68,10 @@ const routes = {
       app.innerHTML = "<h1>We're so sorry, but something went wrong. Not Found.</h1>";
     }
 
+    if (path == "/") {
+      fetchWeather();
+    }
+
     if (path === "/about") {
       loadAppVersion()
     }
@@ -446,4 +450,16 @@ function mobileOnlyTextToSpeech() {
     synth.speak(speech)
   }
 
+}
+
+async function fetchWeather() {
+  const weatherElement = document.getElementById("weatherHomeScreen");
+  const url = "https://api.weather.gov/gridpoints/OHX/50,57/forecast";
+  const response = await fetch(url);
+  const responseJSON = await response.json();
+
+  const temp = responseJSON['properties']['periods'][0]['temperature'];
+  const shortForecast = responseJSON['properties']['periods'][0]['shortForecast'];
+  const chanceOfRain = responseJSON['properties']['periods'][0]['probabilityOfPrecipitation']['value'];
+  weatherElement.innerHTML= `${temp}&deg; • ${shortForecast} • Chance of Rain: ${chanceOfRain}%`;
 }
