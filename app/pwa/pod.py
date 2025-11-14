@@ -46,9 +46,12 @@ class Podcast:
         image = feed.find("image").find("url").text
         return image
     
-    def get_RSS_link(self):
-        RSS_link: str = "https://assets.library.nashville.gov/talkinglibrary/shows/" + self.show + "/feed.xml"
-        return RSS_link
+    def get_RSS_link(self) -> str:
+        namespace:dict = {"atom": "http://www.w3.org/2005/Atom"}
+        tree = self.tree
+        atom = tree.find("atom:link", namespace)
+        href:str = atom.get("href")
+        return href
     
     def get_episodes(self):
         feed = self.tree
