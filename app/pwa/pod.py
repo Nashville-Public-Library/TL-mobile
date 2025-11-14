@@ -22,7 +22,7 @@ class Podcast:
         }
 
     def _get_tree(self):
-        url:str = "https://assets.library.nashville.org/talkinglibrary/shows/" + self.show + "/feed.xml"
+        url:str = "https://assets.library.nashville.gov/talkinglibrary/shows/" + self.show + "/feed.xml"
         response = requests.get(url)
         xml:str = response.text
         feed = ET.fromstring(xml)
@@ -47,7 +47,7 @@ class Podcast:
         return image
     
     def get_RSS_link(self):
-        RSS_link: str = "https://assets.library.nashville.org/talkinglibrary/shows/" + self.show + "/feed.xml"
+        RSS_link: str = "https://assets.library.nashville.gov/talkinglibrary/shows/" + self.show + "/feed.xml"
         return RSS_link
     
     def get_episodes(self):
