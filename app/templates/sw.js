@@ -80,6 +80,7 @@ self.addEventListener('fetch', event => {
 
   const url = new URL(event.request.url);
   if (url.pathname.endsWith('.mp3')) return; // Don't cache or intercept audio. Too big and pointless.
+  if (url.hostname.includes("weather.gov")) return;// don't cache the weather lol
 
   event.respondWith(
     caches.match(event.request, { ignoreSearch: true }).then(cached => {
