@@ -458,8 +458,8 @@ async function fetchWeather() {
   const response = await fetch(url);
   const responseJSON = await response.json();
 
-  const temp = responseJSON['properties']['periods'][0]['temperature'];
-  const shortForecast = responseJSON['properties']['periods'][0]['shortForecast'];
-  const chanceOfRain = responseJSON['properties']['periods'][0]['probabilityOfPrecipitation']['value'];
+  const temp = responseJSON.properties.periods[0].temperature;
+  const shortForecast = responseJSON.properties.periods[0].shortForecast;
+  const chanceOfRain = responseJSON.properties.periods[0].probabilityOfPrecipitation.value;
   weatherElement.innerHTML= `${temp}&deg; • ${shortForecast} • Chance of Rain: ${chanceOfRain}%`;
 }
