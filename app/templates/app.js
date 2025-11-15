@@ -454,7 +454,7 @@ function mobileOnlyTextToSpeech() {
 
 async function fetchWeather() {
   const weatherElement = document.getElementById("weatherHomeScreen");
-  const url = "https://api.weather.gov/gridpoints/OHX/50,57/forecast";
+  const url = "https://api.weather.gov/gridpoints/OHX/50,57/forecast/hourly";
   const response = await fetch(url);
   const responseJSON = await response.json();
 
