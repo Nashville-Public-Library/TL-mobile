@@ -330,6 +330,21 @@ nav a {
     height: 300px;
   }
 
+.weatherHomeScreenContainer {
+  margin-top: 4%;
+  display: flex;
+  justify-content: center;
+}
+.weatherHomeScreen {
+  opacity: 0;
+  padding: 12px;
+  border-radius: 5%;
+  background-color: #f16530;
+  color: #ffffff;
+  font-size: 17pt;
+  transition: opacity 1s ease;
+}
+
 .podcastsContainer {
     display: flex;
     flex-wrap: wrap;

@@ -456,15 +456,12 @@ async function fetchWeather() {
   const weatherElement = document.getElementById("weatherHomeScreen");
   const url = "/weather";
   const response = await fetch(url, {method: "POST"});
+  if (!response.ok) {
+    console.log("bad response from /weather");
+    return;}
   const responseJSON = await response.json();
-
-  console.log(responseJSON)
-
   const temp = responseJSON.temp;
-  const shortForecast = responseJSON.shortForecast;
-  const probabilityOfPrecipitation = responseJSON.probabilityOfPrecipitation;
-  const startTime = responseJSON.startTime
 
-  weatherElement.innerHTML= `${temp}&deg; • ${shortForecast} • 
-  Chance of Rain: ${probabilityOfPrecipitation}% <br> Start Time: ${startTime}`;
+  weatherElement.innerHTML= `${temp}&deg; in Nashville`;
+  weatherElement.style.opacity = "1";
 }

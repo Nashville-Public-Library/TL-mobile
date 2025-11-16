@@ -1,10 +1,14 @@
+import time
+
 from flask import render_template, make_response
 import requests
 
 from app import app
 from app.pwa.pod import Podcast
 
-VERSION = "0.6.12"
+VERSION = "0.6.13"
+
+weather_cache = {"data": None, "timestamp": 0}
 
 @app.route('/', methods=['GET'])
 def pwa():
@@ -55,23 +59,29 @@ def podcasts_info(podcast):
     
 @app.route("/weather", methods=["POST"])
 def weather():
-    url = 'https://api.weather.gov/gridpoints/OHX/50,57/forecast/hourly'
-    # NWS asks that you identify yourself
+    current_time = time.time()
+    cache_time = 120 # how long (in seconds) do we want to keep cached data before fetching again
+    # if we have cached data and it has been less than 60 seconds since we cached it
+    if weather_cache["data"] and (current_time - weather_cache["timestamp"] < cache_time):
+        return weather_cache["data"]
+    
+    url = "https://api.weather.gov/stations/KBNA/observations/latest"
+    # NWS asks that you identify yourself. Include the other headers so they send us fresh/correct data
     header = {"User-Agent": "NashvilleTalkingLibraryMobileApp (nashvilletalkinglibrary@gmail.com)",
             "Accept": "application/geo+json",
-            "Accept-Language": "en-US,en;q=0.8" # without this they tend to serve old, cached data (inexplicably)
+            "Accept-Language": "en-US,en;q=0.8"
             }
     request = requests.get(url=url, headers=header)
     try:
         weather = request.json()
+        temp_c = weather["properties"]["temperature"]["value"]
+        temp_f = int(temp_c * 9/5 + 32) # comes from NWS in celsius
 
-        temp = weather['properties']['periods'][0]['temperature']
-        shortForecast = weather['properties']['periods'][0]['shortForecast']
-        probabilityOfPrecipitation = weather['properties']['periods'][0]['probabilityOfPrecipitation']['value']
-        startTime = weather['properties']['periods'][0]['startTime']
+        response = {'temp': temp_f}
 
-        response = {'temp': temp, 'shortForecast': shortForecast, 
-                    'probabilityOfPrecipitation': probabilityOfPrecipitation, "startTime": startTime}
+        # update cache
+        weather_cache["data"] = response
+        weather_cache["timestamp"] = current_time
     except:
         response = 'failed', 500
     return response
