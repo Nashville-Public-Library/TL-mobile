@@ -1,4 +1,5 @@
 from flask import render_template, make_response
+import requests
 
 from app import app
 from app.pwa.pod import Podcast
@@ -51,3 +52,26 @@ def podcasts_info(podcast):
         return render_template("podcast-individual.html", pod=pod)  
     except:
         return "", 500
+    
+@app.route("/weather", methods=["POST"])
+def weather():
+    url = 'https://api.weather.gov/gridpoints/OHX/50,57/forecast/hourly'
+    # NWS asks that you identify yourself
+    header = {"User-Agent": "NashvilleTalkingLibraryMobileApp (nashvilletalkinglibrary@gmail.com)",
+            "Accept": "application/geo+json",
+            "Accept-Language": "en-US,en;q=0.8" # without this they tend to serve old, cached data (inexplicably)
+            }
+    request = requests.get(url=url, headers=header)
+    try:
+        weather = request.json()
+
+        temp = weather['properties']['periods'][0]['temperature']
+        shortForecast = weather['properties']['periods'][0]['shortForecast']
+        probabilityOfPrecipitation = weather['properties']['periods'][0]['probabilityOfPrecipitation']['value']
+        startTime = weather['properties']['periods'][0]['startTime']
+
+        response = {'temp': temp, 'shortForecast': shortForecast, 
+                    'probabilityOfPrecipitation': probabilityOfPrecipitation, "startTime": startTime}
+    except:
+        response = 'failed', 500
+    return response

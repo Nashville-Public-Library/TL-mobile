@@ -454,12 +454,17 @@ function mobileOnlyTextToSpeech() {
 
 async function fetchWeather() {
   const weatherElement = document.getElementById("weatherHomeScreen");
-  const url = "https://api.weather.gov/gridpoints/OHX/50,57/forecast/hourly";
-  const response = await fetch(url);
+  const url = "/weather";
+  const response = await fetch(url, {method: "POST"});
   const responseJSON = await response.json();
 
-  const temp = responseJSON.properties.periods[0].temperature;
-  const shortForecast = responseJSON.properties.periods[0].shortForecast;
-  const chanceOfRain = responseJSON.properties.periods[0].probabilityOfPrecipitation.value;
-  weatherElement.innerHTML= `${temp}&deg; • ${shortForecast} • Chance of Rain: ${chanceOfRain}%`;
+  console.log(responseJSON)
+
+  const temp = responseJSON.temp;
+  const shortForecast = responseJSON.shortForecast;
+  const probabilityOfPrecipitation = responseJSON.probabilityOfPrecipitation;
+  const startTime = responseJSON.startTime
+
+  weatherElement.innerHTML= `${temp}&deg; • ${shortForecast} • 
+  Chance of Rain: ${probabilityOfPrecipitation}% <br> Start Time: ${startTime}`;
 }
