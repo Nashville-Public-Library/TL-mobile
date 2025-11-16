@@ -61,20 +61,21 @@ nav {
   display: none;
   position: fixed;
   z-index: 1; /* Sit on top */
-  padding-top: 270px;
-  padding-bottom: 190px;
-  padding-left: 50px;
-  padding-right: 50px;
-  height: 100%;
-  overflow: auto; /* Enable scroll if needed */
-  font-size: 25pt ;
+  margin-top: 50%;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 20px;
+  overflow: auto;
+  font-size: 22pt ;
   color: #ffffff;
   text-align: left;
-  background-color: rgba(0, 0, 0, 0.75); /* Black w/ opacity */
+  background-color: rgba(0, 0, 0, 0.8); /* Black, 80% opacity */
 }
 
 .modalAlertButton {
-  font-size: 20pt;
+  display: block;
+  margin: 0 auto;
+  font-size: 17pt;
 }
 
 footer {
