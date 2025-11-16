@@ -2,7 +2,7 @@
 
     <img src="/static/img/back-button.png" class="backButton" onclick="history.back()" alt="Go back to previous screen">
 
-    <img id="podcastIndividualImage" class="podcastIndividualImage" src="{{ pod.image }}">
+    <img id="podcastIndividualImage" class="podcastIndividualImage" src="{{ pod.image }}" alt="">
     <br>
     <div id="podcastIndividualTitle" class="podcastIndividualTitle">{{ pod.title }}</div>
     <br>
@@ -10,7 +10,7 @@
     <br>
     
     <div class="RSSLinkContainer">
-    <button id="copyToClipboard" name="{{pod.RSSLink}}" class="RSSLink" onclick="copyToClipboard(this.name)">Copy RSS URL</button>
+        <button id="copyToClipboard" name="{{pod.RSSLink}}" class="RSSLink" onclick="copyToClipboard(this.name)">Copy RSS URL</button>
     </div>
 
     <br>
