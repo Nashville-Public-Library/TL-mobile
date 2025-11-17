@@ -6,6 +6,7 @@ const FILES_TO_CACHE = [
     '/static/pages/about.html',
     '/static/pages/privacy.html',
     '/static/pages/feedback.html',
+    '/static/pages/settings.html',
     '/static/pages/schedule.html',
     '/static/pages/podcasts.html',
     '/static/pages/podcast-loading.html',
