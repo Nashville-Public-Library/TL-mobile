@@ -449,7 +449,13 @@ function mobileOnlyTextToSpeech() {
     const speech = new SpeechSynthesisUtterance(element.innerText)
     synth.speak(speech)
   }
+}
 
+function settingsTextToSpeechTest() {
+  const synth = window.speechSynthesis;
+  const text = "Thank you for listening to Nashville Talking Library, an audio information service of Nashville Public Library";
+  const speech = getUserStoredVoiceSelection(text);
+  synth.speak(speech);
 }
 
 async function fetchWeather() {
