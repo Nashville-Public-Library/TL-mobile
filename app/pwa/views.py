@@ -6,7 +6,7 @@ import requests
 from app import app
 from app.pwa.pod import Podcast
 
-VERSION = "0.6.16"
+VERSION = "0.6.17"
 
 # weather_cache = {"station": None, "temp": None, "timestamp": 0}
 
