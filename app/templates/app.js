@@ -78,6 +78,7 @@ const routes = {
 
     if (path == "/settings") {
       fillSpeechSynthesisVoiceSelector();
+      fillWeatherStationSelector();
     }
 
     if (path === "/podcasts") {
@@ -423,7 +424,11 @@ function fillSpeechSynthesisVoiceSelector() {
     }
   }
   let previousSelection = localStorage.getItem("voice");
+  if (previousSelection) {
   selectElement.value = previousSelection;
+  } else {
+    selectElement.value = voices[0].name;
+  }
 }
 
 function storeUserVoiceSelection(voice) {
@@ -458,16 +463,64 @@ function settingsTextToSpeechTest() {
   synth.speak(speech);
 }
 
+const weatherStations = {
+    "Nashville": "KBNA",
+    "Clarksville": "KCKV",
+    "Murfressboro": "KMBT",
+    "Columbia": "KMRC",
+    "Lawrenceburg": "K2M2",
+    "Jackson": "KMKL",
+    "Memphis": "KMEM",
+    "Knoxville": "KTYS",
+    "Chattanooga": "KCHA",
+    "Tri-Cities": "KTRI"
+  }
+
+function fillWeatherStationSelector() {
+  const selectElement = document.getElementById("weatherStationSelector");
+  for (station in weatherStations) {
+      const option = document.createElement("option");
+      option.textContent = station;
+      option.value = station;
+      selectElement.appendChild(option);
+  }
+  let previousSelection = localStorage.getItem("weatherCity");
+  if (previousSelection) {
+    selectElement.value = previousSelection;
+  }
+}
+
+function storeUserWeatherSelection(weatherCity) {
+  localStorage.setItem("weatherCity", weatherCity)
+}
+
 async function fetchWeather() {
   const weatherElement = document.getElementById("weatherHomeScreen");
+  const weatherCity = localStorage.getItem("weatherCity")
+  let data = {};
+  let cityDisplay;
+  if (weatherCity) {
+    data.station = weatherStations[weatherCity];
+    cityDisplay = weatherCity;
+  } else {
+    data.station = weatherStations["Nashville"] // if none selected, default to Nashville
+    cityDisplay = "Nashville";
+  }
   const url = "/weather";
-  const response = await fetch(url, {method: "POST"});
+  const response = await fetch(url, {
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify(data)
+      });
   if (!response.ok) {
     console.log("bad response from /weather");
     return;}
   const responseJSON = await response.json();
   const temp = responseJSON.temp;
 
-  weatherElement.innerHTML= `${temp}&deg; in Nashville`;
+  weatherElement.innerHTML= `${temp}&deg; in ${cityDisplay}`;
   weatherElement.style.opacity = "1";
 }
