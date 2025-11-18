@@ -292,6 +292,11 @@ nav a {
   font-size: 16pt;
 }
 
+.allTimesListedCentralTime {
+  font-size: 12pt;
+  text-align: center;
+}
+
 .dailyScheduleContainerIndividual {
   display: grid;
   grid-template-columns: 75pt auto;
