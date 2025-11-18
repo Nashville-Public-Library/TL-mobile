@@ -369,7 +369,7 @@ function scheduleTextToSpeech() {
   const todayElement = document.getElementsByClassName("dailyScheduleHeader");
   const todayInnerText = todayElement[0].innerText;
   const synth = window.speechSynthesis;
-  const intro = getUserStoredVoiceSelection(`Here is the schedule for ${todayInnerText}`);
+  const intro = getUserStoredVoiceSelection(`Here is the schedule for ${todayInnerText}. All times are in Central Time.`);
   synth.speak(intro);
   const allElements = document.getElementsByClassName("dailyScheduleContainerIndividual");
   let count = 0;
