@@ -5,10 +5,9 @@ import requests
 
 from app import app
 from app.pwa.pod import Podcast
+from app.pwa.weather import get_weather
 
 VERSION = "0.6.18"
-
-# weather_cache = {"station": None, "temp": None, "timestamp": 0}
 
 @app.route('/', methods=['GET'])
 def pwa():
@@ -59,31 +58,8 @@ def podcasts_info(podcast):
     
 @app.route("/weather", methods=["POST"])
 def weather():
-    # current_time = time.time()
-    # cache_time = 120 # how long (in seconds) do we want to keep cached data before fetching again
-    # # if we have cached data and it has been less than 60 seconds since we cached it
-    # if weather_cache["station"] and (current_time - weather_cache["timestamp"] < cache_time):
-    #     return weather_cache["data"]
-
     json:dict = request.get_json()
     station = json.get("station")
-    url = f"https://api.weather.gov/stations/{station}/observations/latest"
-    # NWS asks that you identify yourself. Include the other headers so they send us fresh/correct data
-    header = {"User-Agent": "NashvilleTalkingLibraryMobileApp (nashvilletalkinglibrary@gmail.com)",
-            "Accept": "application/geo+json",
-            "Accept-Language": "en-US,en;q=0.8"
-            }
-    response = requests.get(url=url, headers=header)
-    try:
-        weather = response.json()
-        temp_c = weather["properties"]["temperature"]["value"]
-        temp_f = int(temp_c * 9/5 + 32) # comes from NWS in celsius
+    weather = get_weather(station=station)
 
-        ret_val = {'temp': temp_f}
-
-        # update cache  
-        # weather_cache["data"] = ret_val
-        # weather_cache["timestamp"] = current_time
-    except:
-        ret_val = 'failed', 500
-    return ret_val
+    return weather
