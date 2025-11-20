@@ -29,13 +29,10 @@ def get_weather(station):
         return {"temp": None}, 500
 
 def check_cache(station):
-    print("checking cache for " + station)
+    cache_length_in_seconds = 120 # amound of time in seconds to cache data
     for id in weather_cache:
-        print(id["station"] + " time: " + str(time.time() - id["time"]))
-        if (id["station"] == station) and ((time.time() - id["time"]) < 120):
-            temp = id["temp"]   
-            print(f"returning cached result for {station}: " + str(temp))
-            print(weather_cache)
+        if (id["station"] == station) and ((time.time() - id["time"]) < cache_length_in_seconds):
+            temp = id["temp"]
             return temp
     return False
 
@@ -46,9 +43,5 @@ def append_or_update_cache(station: str, temp: int):
         if id["station"] == station:
             id["temp"] = temp
             id["time"] = now
-            print("cache updated")
-            print(weather_cache)
             return
     weather_cache.append({"station": station, "temp": temp, "time": now})
-    print("cache appended")
-    print(weather_cache)
