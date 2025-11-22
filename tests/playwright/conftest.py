@@ -10,7 +10,7 @@ def server():
     command = ["flask", "run"]
     start = subprocess.Popen(command)
     time.sleep(9) # give it a few seconds to start up
-    server_URL = "http://localhost:5000/"
+    server_URL = "http://127.0.0.1:5000"
 
     yield server_URL
 
