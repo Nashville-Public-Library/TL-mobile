@@ -283,6 +283,7 @@ nav a {
   background-color: #f16530;
   color: #ffffff;
   font-size: 16pt;
+  padding: 5px;
 }
 
 .textToSpeechScheduleStopButton {
@@ -290,6 +291,7 @@ nav a {
   background-color: #f16530;
   color: #ffffff;
   font-size: 16pt;
+  padding: 5px;
 }
 
 .allTimesListedCentralTime {
