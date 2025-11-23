@@ -79,6 +79,7 @@ const routes = {
     if (path == "/settings") {
       fillSpeechSynthesisVoiceSelector();
       fillWeatherStationSelector();
+      loadUserSelectedVoiceSpeed();
     }
 
     if (path === "/podcasts") {
@@ -477,6 +478,12 @@ function getUserStoredVoiceSelection(toSpeak) {
     const voice = voices.find(v => v.name == userSelectedVoice);
     speech.voice = voice;
   }
+
+  let userSelectedVoiceSpeed = localStorage.getItem("voiceSpeed");
+  if (userSelectedVoiceSpeed) {
+    speech.rate = userSelectedVoiceSpeed
+  }
+
   return speech;
 }
 
@@ -494,6 +501,41 @@ function settingsTextToSpeechTest() {
   const text = "Thank you for listening to Nashville Talking Library, an audio information service of Nashville Public Library";
   const speech = getUserStoredVoiceSelection(text);
   synth.speak(speech);
+}
+
+function SpeechSynthesisSpeedSelectorDisplay(value) {
+  stopTextToSpeechGlobal();
+  const element = document.getElementById("SpeechSynthesisSpeedSelectorDisplay");
+  storeUserVoiceSpeedSelection(value);
+  const valueInt = value - 1;
+  let plusOrMinus
+  if (valueInt >= 0) {
+    plusOrMinus = "+";
+  } else {
+    plusOrMinus = "-";
+  }
+  const rounded = valueInt.toFixed(2);
+  const roundedString = String(rounded)
+  const split = roundedString.split(".")
+  const output = split[1] + "%"
+  console.log(split[0])
+  element.innerText = plusOrMinus + output;
+}
+
+function storeUserVoiceSpeedSelection(speed) {
+  localStorage.setItem("voiceSpeed", speed)
+}
+
+function loadUserSelectedVoiceSpeed() {
+  const speed = localStorage.getItem("voiceSpeed");
+  const inputElement = document.getElementById("SpeechSynthesisSpeedSelector");
+  if (speed) {
+    inputElement.value = speed;
+    SpeechSynthesisSpeedSelectorDisplay(speed);
+  } else {
+    inputElement.value = 1.0
+    SpeechSynthesisSpeedSelectorDisplay(1.0);
+  }
 }
 
 const weatherStations = {
