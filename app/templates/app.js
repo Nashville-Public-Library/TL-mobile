@@ -171,7 +171,9 @@ const routes = {
   button.addEventListener('click', () => {
   const audio = document.getElementById('audio');
     if (audio.paused) {
-      if (!navigator.onLine){return;}
+      if (!navigator.onLine) {
+        modalAlert("You cannot listen to the live stream while offline.")
+        return;}
       nowPlaying()
       audio.src = "https://api.nashvilletalkinglibrary.com/stream/livestream.mp3";
       audio.play();
