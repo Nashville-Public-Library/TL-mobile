@@ -79,6 +79,7 @@ const routes = {
     if (path == "/settings") {
       fillSpeechSynthesisVoiceSelector();
       fillWeatherStationSelector();
+      loadUserSelectedVoiceSpeed();
     }
 
     if (path === "/podcasts") {
@@ -94,7 +95,7 @@ const routes = {
   
   let currentRoute = location.hash.slice(1); // global variable to keep track of current page
   window.addEventListener('hashchange', () => {
-    stopTextToSpeechGlobalAndHideButton(); // stop speaking whenever user loads new page
+    stopTextToSpeechGlobal(); // stop speaking whenever user loads new page
     saveScrollPositionAndLoadRoute(currentRoute);
   });
   
@@ -170,7 +171,9 @@ const routes = {
   button.addEventListener('click', () => {
   const audio = document.getElementById('audio');
     if (audio.paused) {
-      if (!navigator.onLine){return;}
+      if (!navigator.onLine) {
+        modalAlert("You cannot listen to the live stream while offline.")
+        return;}
       nowPlaying()
       audio.src = "https://api.nashvilletalkinglibrary.com/stream/livestream.mp3";
       audio.play();
@@ -366,36 +369,59 @@ async function copyToClipboard(text) {
 
 function scheduleTextToSpeech() {
   document.getElementById("stopTextToSpeechGlobal").style.display = "inline-block";
+  hidelistenTextToSpeechSchedule()
   const todayElement = document.getElementsByClassName("dailyScheduleHeader");
   const todayInnerText = todayElement[0].innerText;
   const synth = window.speechSynthesis;
-  const intro = getUserStoredVoiceSelection(`Here is the schedule for ${todayInnerText}. All times are in Central Time.`);
-  synth.speak(intro);
   const allElements = document.getElementsByClassName("dailyScheduleContainerIndividual");
-  let count = 0;
+  let allItemsToSpeak = [`Here is the schedule for ${todayInnerText}. All times are in Central Time.`];
   for (let element of allElements) {
     let time = element.firstElementChild.innerText;
     let program = element.lastElementChild.innerText;
-    const utterance = getUserStoredVoiceSelection(`${time}, ${program}`)
-    synth.speak(utterance);
-    utterance.onend = () => { // onend fires when the actual voice finishes speaking.
-      count++;
-      console.log(count, allElements.length)
-      if(count == allElements.length) {
-        // once we've looped through every element. This feels hacky...
-        hideScheduleStopTextToSpeechButton();
+    const combined = `${time}, ${program}`;
+    allItemsToSpeak.push(combined);
   }
+  speakSequence(allItemsToSpeak)
+}
+
+let speechCancelled = true;
+function speakSequence(queue) {
+  speechCancelled = false;
+  const synth = window.speechSynthesis;
+
+  const next = () => {
+    if (speechCancelled) {
+      return;
     }
-  }
+    if (queue.length === 0) {
+      hideScheduleStopTextToSpeechButton();
+      reveallistenTextToSpeechSchedule();
+      return;
+    }
+
+    const text = queue.shift();
+    console.log(text);
+    const utter = getUserStoredVoiceSelection(text);
+
+    utter.onend = next;
+    utter.onerror = next;
+
+    synth.speak(utter);
+  };
+
+  next(); // start sequence, then utter.onend takes over
 }
 
 function stopTextToSpeechGlobalAndHideButton() {
-  window.speechSynthesis.cancel();
-  hideScheduleStopTextToSpeechButton()
+  stopTextToSpeechGlobal();
+  speechCancelled = true;
+  hideScheduleStopTextToSpeechButton();
+  reveallistenTextToSpeechSchedule();
 }
 
 function stopTextToSpeechGlobal() {
   window.speechSynthesis.cancel();
+  speechCancelled = true;
 }
 
 function hideScheduleStopTextToSpeechButton() {
@@ -410,6 +436,16 @@ function hideScheduleStopTextToSpeechButton() {
       console.log(error);
     }
   }
+}
+
+function reveallistenTextToSpeechSchedule() {
+  element = document.getElementById("listenTextToSpeechSchedule");
+  element.style.display = "inline-block";
+}
+
+function hidelistenTextToSpeechSchedule() {
+  element = document.getElementById("listenTextToSpeechSchedule");
+  element.style.display = "none";
 }
 
 function fillSpeechSynthesisVoiceSelector() {
@@ -444,6 +480,12 @@ function getUserStoredVoiceSelection(toSpeak) {
     const voice = voices.find(v => v.name == userSelectedVoice);
     speech.voice = voice;
   }
+
+  let userSelectedVoiceSpeed = localStorage.getItem("voiceSpeed");
+  if (userSelectedVoiceSpeed) {
+    speech.rate = userSelectedVoiceSpeed
+  }
+
   return speech;
 }
 
@@ -461,6 +503,41 @@ function settingsTextToSpeechTest() {
   const text = "Thank you for listening to Nashville Talking Library, an audio information service of Nashville Public Library";
   const speech = getUserStoredVoiceSelection(text);
   synth.speak(speech);
+}
+
+function SpeechSynthesisSpeedSelectorDisplay(value) {
+  stopTextToSpeechGlobal();
+  const element = document.getElementById("SpeechSynthesisSpeedSelectorDisplay");
+  storeUserVoiceSpeedSelection(value);
+  const valueInt = value - 1;
+  let plusOrMinus
+  if (valueInt >= 0) {
+    plusOrMinus = "+";
+  } else {
+    plusOrMinus = "-";
+  }
+  const rounded = valueInt.toFixed(2);
+  const roundedString = String(rounded)
+  const split = roundedString.split(".")
+  const output = split[1] + "%"
+  console.log(split[0])
+  element.innerText = plusOrMinus + output;
+}
+
+function storeUserVoiceSpeedSelection(speed) {
+  localStorage.setItem("voiceSpeed", speed)
+}
+
+function loadUserSelectedVoiceSpeed() {
+  const speed = localStorage.getItem("voiceSpeed");
+  const inputElement = document.getElementById("SpeechSynthesisSpeedSelector");
+  if (speed) {
+    inputElement.value = speed;
+    SpeechSynthesisSpeedSelectorDisplay(speed);
+  } else {
+    inputElement.value = 1.0
+    SpeechSynthesisSpeedSelectorDisplay(1.0);
+  }
 }
 
 const weatherStations = {
