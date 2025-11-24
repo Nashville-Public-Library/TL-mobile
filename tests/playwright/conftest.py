@@ -1,17 +1,31 @@
 import subprocess
-import os
 import time
 
 from playwright.sync_api import Browser, BrowserContext
 import pytest
+import requests
 
 @pytest.fixture(scope="session")
 def server():
     
     command = ["flask", "run"]
     start = subprocess.Popen(command)
-    time.sleep(9) # give it a few seconds to start up
     server_URL = "http://127.0.0.1:5000"
+
+    timeout = 12
+    start_time = time.time()
+    while True:
+        try:
+            req = requests.get(server_URL)
+            if req.status_code == 200:
+                break  # server is ready
+        except requests.ConnectionError:
+            pass
+
+        if time.time() - start_time > timeout:
+            start.terminate()
+            raise RuntimeError("Flask server did not start in time")
+        time.sleep(0.2)
 
     yield server_URL
 
