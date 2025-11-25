@@ -52,15 +52,16 @@ def desktop(browser: Browser):
 #
 @pytest.fixture(scope="function")
 # thank you ChatGPT
-def mobile_installed(browser: Browser):
-    context: BrowserContext = browser.new_context(
+def mobile_installed(browser: Browser, server):
+    context = browser.new_context(
+        viewport={"width": 393, "height": 852},
         is_mobile=True,
         has_touch=True,
     )
 
     page = context.new_page()
 
-    # Simulate "installed / standalone mode"
+    # Simulate "installed / standalone" mode
     page.add_init_script("""
         // Force display-mode: standalone
         const origMatchMedia = window.matchMedia;
@@ -85,7 +86,34 @@ def mobile_installed(browser: Browser):
             value: true,
             configurable: true
         });
+
+        // Kill orientation overlay. For some reason this interrupts click events...
+        const hideOverlay = () => {
+            const el = document.getElementById('orientationChange');
+            if (el) {
+                el.style.display = 'none';
+                el.style.pointerEvents = 'none';
+                el.style.opacity = 0;
+            }
+        };
+
+        document.addEventListener("DOMContentLoaded", hideOverlay);
+        new MutationObserver(hideOverlay).observe(document.documentElement, {
+            childList: true,
+            subtree: true
+        });
     """)
+
+    page.goto(server)
+
+    # wait until Service Worker is registered and in charge of the window.
+    page.wait_for_function("""
+        () =>
+            'serviceWorker' in navigator &&
+            navigator.serviceWorker.controller !== null
+    """, timeout=15000)
 
     yield page
     context.close()
+
+
