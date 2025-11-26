@@ -57,11 +57,22 @@
     pip install -r requirements.txt
     ````
 
+- Install Browser Drivers (for running the tests)
+    ````bash
+    playwright install
+    ````
+
 - Launch the app
     ````bash
     py application.py
     ````
     - Depending on your OS, instead of `py` you may need to use `python` or `python3`
+
+- To Run the Tests
+    ````bash
+    pytest
+    ````
+    - Always run the tests before pushing changes
 
 ## Misc
 
