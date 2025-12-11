@@ -331,6 +331,7 @@ function podcastSearch(title) {
       return;
     }
   }
+  modalAlert(`No results for ${title}, try another term.`);
   return;
 }
 
