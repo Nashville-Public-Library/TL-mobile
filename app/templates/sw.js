@@ -21,6 +21,7 @@ const FILES_TO_CACHE = [
     '/static/img/ntl-logo-192x192.png',
     '/static/img/NTL-white-trim.png',
     '/static/img/NPL.svg',
+    '/static/img/iaais.png',
     '/static/img/instagram.png',
     '/static/img/facebook.png',
     '/static/img/website.png',
