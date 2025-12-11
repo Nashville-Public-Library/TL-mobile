@@ -97,6 +97,7 @@ const routes = {
   window.addEventListener('hashchange', () => {
     stopTextToSpeechGlobal(); // stop speaking whenever user loads new page
     saveScrollPositionAndLoadRoute(currentRoute);
+    closeModalAlert();
   });
   
   window.addEventListener('DOMContentLoaded', loadRoute);
