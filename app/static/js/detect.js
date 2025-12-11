@@ -11,11 +11,11 @@ if ('serviceWorker' in navigator) {
     });
 
   async function reloadWindowAndModalAlert() {
-    const parent = document.getElementById("modalAlert");
-    const content = document.getElementById("modalAlertMessage");
+    const parent = document.getElementById("modalAlertUpdateApp");
+    const content = document.getElementById("modalAlertMessageUpdateApp");
     content.innerText = "Your app will now be updated to the newest version";
     parent.style.display = "block";
-    const closeButton = document.getElementById("modalAlertButton");
+    const closeButton = document.getElementById("modalAlertButtonUpdateApp");
     closeButton.addEventListener("click", () => {
       window.location.reload();
 });
