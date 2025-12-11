@@ -10,12 +10,23 @@ if ('serviceWorker' in navigator) {
       }
     });
 
+  async function reloadWindowAndModalAlert() {
+    const parent = document.getElementById("modalAlert");
+    const content = document.getElementById("modalAlertMessage");
+    content.innerText = "Your app will now be updated to the newest version";
+    parent.style.display = "block";
+    const closeButton = document.getElementById("modalAlertButton");
+    closeButton.addEventListener("click", () => {
+      window.location.reload();
+});
+
+}
+
     // Prompt the user when there's a waiting SW
-    function promptUserToUpdate(sw) {
-      const wantsUpdate = alert("Your app will now be updated to the newest version.");
+    async function promptUserToUpdate(sw) {
         sw.addEventListener('statechange', () => {
           if (sw.state === 'activated') {
-            window.location.reload();
+            reloadWindowAndModalAlert();
           }
         });
         sw.postMessage({ action: 'skipWaiting' }); // Activates new SW
