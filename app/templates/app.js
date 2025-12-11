@@ -321,7 +321,7 @@ function categorySelector(category) {
 
 function podcastSearch(title) {
   const titleTrim = title.trim()
-  if (titleTrim == "") {return;}
+  if (titleTrim == "") { return; }
 
   const matchingElements = document.getElementsByClassName("podcastTitle");
   for (const match of matchingElements) {
@@ -331,7 +331,16 @@ function podcastSearch(title) {
       return;
     }
   }
-  modalAlert(`No results for ${title}, try another term.`);
+  let count = 0;
+  let elementsStillOnPage = document.getElementsByClassName("podcastIndividual")
+  for (const element of elementsStillOnPage) {
+    if (element.style.display != "none") {
+      count++;
+    }
+  }
+  if (count == 0) {
+    modalAlert(`No results for ${title}, try another term.`);
+  }
   return;
 }
 
