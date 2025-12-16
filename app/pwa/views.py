@@ -7,7 +7,7 @@ from app import app
 from app.pwa.pod import Podcast
 from app.pwa.weather import get_weather
 
-VERSION = "0.6.35"
+VERSION = "0.7.0"
 
 @app.route('/', methods=['GET'])
 def pwa():
@@ -24,9 +24,9 @@ def serve_sw():
     response.headers["Cache-Control"] = "no-cache"
     return response
 
-@app.route('/app.js')
+@app.route('/detect.js')
 def serve_app_js():
-    response = make_response(render_template("app.js", version=VERSION))
+    response = make_response(render_template("detect.js", version=VERSION))
     response.headers["Content-Type"] = "application/javascript"
     response.headers["Cache-Control"] = "no-cache"
     return response

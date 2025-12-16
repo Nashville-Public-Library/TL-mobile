@@ -1,4 +1,7 @@
-const appVersion = "{{version}}";
+function retrieveAppVersion() {
+  const version = localStorage.getItem("appVersion");
+  return version;
+}
 
 function openlinkExternalWindow(url) {
   window.open(url, '_blank', 'noopener');
@@ -11,7 +14,7 @@ function openDefaultMailApp() {
   const screenWidth = screen.width;
   const screenHeigt = screen.height;
   const screenSize = `${screenWidth}x${screenHeigt}`
-  const version = appVersion;
+  const version = retrieveAppVersion();
   const doNotDelete = "The information above will help us to troubleshoot your issue. Please describe your issue in detail below this line:";
   const body = "Device: " + userAgent + "%0A" + "Version: " + version + "%0A" + "Screen: " + screenSize + "%0D%0A%0D%0A" + doNotDelete;
   window.open(`mailto:${toEmail}?subject=${subject}&body=${body}`, '_blank', 'noopener');
@@ -257,7 +260,7 @@ window.addEventListener('offline', onlineOffline);
 onlineOffline();
 
 function loadAppVersion() {
-  document.getElementById("appVersion").innerHTML = "v" + appVersion;
+  document.getElementById("appVersion").innerHTML = "v" + retrieveAppVersion();
 }
 
   async function loadPodcast(show) {  

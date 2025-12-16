@@ -105,9 +105,9 @@ async function detect() {
         document.body.innerHTML = text;
         return;
     } else {
-        localStorage.setItem("appVersion", "{{version}}");
         addMainScript();
         sw();
+        localStorage.setItem("appVersion", "{{version}}");
         handleOrientationChange();
         
         window.addEventListener('resize', () =>{
