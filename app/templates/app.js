@@ -177,6 +177,7 @@ const routes = {
         return;}
       nowPlaying()
       audio.src = "https://api.nashvilletalkinglibrary.com/stream/livestream.mp3";
+      stopTextToSpeechGlobalAndHideButton(); // only one thing should play at a time
       audio.play();
       switchPlayPauseIcon();
       button.setAttribute('aria-label', 'Pause');
@@ -197,6 +198,13 @@ function switchPlayPauseIcon() {
   } else {
     playIcon.style.display = "none";
     pauseIcon.style.display = "block"
+  }
+}
+
+function stopLiveStream() {
+  const audio = document.getElementById('audio');
+  if (!audio.paused) {
+    document.getElementById('playPauseButton').click();
   }
 }
 
@@ -383,6 +391,7 @@ async function copyToClipboard(text) {
 }
 
 function scheduleTextToSpeech() {
+  stopLiveStream() // only want one thing playing at a time
   document.getElementById("stopTextToSpeechGlobal").style.display = "inline-block";
   hidelistenTextToSpeechSchedule()
   const todayElement = document.getElementsByClassName("dailyScheduleHeader");

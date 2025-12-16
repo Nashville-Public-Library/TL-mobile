@@ -7,7 +7,7 @@ from app import app
 from app.pwa.pod import Podcast
 from app.pwa.weather import get_weather
 
-VERSION = "0.6.31"
+VERSION = "0.6.32"
 
 @app.route('/', methods=['GET'])
 def pwa():
