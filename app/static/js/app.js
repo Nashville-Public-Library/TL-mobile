@@ -614,6 +614,8 @@ async function fetchWeather() {
       });
   if (!response.ok) {
     console.log("bad response from /weather");
+    weatherElement.innerHTML= `?&deg; in ${cityDisplay}`;
+    weatherElement.style.opacity = "1";
     return;}
   const responseJSON = await response.json();
   const temp = responseJSON.temp;
