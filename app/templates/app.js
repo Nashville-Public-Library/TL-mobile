@@ -228,12 +228,16 @@ function updatePlayerMetadata(nowPlayingTitle) {
 }
 
 function onlineOffline() {
-  const onlineOfflineDotColor = document.getElementById("onlineOfflineDot");
+  const playIcon = document.getElementById("playIcon");
   if (!navigator.onLine) {
-    onlineOfflineDotColor.style.backgroundColor = "#f31642";
+    const audio = document.getElementById('audio');
+    audio.pause()
+    playIcon.src = "/static/img/streamPlayRed.png";
+    playIcon.style.display = "block";
+    document.getElementById("pauseIcon").style.display = "none";
     modalAlert("You are not connected to the internet. The stream and other features will not work until you are back online.")
   } else {
-    onlineOfflineDotColor.style.backgroundColor = "#00fc37";
+    playIcon.src = "/static/img/streamPlayGreen.png";
   }
 }
 window.addEventListener('online', onlineOffline);
