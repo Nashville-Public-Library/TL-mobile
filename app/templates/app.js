@@ -177,7 +177,7 @@ const routes = {
         return;}
       nowPlaying()
       audio.src = "https://api.nashvilletalkinglibrary.com/stream/livestream.mp3";
-      stopTextToSpeechGlobalAndHideButton(); // only one thing should play at a time
+      try {stopTextToSpeechGlobalAndHideButton();} catch {console.log("not on schedule page")} // only one thing should play at a time
       audio.play();
       switchPlayPauseIcon();
       button.setAttribute('aria-label', 'Pause');
