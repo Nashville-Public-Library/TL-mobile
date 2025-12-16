@@ -106,8 +106,7 @@ footer {
   display: block;
   width: 75px;
   background-color: inherit;
-  /* margin-bottom: 10px; */
-  margin-right: 19px;
+  margin-right: 10px;
 }
 
 .nowPlaying {
