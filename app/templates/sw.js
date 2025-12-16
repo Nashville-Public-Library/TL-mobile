@@ -38,6 +38,7 @@ const FILES_TO_CACHE = [
     '/static/img/streamPauseRed.png',
     '/static/img/streamPlayGreen.png',
     '/static/img/streamPlayRed.png',
+    '/app.js'
 ];
 
 // Install — cache all static assets

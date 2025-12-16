@@ -72,6 +72,22 @@ function handleOrientationChange() {
   }
 }
 
+function mobileOnlyTextToSpeech() {
+  const elements = document.getElementsByClassName("mobileOnlySpeech");
+  const synth = window.speechSynthesis;
+  for (const element of elements) {
+    const speech = new SpeechSynthesisUtterance(element.innerText)
+    synth.speak(speech)
+  }
+}
+
+function addMainScript() {
+  const script = document.createElement("script");
+  script.src = "/app.js";
+  document.body.appendChild(script);
+  return;
+}
+
 async function detect() {
     if (!isMobileDevice()) {
       let response = await fetch('/static/pages/mobile-only.html');
@@ -89,8 +105,9 @@ async function detect() {
         document.body.innerHTML = text;
         return;
     } else {
-        sw()
-        handleOrientationChange()
+        addMainScript();
+        sw();
+        handleOrientationChange();
         
         window.addEventListener('resize', () =>{
           let orientationTimeout;

@@ -92,6 +92,8 @@ const routes = {
       }
     }
   }
+
+  loadRoute(); // on first load
   
   let currentRoute = location.hash.slice(1); // global variable to keep track of current page
   window.addEventListener('hashchange', () => {
@@ -511,15 +513,6 @@ function getUserStoredVoiceSelection(toSpeak) {
   }
 
   return speech;
-}
-
-function mobileOnlyTextToSpeech() {
-  const elements = document.getElementsByClassName("mobileOnlySpeech");
-  const synth = window.speechSynthesis;
-  for (const element of elements) {
-    const speech = new SpeechSynthesisUtterance(element.innerText)
-    synth.speak(speech)
-  }
 }
 
 function settingsTextToSpeechTest() {
