@@ -142,16 +142,6 @@ main {
   transition: opacity 0.2s ease-in-out;
 }
 
-.onlineOfflineDot {
-  position: absolute;
-  bottom: 45px;
-  right: 8px;
-  height: 15px;
-  width: 15px;
-  background-color: #00fc37;
-  border-radius: 50%;
-}
-
 .aboutLink {
   position: absolute;
   bottom: 100px;
