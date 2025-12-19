@@ -41,17 +41,95 @@ const FILES_TO_CACHE = [
     '/static/js/app.js'
 ];
 
+const podcastImagesToCache = [
+  "aarp",
+  "able",
+  "aroundworld",
+  "atlantic",
+  "bookpage",
+  "checklist",
+  "community",
+  "consumer",
+  "diabetes",
+  "discover",
+  "economist",
+  "entertainment",
+  "eyes",
+  "fortune",
+  "historical",
+  "hourshortstories",
+  "cirrus",
+  "independent",
+  "lgbt",
+  "mens",
+  "moneytalk",
+  "ledger",
+  "scene",
+  "nationalgeo",
+  "science",
+  "nyt",
+  "newyorker",
+  "newsweek",
+  "people",
+  "pet",
+  "pnstalks",
+  "pns",
+  "pnsyonder",
+  "poetry",
+  "prevention",
+  "readersdigest",
+  "rollingstone",
+  "smithsonian",
+  "sports",
+  "tennessean",
+  "opinion",
+  "time",
+  "town",
+  "vanity",
+  "wsj",
+  "wired",
+  "woman"
+]
+
 // Install — cache all static assets
 self.addEventListener('install', (event) => {
   console.log('[ServiceWorker] Install');
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log('[ServiceWorker] Caching app shell');
-      return cache.addAll(FILES_TO_CACHE);
+      cacheAllFiles(cache);
     })
   );
   self.skipWaiting();
 });
+
+function cacheAllFiles(cache){
+  cacheStaticFiles(cache);
+  cachePodcastImages(cache);
+  return;
+}
+
+function cacheStaticFiles(cache) {
+  console.log('[ServiceWorker] Caching app shell');
+  return cache.addAll(FILES_TO_CACHE);
+}
+
+function generatePodcastImageURL(podcast) {
+  return `https://assets.library.nashville.gov/talkinglibrary/shows/${podcast}/image.jpg`
+}
+
+async function cachePodcastImages(cache) {
+  for (const image of podcastImagesToCache) {
+    try {
+      const url = generatePodcastImageURL(image);
+      const request = new Request(url, {mode: "no-cors"});
+      const response = await fetch(request);
+      await cache.put(request, response);
+    }
+    catch (whoops) {
+      console.log(whoops);
+    }
+  }
+}
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.action === 'skipWaiting') {
