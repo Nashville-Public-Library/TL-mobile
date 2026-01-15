@@ -30,33 +30,33 @@ jobs:
     - name: Test with pytest
       run: pytest
 
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
+  # deploy:
+  #   needs: test
+  #   runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+  #   steps:
+  #   - name: Checkout code
+  #     uses: actions/checkout@v4
 
-    - name: Set up SSH key
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/ntl_mobile_app.pem
-        chmod 600 ~/.ssh/ntl_mobile_app.pem
+  #   - name: Set up SSH key
+  #     run: |
+  #       mkdir -p ~/.ssh
+  #       echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/ntl_mobile_app.pem
+  #       chmod 600 ~/.ssh/ntl_mobile_app.pem
 
-    - name: Add EC2 to known hosts
-      run: |
-        ssh-keyscan -H app.nashvilletalkinglibrary.com >> ~/.ssh/known_hosts
+  #   - name: Add EC2 to known hosts
+  #     run: |
+  #       ssh-keyscan -H app.nashvilletalkinglibrary.com >> ~/.ssh/known_hosts
 
-    - name: Deploy to EC2
-      run: |
-        ssh -o StrictHostKeyChecking=no -i ~/.ssh/ntl_mobile_app.pem ubuntu@app.nashvilletalkinglibrary.com << 'EOF'
-          cd /home/TL-mobile
-          git pull origin main
+  #   - name: Deploy to EC2
+  #     run: |
+  #       ssh -o StrictHostKeyChecking=no -i ~/.ssh/ntl_mobile_app.pem ubuntu@app.nashvilletalkinglibrary.com << 'EOF'
+  #         cd /home/TL-mobile
+  #         git pull origin main
           
-          source /home/TL-mobile/venv/bin/activate
-          pip install -r requirements.txt
+  #         source /home/TL-mobile/venv/bin/activate
+  #         pip install -r requirements.txt
 
-          sudo systemctl restart ntl_mobile_app
-          sudo systemctl restart nginx
-        EOF
+  #         sudo systemctl restart ntl_mobile_app
+  #         sudo systemctl restart nginx
+  #       EOF
