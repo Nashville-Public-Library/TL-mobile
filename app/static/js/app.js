@@ -136,7 +136,7 @@ const routes = {
     let livestream = document.getElementById("audio");
     let notAvailable = "Program Name Not Available";
     try {
-        const url = "https://api.nashvilletalkinglibrary.com/stream/status";
+        const url = "https://api.talkinglibrary.nashville.gov/stream/status";
         let response = await fetch(url, { method: "POST" });
         let icecast = await response.json();
         let nowPlaying = icecast.title;
