@@ -5,7 +5,7 @@
 [![last-commit](https://img.shields.io/github/last-commit/Nashville-Public-Library/TL-mobile)](https://github.com/Nashville-Public-Library/TL-mobile/commits/main)
 
 
-[app.nashvilletalkinglibrary.com](https://app.nashvilletalkinglibrary.com)
+[app.talkinglibrary.nashville.gov](https://app.talkinglibrary.nashville.gov)
 
  a simple mobile app for TL listeners...
 
@@ -59,7 +59,7 @@
 
 - Install Browser Drivers (for running the tests)
     ````bash
-    playwright install
+    playwright install chromium
     ````
 
 - Launch the app
