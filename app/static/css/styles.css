@@ -8,6 +8,7 @@ body {
   overscroll-behavior: none;
   touch-action: manipulation;
   overflow-x: hidden;
+  user-select: none;
 }
 
 .installDialog {
