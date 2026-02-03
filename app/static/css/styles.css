@@ -8,7 +8,6 @@ body {
   overscroll-behavior: none;
   touch-action: manipulation;
   overflow-x: hidden;
-  user-select: none;
 }
 
 .installDialog {
@@ -29,6 +28,12 @@ body {
   vertical-align: middle;
   margin: 0;
   padding: 0;
+}
+
+.disableUserSelect {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .orientationChange {
