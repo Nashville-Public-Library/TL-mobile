@@ -95,8 +95,6 @@ const routes = {
       }
     }
   }
-
-  loadRoute(); // on first load
   
   let currentRoute = location.hash.slice(1); // global variable to keep track of current page
   window.addEventListener('hashchange', () => {
@@ -106,6 +104,15 @@ const routes = {
   });
   
   window.addEventListener('DOMContentLoaded', loadRoute);
+
+  onFirstLoad();
+
+  function onFirstLoad() {
+    // location.hash is not set on initial load. load route, then
+    loadRoute();
+    location.hash = "#/";
+    currentRoute = location.hash.slice(1);
+  }
 
   function saveScrollPositionAndLoadRoute(routeToUpdate) {
     saveScrollPosition(routeToUpdate); // save scroll position on last visited page
