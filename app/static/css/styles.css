@@ -10,6 +10,14 @@ body {
   overflow-x: hidden;
 }
 
+.opacityZero {
+  opacity: 0;
+  transition: opacity .8s ease-in-out;
+}
+
+.opacityOne {
+    opacity: 1;
+}
 .installDialog {
   background-color: RGB(46, 56, 143);
   color: aliceblue;
