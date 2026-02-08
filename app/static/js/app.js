@@ -343,7 +343,14 @@ function categorySelector(category) {
   }
 }
 
-function podcastSearch(title) {
+function podcastSearch(event, title) {
+  if (event.key === "Enter") {
+    console.log("enter entered");
+    event.preventDefault();
+  } else {
+    return;
+  }
+
   const titleTrim = title.trim()
   if (titleTrim == "") { return; }
 
