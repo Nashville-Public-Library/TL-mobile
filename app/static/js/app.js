@@ -116,10 +116,10 @@ const routes = {
 
   function onFirstLoad() {
     // location.hash is not set on initial load. load route, then
-    dev_modal_alert();
     loadRoute();
     location.hash = "#/";
     currentRoute = location.hash.slice(1);
+    dev_modal_alert();
   }
 
   function saveScrollPositionAndLoadRoute(routeToUpdate) {
