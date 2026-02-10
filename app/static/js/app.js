@@ -73,6 +73,7 @@ const routes = {
 
     if (path == "/") {
       fetchWeather();
+      dev_modal_alert();
     }
 
     if (path === "/about") {
@@ -108,9 +109,11 @@ const routes = {
   onFirstLoad();
 
   function dev_modal_alert() {
+    // alert user if using the dev/test app as indicated by the domain name "dolly"
     const domain = location.hostname;
     if (domain.includes("dolly")) {
-        modalAlert("THIS IS THE DEV APP!");
+        const dev = document.getElementById("dev-alert");
+        dev.style.visibility = "visible";
     }
   }
 
@@ -119,7 +122,6 @@ const routes = {
     loadRoute();
     location.hash = "#/";
     currentRoute = location.hash.slice(1);
-    dev_modal_alert();
   }
 
   function saveScrollPositionAndLoadRoute(routeToUpdate) {
