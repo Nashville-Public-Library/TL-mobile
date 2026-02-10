@@ -106,15 +106,18 @@ const routes = {
   window.addEventListener('DOMContentLoaded', loadRoute);
 
   onFirstLoad();
-  dev_modal_alert()
 
   function dev_modal_alert() {
     const domain = location.hostname;
+    if (domain.includes("dolly")) {
+        modalAlert("THIS IS THE DEV APP!")
+    }
     console.log(domain);
   }
 
   function onFirstLoad() {
     // location.hash is not set on initial load. load route, then
+    dev_modal_alert();
     loadRoute();
     location.hash = "#/";
     currentRoute = location.hash.slice(1);
