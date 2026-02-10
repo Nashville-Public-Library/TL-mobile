@@ -73,6 +73,7 @@ const routes = {
 
     if (path == "/") {
       fetchWeather();
+      dev_modal_alert();
     }
 
     if (path === "/about") {
@@ -106,6 +107,15 @@ const routes = {
   window.addEventListener('DOMContentLoaded', loadRoute);
 
   onFirstLoad();
+
+  function dev_modal_alert() {
+    // alert user if using the dev/test app as indicated by the domain name "dolly"
+    const domain = location.hostname;
+    if (domain.includes("dolly")) {
+        const dev = document.getElementById("dev-alert");
+        dev.style.visibility = "visible";
+    }
+  }
 
   function onFirstLoad() {
     // location.hash is not set on initial load. load route, then
