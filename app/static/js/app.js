@@ -106,6 +106,12 @@ const routes = {
   window.addEventListener('DOMContentLoaded', loadRoute);
 
   onFirstLoad();
+  dev_modal_alert()
+
+  function dev_modal_alert() {
+    const domain = location.hostname;
+    console.log(domain);
+  }
 
   function onFirstLoad() {
     // location.hash is not set on initial load. load route, then
