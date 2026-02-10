@@ -110,9 +110,8 @@ const routes = {
   function dev_modal_alert() {
     const domain = location.hostname;
     if (domain.includes("dolly")) {
-        modalAlert("THIS IS THE DEV APP!")
+        modalAlert("THIS IS THE DEV APP!");
     }
-    console.log(domain);
   }
 
   function onFirstLoad() {
