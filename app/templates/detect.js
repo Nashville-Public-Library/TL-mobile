@@ -64,7 +64,6 @@ function isLandscape() {
 }
 
 function handleOrientationChange() {
-  return;
   const warning = document.getElementById("orientationChange");
   if (isLandscape()) {
     warning.style.display = "block"
