@@ -628,6 +628,7 @@ async function fetchWeather() {
     cityDisplay = "Nashville";
   }
   const url = "/weather";
+  try {
   const response = await fetch(url, {
         headers: {
         'Accept': 'application/json',
@@ -636,14 +637,17 @@ async function fetchWeather() {
         method: "POST",
         body: JSON.stringify(data)
       });
-  if (!response.ok) {
-    console.log("bad response from /weather");
-    weatherElement.innerHTML= `?&deg; in ${cityDisplay}`;
-    weatherElement.style.opacity = "1";
-    return;}
   const responseJSON = await response.json();
   const temp = responseJSON.temp;
 
   weatherElement.innerHTML= `${temp}&deg; in ${cityDisplay}`;
-  weatherElement.style.opacity = "1";
+  weatherElement.style.opacity = "1";   
+
+  } 
+  catch (whoops) {
+    console.log("error fetching weather: ", whoops);
+    weatherElement.innerHTML= "Weather is unavailable";
+    weatherElement.style.opacity = "1";
+    return;
+  }
 }
