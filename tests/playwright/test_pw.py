@@ -1,12 +1,11 @@
 from playwright.sync_api import Page
 
-def test_first_load_1(desktop: Page, server):
-    desktop.goto(server)
+def test_first_load_1(desktop: Page):
     assert "NTL" in desktop.title()
 
-def test_first_load_2(desktop: Page, server):
+def test_first_load_2(desktop: Page):
     '''will show the "install on mobile" screen when accessed on desktop'''
-    desktop.goto(server)
+    desktop.wait_for_selector(".mobileOnlySpeech")
     assert desktop.locator(".mobileOnlySpeech").count() > 0
 
 def test_mobile_not_installed_1(mobile_not_installed: Page):

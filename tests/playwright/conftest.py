@@ -36,13 +36,14 @@ def server():
 # ---- DESKTOP PAGE (normal browser) ----
 #
 @pytest.fixture(scope="function")
-def desktop(browser: Browser):
+def desktop(browser: Browser, server):
     context: BrowserContext = browser.new_context(
         viewport={"width": 1280, "height": 800},
         is_mobile=False,
         has_touch=False,
     )
     page = context.new_page()
+    page.goto(server)
     yield page
     context.close()
 
