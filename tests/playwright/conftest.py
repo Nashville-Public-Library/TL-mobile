@@ -46,6 +46,21 @@ def desktop(browser: Browser):
     yield page
     context.close()
 
+#
+# ---- MOBILE NOT INSTALLED ----
+#
+@pytest.fixture(scope="function")
+def mobile_not_installed(browser: Browser, server):
+    context = browser.new_context(
+    viewport={"width": 393, "height": 852},
+    is_mobile=True,
+    has_touch=True,
+    )
+
+    page = context.new_page()
+    page.goto(server)
+    yield page
+    context.close()
 
 #
 # ---- MOBILE INSTALLED PWA PAGE ----
