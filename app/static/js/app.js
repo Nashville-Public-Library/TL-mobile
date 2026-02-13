@@ -268,6 +268,7 @@ function onlineOffline() {
     modalAlert("You are not connected to the internet. The stream and other features will not work until you are back online.")
   } else {
     playIcon.src = "/static/img/streamPlayGreen.png";
+    nowPlaying();
   }
 }
 window.addEventListener('online', onlineOffline);
