@@ -3,7 +3,12 @@ name: Test and Deploy
 on:
   push:
     branches:
+        # pushing directly to Main is not permitted; there must be a PR.
+      - dev
+  pull_request:
+    branches:
       - main
+      - dev
 
 permissions:
   contents: read
