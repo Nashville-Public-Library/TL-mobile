@@ -1,33 +1,38 @@
 <img src="/static/img/back-button.png" class="backButton" onclick="history.back()" alt="Go back to previous screen">
 <h1 style="text-align: center;">Settings</h1>
 
-<br>
+<h2 style="text-align: center;">Voice</h2>
 
 <label for="SpeechSynthesisVoiceSelector" style="font-size: 15pt;">Select Voice</label>
-<select title="SpeechSynthesisVoiceSelector" id="SpeechSynthesisVoiceSelector" style="font-size: 15pt;"
+<select title="SpeechSynthesisVoiceSelector" id="SpeechSynthesisVoiceSelector" style="font-size: 15pt; max-width: 99%;"
 onchange="storeUserVoiceSelection(this.value), stopTextToSpeechGlobal()">
 </select>
+
 <br><br>
+
 <label for="SpeechSynthesisSpeedSelector" style="font-size: 15pt;">Voice Speed</label>
 <input 
 type="range" title="SpeechSynthesisSpeedSelector" 
 id="SpeechSynthesisSpeedSelector" 
 style="font-size: 15pt; width: 80%;"
-min="0.5"
-max="1.5"
-step=".05"
+min="0.1"
+max="1.9"
+step=".1"
 oninput="SpeechSynthesisSpeedSelectorDisplay(this.value)"
 >
+
 <div id="SpeechSynthesisSpeedSelectorDisplay" style="display: inline-block; font-size: 14pt;"></div>
 <br><br>
+
 <div style="display: flex; justify-content: center;">
     <button onclick="settingsTextToSpeechTest()" style="font-size: 13pt;">test voice</button>
 </div>
 
 <br>
-<hr style="width: 80%; height: 2px; background-color: #f16530;">
-<br>
+<hr style="width: 80%; height: 3px; background-color: #f16530;">
 
-<label for="weatherStationSelector">Weather</label>
-<select title="weatherStationSelector" id="weatherStationSelector" style="font-size: 15pt;"
+<h2 style="text-align: center;">Weather</h2>
+
+<label for="weatherStationSelector" style="font-size: 15pt;">Select City</label>
+<select title="weatherStationSelector" id="weatherStationSelector" style="font-size: 15pt; max-width: 99%;"
 onchange="storeUserWeatherSelection(this.value)"></select>

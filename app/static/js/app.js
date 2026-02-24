@@ -76,7 +76,7 @@ const routes = {
       dev_modal_alert();
     }
 
-    if (path === "/about") {
+    if (path == "/about") {
       loadAppVersion()
     }
 
@@ -86,7 +86,7 @@ const routes = {
       loadUserSelectedVoiceSpeed();
     }
 
-    if (path === "/podcasts") {
+    if (path == "/podcasts") {
       loadShowNamesInSearchInput()
       let categorySelected = sessionStorage.getItem("pocastCategory");
       if (categorySelected) {
@@ -94,6 +94,10 @@ const routes = {
         categoryDropdown.value = categorySelected
         categorySelector(categorySelected);
       }
+    }
+
+    if (path == "/podcasts-individual") {
+       afterHashChange_loadPodcast(podcastToLoad);
     }
   }
   
@@ -277,6 +281,8 @@ window.addEventListener('offline', onlineOffline);
 // check on load
 onlineOffline();
 
+let podcastToLoad;
+
 function loadAppVersion() {
   document.getElementById("appVersion").innerHTML = "v" + retrieveAppVersion();
 }
@@ -286,7 +292,11 @@ function loadAppVersion() {
       modalAlert("You cannot listen to podcasts while offline.")
       return;
     }
-    location.hash = "/podcasts-individual"
+    podcastToLoad = show;
+    location.hash = "/podcasts-individual";
+    }
+
+async function afterHashChange_loadPodcast(show) {
     const app = document.getElementById("app"); // show the loading page, then go fetch the data from the server and render when ready
 
     const url = "/podcasts/info/" + show;
@@ -297,7 +307,7 @@ function loadAppVersion() {
       } else {
         app.innerHTML = "<h1>Sorry, we're having trouble fetching podcasts</h1>"
       }
-    }
+}
 
   function noPodcastWarning (show) {
     modalAlert(`We do not currently offer a podcast for ${show}.`);
@@ -354,13 +364,13 @@ function categorySelector(category) {
   }
 }
 
-function podcastSearch(event, title) {
-  if (event.key === "Enter") {
-    console.log("enter entered");
-    event.preventDefault();
-  } else {
-    return;
-  }
+function podcastSearch(title) {
+//   if (event.key === "Enter") {
+//     console.log("enter entered");
+//     event.preventDefault();
+//   } else {
+//     return;
+//   }
 
   const titleTrim = title.trim()
   if (titleTrim == "") { return; }
@@ -638,13 +648,19 @@ async function fetchWeather() {
         method: "POST",
         body: JSON.stringify(data)
       });
-  const responseJSON = await response.json();
-  const temp = responseJSON.temp;
 
-  weatherElement.innerHTML= `${temp}&deg; in ${cityDisplay}`;
-  weatherElement.style.opacity = "1";   
+      if (response.status == 200) {
+      const responseJSON = await response.json();
+      const temp = responseJSON.temp;
 
-  } 
+      weatherElement.innerHTML= `${temp}&deg; in ${cityDisplay}`;
+      weatherElement.style.opacity = "1";   
+      } else {
+        weatherElement.innerHTML= `? in ${cityDisplay}`;
+        weatherElement.style.opacity = "1";
+      }
+
+  }
   catch (whoops) {
     console.log("error fetching weather: ", whoops);
     weatherElement.innerHTML= "Weather is unavailable";

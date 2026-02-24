@@ -74,19 +74,25 @@ def test_about_2(mobile_installed: Page):
     assert mobile_installed.locator(".aboutIcons").count() > 0
 
 def test_privacy_1(mobile_installed: Page):
+    '''navigate to about page, then navigate to privacy page. assert "Privacy" is in the <h1>.'''
     mobile_installed.wait_for_selector('a[href="#/about"]').click()
     mobile_installed.wait_for_selector('a[href="#/privacy"]').click()
-    mobile_installed.wait_for_selector("h1")
-    assert "Privacy" in mobile_installed.locator("h1").text_content()
+    privacy_h1 = mobile_installed.locator("h1", has_text="Privacy")
+    privacy_h1.wait_for(state="visible")
+    assert "Privacy" in privacy_h1.text_content()
 
 def test_feedback_1(mobile_installed: Page):
+    '''navigate to about page, then navigate to feedback page. assert "Feedback" is in the <h1>.'''
     mobile_installed.wait_for_selector('a[href="#/about"]').click()
     mobile_installed.wait_for_selector('a[href="#/feedback"]').click()
-    mobile_installed.wait_for_selector("h1")
-    assert "Feedback" in mobile_installed.locator("h1").text_content()
+    feedback_h1 = mobile_installed.locator("h1", has_text="Feedback")
+    feedback_h1.wait_for(state="visible")
+    assert "Feedback" in feedback_h1.text_content()
 
 def test_settings_1(mobile_installed: Page):
+    '''navigate to about page, then navigate to settings page. assert "Settings" is in the <h1>.'''
     mobile_installed.wait_for_selector('a[href="#/about"]').click()
     mobile_installed.wait_for_selector('a[href="#/settings"]').click()
-    mobile_installed.wait_for_selector("h1")
-    assert "Settings" in mobile_installed.locator("h1").text_content()
+    settings_h1 = mobile_installed.locator("h1", has_text="Settings")
+    settings_h1.wait_for(state="visible")
+    assert "Settings" in settings_h1.text_content()
