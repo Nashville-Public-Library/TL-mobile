@@ -648,13 +648,19 @@ async function fetchWeather() {
         method: "POST",
         body: JSON.stringify(data)
       });
-  const responseJSON = await response.json();
-  const temp = responseJSON.temp;
 
-  weatherElement.innerHTML= `${temp}&deg; in ${cityDisplay}`;
-  weatherElement.style.opacity = "1";   
+      if (response.status == 200) {
+      const responseJSON = await response.json();
+      const temp = responseJSON.temp;
 
-  } 
+      weatherElement.innerHTML= `${temp}&deg; in ${cityDisplay}`;
+      weatherElement.style.opacity = "1";   
+      } else {
+        weatherElement.innerHTML= `? in ${cityDisplay}`;
+        weatherElement.style.opacity = "1";
+      }
+
+  }
   catch (whoops) {
     console.log("error fetching weather: ", whoops);
     weatherElement.innerHTML= "Weather is unavailable";
