@@ -1,10 +1,10 @@
 <img src="/static/img/back-button.png" class="backButton" onclick="history.back()" alt="Go back to previous screen">
 <h1 style="text-align: center;">Settings</h1>
 
-<br>
+<h2 style="text-align: center;">Voice</h2>
 
 <label for="SpeechSynthesisVoiceSelector" style="font-size: 15pt;">Select Voice</label>
-<select title="SpeechSynthesisVoiceSelector" id="SpeechSynthesisVoiceSelector" style="font-size: 15pt; max-width: 99%;"
+<select title="SpeechSynthesisVoiceSelector" id="SpeechSynthesisVoiceSelector" style="font-size: 15pt; width: 99%;"
 onchange="storeUserVoiceSelection(this.value), stopTextToSpeechGlobal()">
 </select>
 
@@ -30,8 +30,9 @@ oninput="SpeechSynthesisSpeedSelectorDisplay(this.value)"
 
 <br>
 <hr style="width: 80%; height: 3px; background-color: #f16530;">
-<br>
 
-<label for="weatherStationSelector" style="font-size: 15pt;">Weather</label>
-<select title="weatherStationSelector" id="weatherStationSelector" style="font-size: 15pt;"
+<h2 style="text-align: center;">Weather</h2>
+
+<label for="weatherStationSelector" style="font-size: 15pt;">Select City</label>
+<select title="weatherStationSelector" id="weatherStationSelector" style="font-size: 15pt; width: 99%;"
 onchange="storeUserWeatherSelection(this.value)"></select>
