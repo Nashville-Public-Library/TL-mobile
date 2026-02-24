@@ -4,7 +4,7 @@
 <h2 style="text-align: center;">Voice</h2>
 
 <label for="SpeechSynthesisVoiceSelector" style="font-size: 15pt;">Select Voice</label>
-<select title="SpeechSynthesisVoiceSelector" id="SpeechSynthesisVoiceSelector" style="font-size: 15pt; width: 99%;"
+<select title="SpeechSynthesisVoiceSelector" id="SpeechSynthesisVoiceSelector" style="font-size: 15pt; max-width: 99%;"
 onchange="storeUserVoiceSelection(this.value), stopTextToSpeechGlobal()">
 </select>
 
@@ -34,5 +34,5 @@ oninput="SpeechSynthesisSpeedSelectorDisplay(this.value)"
 <h2 style="text-align: center;">Weather</h2>
 
 <label for="weatherStationSelector" style="font-size: 15pt;">Select City</label>
-<select title="weatherStationSelector" id="weatherStationSelector" style="font-size: 15pt; width: 99%;"
+<select title="weatherStationSelector" id="weatherStationSelector" style="font-size: 15pt; max-width: 99%;"
 onchange="storeUserWeatherSelection(this.value)"></select>
