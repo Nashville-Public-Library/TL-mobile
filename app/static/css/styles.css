@@ -19,9 +19,11 @@ body {
     opacity: 1;
 }
 .installDialog {
-  background-color: RGB(46, 56, 143);
+  background-color: #2e388f;
   color: aliceblue;
   padding: 10pt;
+  overflow-y: auto; 
+  overflow-x: auto;
 }
 
 .installLogo {
