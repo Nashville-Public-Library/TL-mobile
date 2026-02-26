@@ -22,8 +22,6 @@ body {
   background-color: #2e388f;
   color: aliceblue;
   padding: 10pt;
-  overflow-y: auto; 
-  overflow-x: auto;
 }
 
 .installLogo {
