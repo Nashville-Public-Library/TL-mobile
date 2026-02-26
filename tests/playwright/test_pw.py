@@ -15,7 +15,7 @@ def test_mobile_not_installed_1(mobile_not_installed: Page):
 def test_mobile_not_installed_2(mobile_not_installed: Page):
     mobile_not_installed.wait_for_selector(".installDialog")
     assert mobile_not_installed.get_by_text("To install the app:").is_visible()
-    assert mobile_not_installed.get_by_text("On Apple Phones:").is_visible()
+    assert mobile_not_installed.get_by_text("On iPhones:").is_visible()
     assert mobile_not_installed.get_by_text("On Android Phones:").is_visible()
 
 def test_mobile_installed_1(mobile_installed: Page):
