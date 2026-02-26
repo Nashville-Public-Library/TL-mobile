@@ -1,10 +1,6 @@
 name: Test
 
-on:
-  push:
-    branches:
-        # pushing directly to Main is not permitted; there must be a PR.
-      - dev
+on: # pushing directly to Main is not permitted; there must be a PR.
   pull_request:
     branches:
       - main
