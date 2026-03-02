@@ -101,6 +101,7 @@ def test_voice_selection_1(mobile_installed: Page):
     '''navigate to settings page, select the first voice, and check whether that voice has been stored in the browser's localStorage'''
     mobile_installed.wait_for_selector('a[href="#/about"]').click()
     mobile_installed.wait_for_selector('a[href="#/settings"]').click()
+    mobile_installed.wait_for_selector("#SpeechSynthesisVoiceSelector")
     mobile_installed.wait_for_selector("#SpeechSynthesisVoiceSelector").select_option(index=0)
     voice_selected = mobile_installed.locator("#SpeechSynthesisVoiceSelector").input_value()
     stored_voice = mobile_installed.evaluate('localStorage.getItem("voice");')
