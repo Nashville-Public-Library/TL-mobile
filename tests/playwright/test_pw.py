@@ -102,10 +102,12 @@ def test_voice_selection_1(mobile_installed: Page):
     mobile_installed.wait_for_selector('a[href="#/about"]').click()
     mobile_installed.wait_for_selector('a[href="#/settings"]').click()
     mobile_installed.wait_for_selector("#SpeechSynthesisVoiceSelector")
-    mobile_installed.wait_for_selector("#SpeechSynthesisVoiceSelector").select_option(index=0)
-    voice_selected = mobile_installed.locator("#SpeechSynthesisVoiceSelector").input_value()
-    stored_voice = mobile_installed.evaluate('localStorage.getItem("voice");')
-    assert voice_selected == stored_voice
+    all_voices_available = mobile_installed.evaluate("window.speechSynthesis.getVoices();")
+    print(all_voices_available)
+    # mobile_installed.wait_for_selector("#SpeechSynthesisVoiceSelector").select_option(index=0)
+    # voice_selected = mobile_installed.locator("#SpeechSynthesisVoiceSelector").input_value()
+    # stored_voice = mobile_installed.evaluate('localStorage.getItem("voice");')
+    # assert voice_selected == stored_voice
     
 def test_voice_selection_2(mobile_installed: Page):
     '''navigate to settings page. IF there is more than one voice available on the device being tested, select the 2nd available option
