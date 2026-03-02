@@ -103,6 +103,7 @@ def test_voice_selection_1(mobile_installed: Page):
     mobile_installed.wait_for_selector('a[href="#/settings"]').click()
     mobile_installed.wait_for_selector("#SpeechSynthesisVoiceSelector")
     all_voices_available = mobile_installed.evaluate("window.speechSynthesis.getVoices();")
+    print("SYSTEM VOICES!!!")
     print(all_voices_available)
     # mobile_installed.wait_for_selector("#SpeechSynthesisVoiceSelector").select_option(index=0)
     # voice_selected = mobile_installed.locator("#SpeechSynthesisVoiceSelector").input_value()
