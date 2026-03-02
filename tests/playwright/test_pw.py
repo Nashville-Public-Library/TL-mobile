@@ -96,3 +96,27 @@ def test_settings_1(mobile_installed: Page):
     settings_h1 = mobile_installed.locator("h1", has_text="Settings")
     settings_h1.wait_for(state="visible")
     assert "Settings" in settings_h1.text_content()
+
+def test_voice_selection_1(mobile_installed: Page):
+    '''navigate to settings page, select the first voice, and check whether that voice has been stored in the browser's localStorage'''
+    mobile_installed.wait_for_selector('a[href="#/about"]').click()
+    mobile_installed.wait_for_selector('a[href="#/settings"]').click()
+    mobile_installed.wait_for_selector("#SpeechSynthesisVoiceSelector").select_option(index=0)
+    voice_selected = mobile_installed.locator("#SpeechSynthesisVoiceSelector").input_value()
+    stored_voice = mobile_installed.evaluate('localStorage.getItem("voice");')
+    assert voice_selected == stored_voice
+    
+def test_voice_selection_2(mobile_installed: Page):
+    '''navigate to settings page. IF there is more than one voice available on the device being tested, select the 2nd available option
+    and ensure it is saved to the browser's local storage.'''
+    mobile_installed.wait_for_selector('a[href="#/about"]').click()
+    mobile_installed.wait_for_selector('a[href="#/settings"]').click()
+    all_voices_available = mobile_installed.evaluate("window.speechSynthesis.getVoices();")
+    if len(all_voices_available) >= 2:
+        mobile_installed.wait_for_selector("#SpeechSynthesisVoiceSelector").select_option(index=1)
+        voice_selected = mobile_installed.locator("#SpeechSynthesisVoiceSelector").input_value()
+        stored_voice = mobile_installed.evaluate('localStorage.getItem("voice");')
+        assert voice_selected == stored_voice
+    
+
+    
