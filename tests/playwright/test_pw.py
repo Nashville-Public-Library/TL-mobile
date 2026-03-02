@@ -125,7 +125,8 @@ def test_weather_selection(mobile_installed: Page):
     '''navigate to settings page. Select a random weather city from the list and confirm it gets stored in the browser's local storage.'''
     mobile_installed.wait_for_selector('a[href="#/about"]').click()
     mobile_installed.wait_for_selector('a[href="#/settings"]').click()
-    mobile_installed.wait_for_selector("#weatherStationSelector").wait_for_selector("option")
+    mobile_installed.wait_for_selector("#weatherStationSelector")
+    mobile_installed.wait_for_function('document.getElementById("weatherStationSelector").options.length >=1')
     mobile_installed.locator("#weatherStationSelector").select_option(index=3)
     weather_selected = mobile_installed.locator("#weatherStationSelector").input_value()
     stored_weather = mobile_installed.evaluate('localStorage.getItem("weatherCity");')
