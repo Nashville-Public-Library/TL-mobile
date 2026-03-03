@@ -1,8 +1,9 @@
 import time
 
+from diskcache import Cache
 import requests
 
-weather_cache:list = []
+weather_cache = Cache("weather_cache")
 
 def get_weather(station):
     cached_temp = check_cache(station=station)
@@ -29,19 +30,14 @@ def get_weather(station):
         return {"temp": None}, 500
 
 def check_cache(station):
-    cache_length_in_seconds = 120 # amound of time in seconds to cache data
-    for id in weather_cache:
-        if (id["station"] == station) and ((time.time() - id["time"]) < cache_length_in_seconds):
-            temp = id["temp"]
-            return temp
+    temp = weather_cache.get(station)
+    print(f"retrieving cache: {station}: {temp}")
+    if temp:
+        return temp
+        
     return False
 
 def append_or_update_cache(station: str, temp: int):
+    print(f"adding {station}: {temp}")
     '''If we have already cached the station, update the temp. If we have not yet cached this station, create a new item for it.'''
-    now = time.time()
-    for id in weather_cache:
-        if id["station"] == station:
-            id["temp"] = temp
-            id["time"] = now
-            return
-    weather_cache.append({"station": station, "temp": temp, "time": now})
+    weather_cache.add(key=station, value=temp,  expire=120)
