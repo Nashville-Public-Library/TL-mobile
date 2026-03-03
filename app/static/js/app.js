@@ -73,9 +73,10 @@ const routes = {
 
     if (path == "/") {
       fetchWeather();
+      dev_modal_alert();
     }
 
-    if (path === "/about") {
+    if (path == "/about") {
       loadAppVersion()
     }
 
@@ -85,7 +86,7 @@ const routes = {
       loadUserSelectedVoiceSpeed();
     }
 
-    if (path === "/podcasts") {
+    if (path == "/podcasts") {
       loadShowNamesInSearchInput()
       let categorySelected = sessionStorage.getItem("pocastCategory");
       if (categorySelected) {
@@ -94,9 +95,11 @@ const routes = {
         categorySelector(categorySelected);
       }
     }
-  }
 
-  loadRoute(); // on first load
+    if (path == "/podcasts-individual") {
+       afterHashChange_loadPodcast(podcastToLoad);
+    }
+  }
   
   let currentRoute = location.hash.slice(1); // global variable to keep track of current page
   window.addEventListener('hashchange', () => {
@@ -106,6 +109,24 @@ const routes = {
   });
   
   window.addEventListener('DOMContentLoaded', loadRoute);
+
+  onFirstLoad();
+
+  function dev_modal_alert() {
+    // alert user if using the dev/test app as indicated by the domain name "dolly"
+    const domain = location.hostname;
+    if (domain.includes("dolly")) {
+        const dev = document.getElementById("dev-alert");
+        dev.style.visibility = "visible";
+    }
+  }
+
+  function onFirstLoad() {
+    // location.hash is not set on initial load. load route, then
+    loadRoute();
+    location.hash = "#/";
+    currentRoute = location.hash.slice(1);
+  }
 
   function saveScrollPositionAndLoadRoute(routeToUpdate) {
     saveScrollPosition(routeToUpdate); // save scroll position on last visited page
@@ -136,7 +157,7 @@ const routes = {
     let livestream = document.getElementById("audio");
     let notAvailable = "Program Name Not Available";
     try {
-        const url = "https://api.nashvilletalkinglibrary.com/stream/status";
+        const url = "https://api.talkinglibrary.nashville.gov/stream/status";
         let response = await fetch(url, { method: "POST" });
         let icecast = await response.json();
         let nowPlaying = icecast.title;
@@ -251,6 +272,7 @@ function onlineOffline() {
     modalAlert("You are not connected to the internet. The stream and other features will not work until you are back online.")
   } else {
     playIcon.src = "/static/img/streamPlayGreen.png";
+    nowPlaying();
   }
 }
 window.addEventListener('online', onlineOffline);
@@ -258,6 +280,8 @@ window.addEventListener('offline', onlineOffline);
 
 // check on load
 onlineOffline();
+
+let podcastToLoad;
 
 function loadAppVersion() {
   document.getElementById("appVersion").innerHTML = "v" + retrieveAppVersion();
@@ -268,7 +292,11 @@ function loadAppVersion() {
       modalAlert("You cannot listen to podcasts while offline.")
       return;
     }
-    location.hash = "/podcasts-individual"
+    podcastToLoad = show;
+    location.hash = "/podcasts-individual";
+    }
+
+async function afterHashChange_loadPodcast(show) {
     const app = document.getElementById("app"); // show the loading page, then go fetch the data from the server and render when ready
 
     const url = "/podcasts/info/" + show;
@@ -279,7 +307,7 @@ function loadAppVersion() {
       } else {
         app.innerHTML = "<h1>Sorry, we're having trouble fetching podcasts</h1>"
       }
-    }
+}
 
   function noPodcastWarning (show) {
     modalAlert(`We do not currently offer a podcast for ${show}.`);
@@ -337,6 +365,13 @@ function categorySelector(category) {
 }
 
 function podcastSearch(title) {
+//   if (event.key === "Enter") {
+//     console.log("enter entered");
+//     event.preventDefault();
+//   } else {
+//     return;
+//   }
+
   const titleTrim = title.trim()
   if (titleTrim == "") { return; }
 
@@ -604,6 +639,7 @@ async function fetchWeather() {
     cityDisplay = "Nashville";
   }
   const url = "/weather";
+  try {
   const response = await fetch(url, {
         headers: {
         'Accept': 'application/json',
@@ -612,14 +648,23 @@ async function fetchWeather() {
         method: "POST",
         body: JSON.stringify(data)
       });
-  if (!response.ok) {
-    console.log("bad response from /weather");
-    weatherElement.innerHTML= `?&deg; in ${cityDisplay}`;
-    weatherElement.style.opacity = "1";
-    return;}
-  const responseJSON = await response.json();
-  const temp = responseJSON.temp;
 
-  weatherElement.innerHTML= `${temp}&deg; in ${cityDisplay}`;
-  weatherElement.style.opacity = "1";
+      if (response.status == 200) {
+      const responseJSON = await response.json();
+      const temp = responseJSON.temp;
+
+      weatherElement.innerHTML= `${temp}&deg; in ${cityDisplay}`;
+      weatherElement.style.opacity = "1";   
+      } else {
+        weatherElement.innerHTML= `? in ${cityDisplay}`;
+        weatherElement.style.opacity = "1";
+      }
+
+  }
+  catch (whoops) {
+    console.log("error fetching weather: ", whoops);
+    weatherElement.innerHTML= "Weather is unavailable";
+    weatherElement.style.opacity = "1";
+    return;
+  }
 }

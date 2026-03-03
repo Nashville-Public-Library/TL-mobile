@@ -88,11 +88,16 @@ function addMainScript() {
   return;
 }
 
+function makeBodyVisible() {
+    document.body.classList.add("opacityOne");
+}
+
 async function detect() {
     if (!isMobileDevice()) {
       let response = await fetch('/static/pages/mobile-only.html');
       let text = await response.text();
         document.body.innerHTML = text;
+        makeBodyVisible();
         return;
     }
 
@@ -103,8 +108,10 @@ async function detect() {
         let text = await response.text()
 
         document.body.innerHTML = text;
+        makeBodyVisible();
         return;
     } else {
+        makeBodyVisible();
         addMainScript();
         sw();
         localStorage.setItem("appVersion", "{{version}}");

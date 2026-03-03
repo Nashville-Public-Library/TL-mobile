@@ -1,13 +1,22 @@
 from playwright.sync_api import Page
 
-def test_first_load_1(desktop: Page, server):
-    desktop.goto(server)
+def test_first_load_1(desktop: Page):
     assert "NTL" in desktop.title()
 
-def test_first_load_2(desktop: Page, server):
+def test_first_load_2(desktop: Page):
     '''will show the "install on mobile" screen when accessed on desktop'''
-    desktop.goto(server)
+    desktop.wait_for_selector(".mobileOnlySpeech")
     assert desktop.locator(".mobileOnlySpeech").count() > 0
+
+def test_mobile_not_installed_1(mobile_not_installed: Page):
+    mobile_not_installed.wait_for_selector(".installDialog")
+    assert mobile_not_installed.locator(".installDialog").count() > 0
+
+def test_mobile_not_installed_2(mobile_not_installed: Page):
+    mobile_not_installed.wait_for_selector(".installDialog")
+    assert mobile_not_installed.get_by_text("To install the app:").is_visible()
+    assert mobile_not_installed.get_by_text("On iPhones:").is_visible()
+    assert mobile_not_installed.get_by_text("On Android Phones:").is_visible()
 
 def test_mobile_installed_1(mobile_installed: Page):
     '''checking if home screen logo is on page'''
@@ -65,19 +74,63 @@ def test_about_2(mobile_installed: Page):
     assert mobile_installed.locator(".aboutIcons").count() > 0
 
 def test_privacy_1(mobile_installed: Page):
+    '''navigate to about page, then navigate to privacy page. assert "Privacy" is in the <h1>.'''
     mobile_installed.wait_for_selector('a[href="#/about"]').click()
     mobile_installed.wait_for_selector('a[href="#/privacy"]').click()
-    mobile_installed.wait_for_selector("h1")
-    assert "Privacy" in mobile_installed.locator("h1").text_content()
+    privacy_h1 = mobile_installed.locator("h1", has_text="Privacy")
+    privacy_h1.wait_for(state="visible")
+    assert "Privacy" in privacy_h1.text_content()
 
 def test_feedback_1(mobile_installed: Page):
+    '''navigate to about page, then navigate to feedback page. assert "Feedback" is in the <h1>.'''
     mobile_installed.wait_for_selector('a[href="#/about"]').click()
     mobile_installed.wait_for_selector('a[href="#/feedback"]').click()
-    mobile_installed.wait_for_selector("h1")
-    assert "Feedback" in mobile_installed.locator("h1").text_content()
+    feedback_h1 = mobile_installed.locator("h1", has_text="Feedback")
+    feedback_h1.wait_for(state="visible")
+    assert "Feedback" in feedback_h1.text_content()
 
 def test_settings_1(mobile_installed: Page):
+    '''navigate to about page, then navigate to settings page. assert "Settings" is in the <h1>.'''
     mobile_installed.wait_for_selector('a[href="#/about"]').click()
     mobile_installed.wait_for_selector('a[href="#/settings"]').click()
-    mobile_installed.wait_for_selector("h1")
-    assert "Settings" in mobile_installed.locator("h1").text_content()
+    settings_h1 = mobile_installed.locator("h1", has_text="Settings")
+    settings_h1.wait_for(state="visible")
+    assert "Settings" in settings_h1.text_content()
+
+def test_voice_selection_1(mobile_installed: Page):
+    '''navigate to settings page, select the first voice, and check whether that voice has been stored in the browser's localStorage'''
+    mobile_installed.wait_for_selector('a[href="#/about"]').click()
+    mobile_installed.wait_for_selector('a[href="#/settings"]').click()
+    mobile_installed.wait_for_selector("#SpeechSynthesisVoiceSelector")
+    all_voices_available = mobile_installed.evaluate("window.speechSynthesis.getVoices();")
+    if len(all_voices_available) > 0: # apparently not all devices have even one system voice (linux, GitHub Actions)...
+        mobile_installed.wait_for_selector("#SpeechSynthesisVoiceSelector").select_option(index=0)
+        voice_selected = mobile_installed.locator("#SpeechSynthesisVoiceSelector").input_value()
+        stored_voice = mobile_installed.evaluate('localStorage.getItem("voice");')
+        assert voice_selected == stored_voice
+    
+def test_voice_selection_2(mobile_installed: Page):
+    '''navigate to settings page. IF there is more than one voice available on the device being tested, select the 2nd available option
+    and ensure it is saved to the browser's local storage.'''
+    mobile_installed.wait_for_selector('a[href="#/about"]').click()
+    mobile_installed.wait_for_selector('a[href="#/settings"]').click()
+    all_voices_available = mobile_installed.evaluate("window.speechSynthesis.getVoices();")
+    if len(all_voices_available) > 1:
+        mobile_installed.wait_for_selector("#SpeechSynthesisVoiceSelector").select_option(index=1)
+        voice_selected = mobile_installed.locator("#SpeechSynthesisVoiceSelector").input_value()
+        stored_voice = mobile_installed.evaluate('localStorage.getItem("voice");')
+        assert voice_selected == stored_voice
+
+# def test_weather_selection(mobile_installed: Page):
+#     '''navigate to settings page. Select a random weather city from the list and confirm it gets stored in the browser's local storage.'''
+#     mobile_installed.wait_for_selector('a[href="#/about"]').click()
+#     mobile_installed.wait_for_selector('a[href="#/settings"]').click()
+#     mobile_installed.wait_for_selector("#weatherStationSelector")
+#     # Wait for at least one OPTION under the select (robust timing)
+#     mobile_installed.wait_for_function('document.querySelector("#weatherStationSelector")?.options?.length > 0')
+
+#     mobile_installed.locator("#weatherStationSelector").select_option(index=3)
+#     weather_selected = mobile_installed.locator("#weatherStationSelector").input_value()
+#     stored_weather = mobile_installed.evaluate('localStorage.getItem("weatherCity");')
+#     assert weather_selected == stored_weather
+    

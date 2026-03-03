@@ -10,8 +10,16 @@ body {
   overflow-x: hidden;
 }
 
+.opacityZero {
+  opacity: 0;
+  transition: opacity .8s ease-in-out;
+}
+
+.opacityOne {
+    opacity: 1;
+}
 .installDialog {
-  background-color: RGB(46, 56, 143);
+  background-color: #2e388f;
   color: aliceblue;
   padding: 10pt;
 }
@@ -28,6 +36,13 @@ body {
   vertical-align: middle;
   margin: 0;
   padding: 0;
+}
+
+.disableUserSelect {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .orientationChange {

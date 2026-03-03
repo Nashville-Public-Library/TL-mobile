@@ -17,16 +17,32 @@
   <meta name="color-scheme" content="light">
   <link rel="apple-touch-icon" href="/static/img/ntl-logo-192x192.png">
 
+  <!-- Matomo -->
+  <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="https://matomo.library.nashville.org/matomo/";
+      _paq.push(['setTrackerUrl', u+'matomo.php']);
+      _paq.push(['setSiteId', '17']);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <!-- End Matomo Code -->
+
 </head>
 
-<body>
+<body class="opacityZero">
 
   <div id="orientationChange" class="orientationChange">
     PLEASE ROTATE YOUR DEVICE
     <img src="/static/img/rotate-phone.png" width="280px">
   </div>
 
-  <nav>
+  <nav class="disableUserSelect">
     <a href="#/" class="icon-link icon-link-selected" aria-label="Home" onclick="highlightNavBarIcon(this)" id="homeIcon">
       <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" zoomAndPan="magnify" viewBox="0 0 810 809.999993" preserveAspectRatio="xMidYMid meet" version="1.2">
       <defs>
@@ -57,19 +73,17 @@
     </a>
   </nav>
 
-    <!-- <div style="padding-top: 65px;"></div> -->
-
-  <div id="modalAlert" class="modalAlert">
+  <dialog id="modalAlert" class="modalAlert">
     <div id="modalAlertMessage" class="modalAlertMessage"></div>
     <br>
     <button id="modalAlertButton" class="modalAlertButton" onclick="closeModalAlert()">close</button>
-  </div>
+  </dialog>
 
-  <div id="modalAlertUpdateApp" class="modalAlert">
+  <dialog id="modalAlertUpdateApp" class="modalAlert">
     <div id="modalAlertMessageUpdateApp" class="modalAlertMessage"></div>
     <br>
     <button id="modalAlertButtonUpdateApp" class="modalAlertButton">Update</button>
-  </div>
+  </dialog>
 
   <main id="app" style="overflow-y: auto; overflow-x: auto; height: calc(100vh - 170px); padding-top: 65px;"></main>
   
