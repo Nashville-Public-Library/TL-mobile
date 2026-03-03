@@ -126,9 +126,9 @@ def test_weather_selection(mobile_installed: Page):
     mobile_installed.wait_for_selector('a[href="#/about"]').click()
     mobile_installed.wait_for_selector('a[href="#/settings"]').click()
     mobile_installed.wait_for_selector("#weatherStationSelector")
-    # mobile_installed.wait_for_function('document.getElementById("weatherStationSelector").options.length >=1')
-    mobile_installed.on("console", lambda msg: print("BROWSER LOG:", msg.text))
-    mobile_installed.on("pageerror", lambda err: print("PAGE ERROR:", err))
+    # Wait for at least one OPTION under the select (robust timing)
+    mobile_installed.wait_for_function('document.querySelector("#weatherStationSelector")?.options?.length > 0')
+
     mobile_installed.locator("#weatherStationSelector").select_option(index=3)
     weather_selected = mobile_installed.locator("#weatherStationSelector").input_value()
     stored_weather = mobile_installed.evaluate('localStorage.getItem("weatherCity");')
