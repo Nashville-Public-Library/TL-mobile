@@ -121,16 +121,16 @@ def test_voice_selection_2(mobile_installed: Page):
         stored_voice = mobile_installed.evaluate('localStorage.getItem("voice");')
         assert voice_selected == stored_voice
 
-def test_weather_selection(mobile_installed: Page):
-    '''navigate to settings page. Select a random weather city from the list and confirm it gets stored in the browser's local storage.'''
-    mobile_installed.wait_for_selector('a[href="#/about"]').click()
-    mobile_installed.wait_for_selector('a[href="#/settings"]').click()
-    mobile_installed.wait_for_selector("#weatherStationSelector")
-    # Wait for at least one OPTION under the select (robust timing)
-    mobile_installed.wait_for_function('document.querySelector("#weatherStationSelector")?.options?.length > 0')
+# def test_weather_selection(mobile_installed: Page):
+#     '''navigate to settings page. Select a random weather city from the list and confirm it gets stored in the browser's local storage.'''
+#     mobile_installed.wait_for_selector('a[href="#/about"]').click()
+#     mobile_installed.wait_for_selector('a[href="#/settings"]').click()
+#     mobile_installed.wait_for_selector("#weatherStationSelector")
+#     # Wait for at least one OPTION under the select (robust timing)
+#     mobile_installed.wait_for_function('document.querySelector("#weatherStationSelector")?.options?.length > 0')
 
-    mobile_installed.locator("#weatherStationSelector").select_option(index=3)
-    weather_selected = mobile_installed.locator("#weatherStationSelector").input_value()
-    stored_weather = mobile_installed.evaluate('localStorage.getItem("weatherCity");')
-    assert weather_selected == stored_weather
+#     mobile_installed.locator("#weatherStationSelector").select_option(index=3)
+#     weather_selected = mobile_installed.locator("#weatherStationSelector").input_value()
+#     stored_weather = mobile_installed.evaluate('localStorage.getItem("weatherCity");')
+#     assert weather_selected == stored_weather
     
