@@ -202,7 +202,7 @@ const routes = {
         modalAlert("You cannot listen to the live stream while offline.")
         return;}
       nowPlaying()
-      audio.src = "https://api.nashvilletalkinglibrary.com/stream/livestream.mp3";
+      audio.src = "https://api.talkinglibrary.nashville.gov/stream/livestream.mp3";
       try {stopTextToSpeechGlobalAndHideButton();} catch {console.log("not on schedule page")} // only one thing should play at a time
       audio.play();
       switchPlayPauseIcon();
