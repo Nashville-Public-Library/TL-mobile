@@ -59,6 +59,11 @@ function isMobileDevice () {
     if (hover || mobile) {return true;}
 }
 
+function isInstalled() {
+    const installed = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+    return installed;
+}
+
 function isLandscape() {
   return window.innerWidth > window.innerHeight;
 }
@@ -100,9 +105,8 @@ async function detect() {
         makeBodyVisible();
         return;
     }
-
-    const installed = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
-    if (!installed) {
+    
+    if (!isInstalled()) {
         console.log('not installed, fetching page');
         let response = await fetch('/static/pages/install.html');
         let text = await response.text()
