@@ -64,9 +64,8 @@
 
 - Launch the app
     ````bash
-    py application.py
+    flask run --debug
     ````
-    - Depending on your OS, instead of `py` you may need to use `python` or `python3`
 
 - To Run the Tests
     ````bash

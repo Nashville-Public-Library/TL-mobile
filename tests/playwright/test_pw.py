@@ -15,7 +15,7 @@ def test_mobile_not_installed_1(mobile_not_installed: Page):
 def test_mobile_not_installed_2(mobile_not_installed: Page):
     mobile_not_installed.wait_for_selector(".installDialog")
     assert mobile_not_installed.get_by_text("To install the app:").is_visible()
-    assert mobile_not_installed.get_by_text("On Apple Phones:").is_visible()
+    assert mobile_not_installed.get_by_text("On iPhones:").is_visible()
     assert mobile_not_installed.get_by_text("On Android Phones:").is_visible()
 
 def test_mobile_installed_1(mobile_installed: Page):
@@ -96,3 +96,41 @@ def test_settings_1(mobile_installed: Page):
     settings_h1 = mobile_installed.locator("h1", has_text="Settings")
     settings_h1.wait_for(state="visible")
     assert "Settings" in settings_h1.text_content()
+
+def test_voice_selection_1(mobile_installed: Page):
+    '''navigate to settings page, select the first voice, and check whether that voice has been stored in the browser's localStorage'''
+    mobile_installed.wait_for_selector('a[href="#/about"]').click()
+    mobile_installed.wait_for_selector('a[href="#/settings"]').click()
+    mobile_installed.wait_for_selector("#SpeechSynthesisVoiceSelector")
+    all_voices_available = mobile_installed.evaluate("window.speechSynthesis.getVoices();")
+    if len(all_voices_available) > 0: # apparently not all devices have even one system voice (linux, GitHub Actions)...
+        mobile_installed.wait_for_selector("#SpeechSynthesisVoiceSelector").select_option(index=0)
+        voice_selected = mobile_installed.locator("#SpeechSynthesisVoiceSelector").input_value()
+        stored_voice = mobile_installed.evaluate('localStorage.getItem("voice");')
+        assert voice_selected == stored_voice
+    
+def test_voice_selection_2(mobile_installed: Page):
+    '''navigate to settings page. IF there is more than one voice available on the device being tested, select the 2nd available option
+    and ensure it is saved to the browser's local storage.'''
+    mobile_installed.wait_for_selector('a[href="#/about"]').click()
+    mobile_installed.wait_for_selector('a[href="#/settings"]').click()
+    all_voices_available = mobile_installed.evaluate("window.speechSynthesis.getVoices();")
+    if len(all_voices_available) > 1:
+        mobile_installed.wait_for_selector("#SpeechSynthesisVoiceSelector").select_option(index=1)
+        voice_selected = mobile_installed.locator("#SpeechSynthesisVoiceSelector").input_value()
+        stored_voice = mobile_installed.evaluate('localStorage.getItem("voice");')
+        assert voice_selected == stored_voice
+
+# def test_weather_selection(mobile_installed: Page):
+#     '''navigate to settings page. Select a random weather city from the list and confirm it gets stored in the browser's local storage.'''
+#     mobile_installed.wait_for_selector('a[href="#/about"]').click()
+#     mobile_installed.wait_for_selector('a[href="#/settings"]').click()
+#     mobile_installed.wait_for_selector("#weatherStationSelector")
+#     # Wait for at least one OPTION under the select (robust timing)
+#     mobile_installed.wait_for_function('document.querySelector("#weatherStationSelector")?.options?.length > 0')
+
+#     mobile_installed.locator("#weatherStationSelector").select_option(index=3)
+#     weather_selected = mobile_installed.locator("#weatherStationSelector").input_value()
+#     stored_weather = mobile_installed.evaluate('localStorage.getItem("weatherCity");')
+#     assert weather_selected == stored_weather
+    

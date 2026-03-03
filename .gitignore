@@ -1,9 +1,8 @@
 # pointless
 __pycache__
 
+# virtual environment
 venv
 
-# too big
-chromedriver.exe
-
-banner.db
+# cache
+weather_cache
