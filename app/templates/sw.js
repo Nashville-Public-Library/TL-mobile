@@ -124,6 +124,7 @@ async function cachePodcastImages(cache) {
       const request = new Request(url, {mode: "no-cors"});
       const response = await fetch(request);
       await cache.put(request, response);
+      console.log(`caching ${url}`)
     }
     catch (whoops) {
       console.log(whoops);
