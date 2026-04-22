@@ -39,7 +39,6 @@ pytest==9.0.3
 pytest-base-url==2.1.0
 pytest-playwright==0.7.2
 python-dateutil==2.8.2
-python-dotenv==0.21.0
 python-slugify==8.0.4
 PyVirtualDisplay==3.0
 requests==2.33.1
