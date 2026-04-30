@@ -13,8 +13,8 @@
     <br>
 
     <div style="text-align: center;">
-        <button onclick="scheduleTextToSpeech()" class="textToSpeechScheduleListenButton" id="listenTextToSpeechSchedule">Listen</button>
-        <button onclick="stopTextToSpeechGlobalAndHideButton();" class="textToSpeechScheduleStopButton" id="stopTextToSpeechGlobal">Stop</button>
+        <button onclick="App.scheduleTextToSpeech()" class="textToSpeechScheduleListenButton" id="listenTextToSpeechSchedule">Listen</button>
+        <button onclick="App.stopTextToSpeechGlobalAndHideButton();" class="textToSpeechScheduleStopButton" id="stopTextToSpeechGlobal">Stop</button>
     </div>
 
     <br>
@@ -23,162 +23,162 @@
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">12:00am</div>
-        <div onclick="loadPodcast('newyorker')" class="dailyScheduleTitle">New Yorker</div>
+        <div onclick="App.loadPodcast('newyorker')" class="dailyScheduleTitle">New Yorker</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">1:00am</div>
-        <div onclick="loadPodcast('economist')" class="dailyScheduleTitle">Economist</div>
+        <div onclick="App.loadPodcast('economist')" class="dailyScheduleTitle">Economist</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">2:00am</div>
-        <div onclick="loadPodcast('atlantic')" class="dailyScheduleTitle">Atlantic</div>
+        <div onclick="App.loadPodcast('atlantic')" class="dailyScheduleTitle">Atlantic</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">3:00am</div>
-        <div onclick="loadPodcast('moneytalk')" class="dailyScheduleTitle">Money Talk</div>
+        <div onclick="App.loadPodcast('moneytalk')" class="dailyScheduleTitle">Money Talk</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">4:00am</div>
-        <div onclick="loadPodcast('scene')" class="dailyScheduleTitle">Nashville Scene</div>
+        <div onclick="App.loadPodcast('scene')" class="dailyScheduleTitle">Nashville Scene</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">5:00am</div>
-        <div onclick="loadPodcast('sports')" class="dailyScheduleTitle">Spotlight on Sports</div>
+        <div onclick="App.loadPodcast('sports')" class="dailyScheduleTitle">Spotlight on Sports</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">6:00am</div>
-        <div onclick="loadPodcast('smithsonian')" class="dailyScheduleTitle">Smithsonian</div>
+        <div onclick="App.loadPodcast('smithsonian')" class="dailyScheduleTitle">Smithsonian</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">7:00am</div>
-        <div onclick="noPodcastWarning('City Arts & Lectures')" class="dailyScheduleTitle">City Arts & Lectures</div>
+        <div onclick="App.noPodcastWarning('City Arts & Lectures')" class="dailyScheduleTitle">City Arts & Lectures</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">8:00am</div>
-        <div onclick="loadPodcast('people')" class="dailyScheduleTitle">People</div>
+        <div onclick="App.loadPodcast('people')" class="dailyScheduleTitle">People</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">9:00am</div>
-        <div onclick="loadPodcast('newsweek')" class="dailyScheduleTitle">Newsweek</div>
+        <div onclick="App.loadPodcast('newsweek')" class="dailyScheduleTitle">Newsweek</div>
     </div>
 
         <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">10:00am</div>
-        <div onclick="loadPodcast('time')" class="dailyScheduleTitle">Time</div>
+        <div onclick="App.loadPodcast('time')" class="dailyScheduleTitle">Time</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual halfHourNoBorder">
         <div class="dailyScheduleHour">11:00am</div>
-        <div onclick="loadPodcast('able')" class="dailyScheduleTitle">Able Living</div>
+        <div onclick="App.loadPodcast('able')" class="dailyScheduleTitle">Able Living</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">11:30am</div>
-        <div onclick="loadPodcast('independent')" class="dailyScheduleTitle">Independent Living</div>
+        <div onclick="App.loadPodcast('independent')" class="dailyScheduleTitle">Independent Living</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">12:00pm</div>
-        <div onclick="loadPodcast('nyt')" class="dailyScheduleTitle">New York Times</div>
+        <div onclick="App.loadPodcast('nyt')" class="dailyScheduleTitle">New York Times</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual halfHourNoBorder">
         <div class="dailyScheduleHour">1:00pm</div>
-        <div onclick="noPodcastWarning('The News: Nashville')" class="dailyScheduleTitle">The News: Nashville</div>
+        <div onclick="App.noPodcastWarning('The News: Nashville')" class="dailyScheduleTitle">The News: Nashville</div>
     </div>
 
         <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">1:30pm</div>
-        <div onclick="loadPodcast('ledger')" class="dailyScheduleTitle">Nashville Ledger</div>
+        <div onclick="App.loadPodcast('ledger')" class="dailyScheduleTitle">Nashville Ledger</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual halfHourNoBorder">
         <div class="dailyScheduleHour">2:00pm</div>
-        <div onclick="loadPodcast('science')" class="dailyScheduleTitle">New Scientist</div>
+        <div onclick="App.loadPodcast('science')" class="dailyScheduleTitle">New Scientist</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">2:30pm</div>
-        <div onclick="loadPodcast('wired')" class="dailyScheduleTitle">Wired</div>
+        <div onclick="App.loadPodcast('wired')" class="dailyScheduleTitle">Wired</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">3:00pm</div>
-        <div onclick="loadPodcast('mens')" class="dailyScheduleTitle">Men's Hour</div>
+        <div onclick="App.loadPodcast('mens')" class="dailyScheduleTitle">Men's Hour</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">4:00pm</div>
-        <div onclick="loadPodcast('scene')" class="dailyScheduleTitle">Nashville Scene</div>
+        <div onclick="App.loadPodcast('scene')" class="dailyScheduleTitle">Nashville Scene</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual halfHourNoBorder">
         <div class="dailyScheduleHour">5:00pm</div>
-        <div onclick="loadPodcast('poetry')" class="dailyScheduleTitle">Poetry in the Air</div>
+        <div onclick="App.loadPodcast('poetry')" class="dailyScheduleTitle">Poetry in the Air</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">5:30pm</div>
-        <div onclick="loadPodcast('bookpage')" class="dailyScheduleTitle">Book Page</div>
+        <div onclick="App.loadPodcast('bookpage')" class="dailyScheduleTitle">Book Page</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">6:00pm</div>
-        <div onclick="loadPodcast('prevention')" class="dailyScheduleTitle">Prevention</div>
+        <div onclick="App.loadPodcast('prevention')" class="dailyScheduleTitle">Prevention</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">6:30pm</div>
-        <div onclick="loadPodcast('eyes')" class="dailyScheduleTitle">Eyes on Success</div>
+        <div onclick="App.loadPodcast('eyes')" class="dailyScheduleTitle">Eyes on Success</div>
     </div>
 
         <div class="dailyScheduleContainerIndividual halfHourNoBorder">
         <div class="dailyScheduleHour">7:00pm</div>
-        <div onclick="loadPodcast('readersdigest')" class="dailyScheduleTitle">Reader's Digest</div>
+        <div onclick="App.loadPodcast('readersdigest')" class="dailyScheduleTitle">Reader's Digest</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">7:30pm</div>
-        <div onclick="loadPodcast('woman')" class="dailyScheduleTitle">Woman's World</div>
+        <div onclick="App.loadPodcast('woman')" class="dailyScheduleTitle">Woman's World</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual halfHourNoBorder">
         <div class="dailyScheduleHour">8:00pm</div>
-        <div onclick="loadPodcast('aarp')" class="dailyScheduleTitle">AARP Report</div>
+        <div onclick="App.loadPodcast('aarp')" class="dailyScheduleTitle">AARP Report</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">8:30pm</div>
-        <div onclick="loadPodcast('independent')" class="dailyScheduleTitle">Independent Living</div>
+        <div onclick="App.loadPodcast('independent')" class="dailyScheduleTitle">Independent Living</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual halfHourNoBorder">
         <div class="dailyScheduleHour">9:00pm</div>
-        <div onclick="loadPodcast('opinion')" class="dailyScheduleTitle">Tennessean Opinions</div>
+        <div onclick="App.loadPodcast('opinion')" class="dailyScheduleTitle">Tennessean Opinions</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">9:30pm</div>
-        <div onclick="loadPodcast('community')" class="dailyScheduleTitle">Community News</div>
+        <div onclick="App.loadPodcast('community')" class="dailyScheduleTitle">Community News</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">10:00pm</div>
-        <div onclick="loadPodcast('economist')" class="dailyScheduleTitle">Economist</div>
+        <div onclick="App.loadPodcast('economist')" class="dailyScheduleTitle">Economist</div>
     </div>
 
     <div class="dailyScheduleContainerIndividual">
         <div class="dailyScheduleHour">11:00pm</div>
-        <div onclick="loadPodcast('newsweek')" class="dailyScheduleTitle">Newsweek</div>
+        <div onclick="App.loadPodcast('newsweek')" class="dailyScheduleTitle">Newsweek</div>
     </div>
 
 </div>

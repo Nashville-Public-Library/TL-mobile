@@ -88,7 +88,8 @@ function mobileOnlyTextToSpeech() {
 
 function addMainScript() {
   const script = document.createElement("script");
-  script.src = "/static/js/app.js";
+  script.type = "module";
+  script.src = "/static/js/main.js";
   document.body.appendChild(script);
   return;
 }
