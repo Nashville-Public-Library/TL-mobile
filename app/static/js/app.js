@@ -515,7 +515,6 @@ export function hidelistenTextToSpeechSchedule() {
 export function fillSpeechSynthesisVoiceSelector() {
   const selectElement = document.getElementById("SpeechSynthesisVoiceSelector");
   const voices = window.speechSynthesis.getVoices()
-  modalAlert(voices);
   if (!voices) {return fillSpeechSynthesisVoiceSelector();}
   for (const voice of voices) {
     if (voice.lang.includes("en")) {
