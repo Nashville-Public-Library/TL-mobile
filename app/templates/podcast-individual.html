@@ -19,7 +19,7 @@
         {% for episode in pod.episodes %}
             <div class="podcastEpisodeTitle">{{ episode.title }}</div>
             <div class="podcastEpisodeDuration"> Duration: {{ episode.duration }}</div>
-            <audio class="podcastEpisodeEnclosure" controls src="{{ episode.enclosure }}" id="{{episode.title}}" preload="none" onclick="App.updatePlayerMetadataPodcast(this, {{pod}})"></audio>
+            <audio class="podcastEpisodeEnclosure" controls src="{{ episode.enclosure }}" id="{{episode.title}}" preload="none" onplay="App.updatePlayerMetadataPodcast(this, {{pod}})"></audio>
             <hr style="width: 50%; margin-bottom: 20px; margin-top: 22px;">
         {% endfor %}
     </div>  
