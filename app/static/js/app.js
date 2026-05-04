@@ -264,12 +264,13 @@ export function updatePlayerMetadata(nowPlayingTitle) {
 export function updatePlayerMetadataPodcast(audioElement, showInfo) {
   const showShortName = document.getElementById("showShortName");
   const audio = audioElement;
-  const baseURL = "https://assets.library.nashville.gov/talkinglibrary/shows/"
-  const showURL = baseURL + showInfo.showShortName
+  const baseURL = "https://assets.library.nashville.gov/talkinglibrary/shows/";
+  const showURL = baseURL + showInfo.showShortName;
+  console.log(audioElement.id);
 
   if ('mediaSession' in navigator) {
     navigator.mediaSession.metadata = new MediaMetadata({
-      title: audioElement.name,
+      title: audioElement.id,
       artist: showInfo.title,
       album: 'On Demand',
       artwork: [
