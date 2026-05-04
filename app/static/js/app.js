@@ -248,7 +248,7 @@ export function updatePlayerMetadata(nowPlayingTitle) {
         { src: '/static/img/ntl-logo-512x512.png', sizes: '512x512', type: 'image/png' }
       ]
     });
-    navigator.mediaSession.setActionHandler('play', () => {
+    navigator.mediaSession.setActionHandler('play', async  () => {
       audio.play();
       switchPlayPauseIcon();
     });
@@ -279,8 +279,9 @@ export function updatePlayerMetadataPodcast(audioElement, showInfo) {
         { src: showURL + "/image-512x512.jpg", sizes: '512x512', type: 'image/jpg' }
       ]
     });
-    navigator.mediaSession.setActionHandler('play', () => {
-      audio.play();
+    navigator.mediaSession.setActionHandler('play', async  () => {
+      try { await audio.play();} 
+      catch (err) {modalAlert("Play rejected:", err);}
     });
     navigator.mediaSession.setActionHandler('pause', () => {
       audio.pause();
