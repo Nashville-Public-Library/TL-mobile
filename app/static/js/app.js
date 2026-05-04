@@ -261,6 +261,32 @@ export function updatePlayerMetadata(nowPlayingTitle) {
   }
 }
 
+export function updatePlayerMetadataPodcast(audioElement, showInfo) {
+  const showShortName = document.getElementById("showShortName");
+  const audio = audioElement;
+  const baseURL = "https://assets.library.nashville.gov/talkinglibrary/shows/"
+  const showURL = baseURL + showInfo.showShortName
+
+  if ('mediaSession' in navigator) {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: audioElement.name,
+      artist: showInfo.title,
+      album: 'On Demand',
+      artwork: [
+        { src: showURL + "/image-96x96.jpg", sizes: '96x96', type: 'image/jpg' },
+        { src: showURL + "/image-192x192.jpg", sizes: '192x192', type: 'image/jpg' },
+        { src: showURL + "/image-512x512.jpg", sizes: '512x512', type: 'image/jpg' }
+      ]
+    });
+    navigator.mediaSession.setActionHandler('play', () => {
+      audio.play();
+    });
+    navigator.mediaSession.setActionHandler('pause', () => {
+      audio.pause();
+    });
+  }
+}
+
 export function onlineOffline() {
   const playIcon = document.getElementById("playIcon");
   if (!navigator.onLine) {

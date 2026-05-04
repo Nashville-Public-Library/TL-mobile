@@ -18,7 +18,8 @@ class Podcast:
             "description": self.description,
             "image": self.image,
             "RSSLink": self.RSS_link,
-            "episodes": self.episodes
+            "episodes": self.episodes,
+            "showShortName": self.show
         }
 
     def _get_tree(self):
