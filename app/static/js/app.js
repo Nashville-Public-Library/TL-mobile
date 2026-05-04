@@ -515,7 +515,16 @@ export function hidelistenTextToSpeechSchedule() {
 export function fillSpeechSynthesisVoiceSelector() {
   const selectElement = document.getElementById("SpeechSynthesisVoiceSelector");
   const voices = window.speechSynthesis.getVoices()
-  if (voices.length == 0) {return fillSpeechSynthesisVoiceSelector();}
+  
+  // If voices aren't ready yet, set up event to rerun this function
+  if (!voices.length) {
+    window.speechSynthesis.onvoiceschanged = () => {
+      fillSpeechSynthesisVoiceSelector();
+      window.speechSynthesis.onvoiceschanged = null; // prevent repeated firing
+    };
+    return;
+  }
+
   for (const voice of voices) {
     if (voice.lang.includes("en")) {
       const option = document.createElement("option");
