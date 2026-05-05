@@ -268,7 +268,8 @@ export function updatePlayerMetadataPodcast(audioElement, showInfo) {
   const showURL = baseURL + showInfo.showShortName;
   console.log(audioElement.id);
 
-  audio.load();
+  if (audio.paused){audio.load();}
+
   if ('mediaSession' in navigator) {
     navigator.mediaSession.metadata = new MediaMetadata({
       title: audioElement.id,
