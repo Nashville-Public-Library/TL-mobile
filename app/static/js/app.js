@@ -1,13 +1,13 @@
-function retrieveAppVersion() {
+export function retrieveAppVersion() {
   const version = localStorage.getItem("appVersion");
   return version;
 }
 
-function openlinkExternalWindow(url) {
+export function openlinkExternalWindow(url) {
   window.open(url, '_blank', 'noopener');
 } 
 
-function openDefaultMailApp() {
+export function openDefaultMailApp() {
   const toEmail = "ntl@nashville.gov";
   const subject = "NTL App Feedback";
   const userAgent = navigator.userAgent;
@@ -20,13 +20,13 @@ function openDefaultMailApp() {
   window.open(`mailto:${toEmail}?subject=${subject}&body=${body}`, '_blank', 'noopener');
 }
 
-function closeModalAlert() {
+export function closeModalAlert() {
   const modalElement = document.getElementById("modalAlert");
   modalElement.style.display = "none";
   return;
 }
 
-function modalAlert(message) {
+export function modalAlert(message) {
   const parent = document.getElementById("modalAlert");
   const content = document.getElementById("modalAlertMessage");
   content.innerText = message;
@@ -52,7 +52,7 @@ const routes = {
     '/schedule/sunday': '/static/pages/daily/sunday.html'
   };
 
-  async function loadRoute() {
+  export async function loadRoute() {
     const path = location.hash.slice(1) || '/';
     const route = routes[path];
   
@@ -112,7 +112,7 @@ const routes = {
 
   onFirstLoad();
 
-  function dev_modal_alert() {
+  export function dev_modal_alert() {
     // alert user if using the dev/test app as indicated by the domain name "dolly"
     const domain = location.hostname;
     if (domain.includes("dolly")) {
@@ -121,26 +121,26 @@ const routes = {
     }
   }
 
-  function onFirstLoad() {
+  export function onFirstLoad() {
     // location.hash is not set on initial load. load route, then
     loadRoute();
     location.hash = "#/";
     currentRoute = location.hash.slice(1);
   }
 
-  function saveScrollPositionAndLoadRoute(routeToUpdate) {
+  export function saveScrollPositionAndLoadRoute(routeToUpdate) {
     saveScrollPosition(routeToUpdate); // save scroll position on last visited page
     loadRoute(); // load the new page
     currentRoute = location.hash.slice(1); // update the global variable
   }
 
-  function saveScrollPosition(routeToSaveScrollPosition) {
+  export function saveScrollPosition(routeToSaveScrollPosition) {
     let scrollPosition = document.getElementById("app").scrollTop;
     sessionStorage.setItem(routeToSaveScrollPosition, scrollPosition);
     return;
   }
 
-  function highlightNavBarIcon(icon) {
+  export function highlightNavBarIcon(icon) {
     icon.classList.add("icon-link-selected");
     const navLinks = document.getElementsByClassName("icon-link");
     for (var i = 0, len = navLinks.length; i < len; i++) {
@@ -152,7 +152,7 @@ const routes = {
   }
   
 
-  async function nowPlaying() {
+  export async function nowPlaying() {
     let titleElement = document.getElementById('nowPlaying');
     let livestream = document.getElementById("audio");
     let notAvailable = "Program Name Not Available";
@@ -185,7 +185,7 @@ const routes = {
   nowPlaying() // call on page load
   setInterval(nowPlaying, 30000) // 30 seconds
 
-  function removeNowPlayingDots() {
+  export function removeNowPlayingDots() {
       const nowPlayingDots = document.getElementById("nowPlayingDots");
       if (nowPlayingDots) {
         nowPlayingDots.remove()
@@ -215,7 +215,7 @@ const routes = {
     }
   });
 
-function switchPlayPauseIcon() {
+export function switchPlayPauseIcon() {
   const playIcon = document.getElementById('playIcon');
   const pauseIcon = document.getElementById('pauseIcon');
   if (playIcon.style.display == "none") {
@@ -227,7 +227,7 @@ function switchPlayPauseIcon() {
   }
 }
 
-function stopLiveStream() {
+export function stopLiveStream() {
   const audio = document.getElementById('audio');
   if (!audio.paused) {
     document.getElementById('playPauseButton').click();
@@ -236,7 +236,7 @@ function stopLiveStream() {
 
 
 
-function updatePlayerMetadata(nowPlayingTitle) {
+export function updatePlayerMetadata(nowPlayingTitle) {
   const audio = document.getElementById('audio');
   if ('mediaSession' in navigator) {
     navigator.mediaSession.metadata = new MediaMetadata({
@@ -248,7 +248,7 @@ function updatePlayerMetadata(nowPlayingTitle) {
         { src: '/static/img/ntl-logo-512x512.png', sizes: '512x512', type: 'image/png' }
       ]
     });
-    navigator.mediaSession.setActionHandler('play', () => {
+    navigator.mediaSession.setActionHandler('play', async  () => {
       audio.play();
       switchPlayPauseIcon();
     });
@@ -261,7 +261,45 @@ function updatePlayerMetadata(nowPlayingTitle) {
   }
 }
 
-function onlineOffline() {
+export function updatePlayerMetadataPodcast(audioElement, showInfo) {
+  const showShortName = document.getElementById("showShortName");
+  const audio = audioElement;
+  const baseURL = "https://assets.library.nashville.gov/talkinglibrary/shows/";
+  const showURL = baseURL + showInfo.showShortName;
+  console.log(audioElement.id);
+
+  if (audio.paused){audio.load();}
+
+  if ('mediaSession' in navigator) {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: audioElement.id,
+      artist: showInfo.title,
+      album: 'On Demand',
+      artwork: [
+        { src: showURL + "/image-96x96.jpg", sizes: '96x96', type: 'image/jpg' },
+        { src: showURL + "/image-192x192.jpg", sizes: '192x192', type: 'image/jpg' },
+        { src: showURL + "/image-512x512.jpg", sizes: '512x512', type: 'image/jpg' }
+      ]
+    });
+    navigator.mediaSession.setActionHandler('play', async  () => {
+      try { await audio.play();} 
+      catch (err) {modalAlert("Play rejected:", err);}
+    });
+    navigator.mediaSession.setActionHandler('pause', () => {
+      audio.pause();
+    });
+    
+    navigator.mediaSession.setActionHandler('seekbackward', (details) => {
+      audio.currentTime -= details.seekOffset || 10;
+    });
+    navigator.mediaSession.setActionHandler('seekforward', (details) => {
+      audio.currentTime += details.seekOffset || 10;
+    });
+
+  }
+}
+
+export function onlineOffline() {
   const playIcon = document.getElementById("playIcon");
   if (!navigator.onLine) {
     const audio = document.getElementById('audio');
@@ -283,11 +321,11 @@ onlineOffline();
 
 let podcastToLoad;
 
-function loadAppVersion() {
+export function loadAppVersion() {
   document.getElementById("appVersion").innerHTML = "v" + retrieveAppVersion();
 }
 
-  async function loadPodcast(show) {  
+export async function loadPodcast(show) {  
     if (!navigator.onLine) {
       modalAlert("You cannot listen to podcasts while offline.")
       return;
@@ -296,7 +334,7 @@ function loadAppVersion() {
     location.hash = "/podcasts-individual";
     }
 
-async function afterHashChange_loadPodcast(show) {
+export async function afterHashChange_loadPodcast(show) {
     const app = document.getElementById("app"); // show the loading page, then go fetch the data from the server and render when ready
 
     const url = "/podcasts/info/" + show;
@@ -309,7 +347,7 @@ async function afterHashChange_loadPodcast(show) {
       }
 }
 
-  function noPodcastWarning (show) {
+export function noPodcastWarning (show) {
     modalAlert(`We do not currently offer a podcast for ${show}.`);
   }
 
@@ -330,7 +368,7 @@ document.addEventListener('play', function (e) {
   }
 }, true);
 
-function categorySelector(category) {
+export function categorySelector(category) {
   const podcasts = document.getElementsByClassName("podcastIndividual");
   const speed = 250;
 
@@ -364,7 +402,7 @@ function categorySelector(category) {
   }
 }
 
-function podcastSearch(title) {
+export function podcastSearch(title) {
 //   if (event.key === "Enter") {
 //     console.log("enter entered");
 //     event.preventDefault();
@@ -396,7 +434,7 @@ function podcastSearch(title) {
   return;
 }
 
-function showMatchingTitleOnTextInput(text) {
+export function showMatchingTitleOnTextInput(text) {
   // first, reset the category selector so that any matching titles will be visible on the page.
   categorySelector("all");
   document.getElementById("categorySelector").value = "all";
@@ -414,7 +452,7 @@ function showMatchingTitleOnTextInput(text) {
   return;
 }
 
-async function loadShowNamesInSearchInput() {
+export async function loadShowNamesInSearchInput() {
   const podcastTitles = document.getElementsByClassName("podcastTitle");
   const datalist = document.getElementById("podcastSearchList");
 
@@ -425,12 +463,12 @@ async function loadShowNamesInSearchInput() {
   }
 }
 
-async function copyToClipboard(text) {
+export async function copyToClipboard(text) {
   await navigator.clipboard.writeText(text);
   modalAlert("RSS Feed copied to clipboard :)")
 }
 
-function scheduleTextToSpeech() {
+export function scheduleTextToSpeech() {
   stopLiveStream() // only want one thing playing at a time
   document.getElementById("stopTextToSpeechGlobal").style.display = "inline-block";
   hidelistenTextToSpeechSchedule()
@@ -449,7 +487,7 @@ function scheduleTextToSpeech() {
 }
 
 let speechCancelled = true;
-function speakSequence(queue) {
+export function speakSequence(queue) {
   speechCancelled = false;
   const synth = window.speechSynthesis;
 
@@ -476,19 +514,19 @@ function speakSequence(queue) {
   next(); // start sequence, then utter.onend takes over
 }
 
-function stopTextToSpeechGlobalAndHideButton() {
+export function stopTextToSpeechGlobalAndHideButton() {
   stopTextToSpeechGlobal();
   speechCancelled = true;
   hideScheduleStopTextToSpeechButton();
   reveallistenTextToSpeechSchedule();
 }
 
-function stopTextToSpeechGlobal() {
+export function stopTextToSpeechGlobal() {
   window.speechSynthesis.cancel();
   speechCancelled = true;
 }
 
-function hideScheduleStopTextToSpeechButton() {
+export function hideScheduleStopTextToSpeechButton() {
   try {
   const stop = document.getElementById("stopTextToSpeechGlobal");
   stop.style.display = "none";
@@ -502,19 +540,29 @@ function hideScheduleStopTextToSpeechButton() {
   }
 }
 
-function reveallistenTextToSpeechSchedule() {
-  element = document.getElementById("listenTextToSpeechSchedule");
+export function reveallistenTextToSpeechSchedule() {
+  const element = document.getElementById("listenTextToSpeechSchedule");
   element.style.display = "inline-block";
 }
 
-function hidelistenTextToSpeechSchedule() {
-  element = document.getElementById("listenTextToSpeechSchedule");
+export function hidelistenTextToSpeechSchedule() {
+  const element = document.getElementById("listenTextToSpeechSchedule");
   element.style.display = "none";
 }
 
-function fillSpeechSynthesisVoiceSelector() {
+export function fillSpeechSynthesisVoiceSelector() {
   const selectElement = document.getElementById("SpeechSynthesisVoiceSelector");
   const voices = window.speechSynthesis.getVoices()
+  
+  // If voices aren't ready yet, set up event to rerun this function
+  if (!voices.length) {
+    window.speechSynthesis.onvoiceschanged = () => {
+      fillSpeechSynthesisVoiceSelector();
+      window.speechSynthesis.onvoiceschanged = null; // prevent repeated firing
+    };
+    return;
+  }
+
   for (const voice of voices) {
     if (voice.lang.includes("en")) {
       const option = document.createElement("option");
@@ -531,11 +579,11 @@ function fillSpeechSynthesisVoiceSelector() {
   }
 }
 
-function storeUserVoiceSelection(voice) {
+export function storeUserVoiceSelection(voice) {
   localStorage.setItem("voice", voice)
 }
 
-function getUserStoredVoiceSelection(toSpeak) {
+export function getUserStoredVoiceSelection(toSpeak) {
   const speech = new SpeechSynthesisUtterance(toSpeak);
 
   let userSelectedVoice = localStorage.getItem("voice");
@@ -553,14 +601,14 @@ function getUserStoredVoiceSelection(toSpeak) {
   return speech;
 }
 
-function settingsTextToSpeechTest() {
+export function settingsTextToSpeechTest() {
   const synth = window.speechSynthesis;
   const text = "Thank you for listening to Nashville Talking Library, an audio information service of Nashville Public Library";
   const speech = getUserStoredVoiceSelection(text);
   synth.speak(speech);
 }
 
-function SpeechSynthesisSpeedSelectorDisplay(value) {
+export function SpeechSynthesisSpeedSelectorDisplay(value) {
   stopTextToSpeechGlobal();
   const element = document.getElementById("SpeechSynthesisSpeedSelectorDisplay");
   storeUserVoiceSpeedSelection(value);
@@ -579,11 +627,11 @@ function SpeechSynthesisSpeedSelectorDisplay(value) {
   element.innerText = plusOrMinus + output;
 }
 
-function storeUserVoiceSpeedSelection(speed) {
+export function storeUserVoiceSpeedSelection(speed) {
   localStorage.setItem("voiceSpeed", speed)
 }
 
-function loadUserSelectedVoiceSpeed() {
+export function loadUserSelectedVoiceSpeed() {
   const speed = localStorage.getItem("voiceSpeed");
   const inputElement = document.getElementById("SpeechSynthesisSpeedSelector");
   if (speed) {
@@ -608,9 +656,9 @@ const weatherStations = {
     "Tri-Cities": "KTRI"
   }
 
-function fillWeatherStationSelector() {
+export function fillWeatherStationSelector() {
   const selectElement = document.getElementById("weatherStationSelector");
-  for (station in weatherStations) {
+  for (let station in weatherStations) {
       const option = document.createElement("option");
       option.textContent = station;
       option.value = station;
@@ -622,11 +670,11 @@ function fillWeatherStationSelector() {
   }
 }
 
-function storeUserWeatherSelection(weatherCity) {
+export function storeUserWeatherSelection(weatherCity) {
   localStorage.setItem("weatherCity", weatherCity)
 }
 
-async function fetchWeather() {
+export async function fetchWeather() {
   const weatherElement = document.getElementById("weatherHomeScreen");
   const weatherCity = localStorage.getItem("weatherCity")
   let data = {};
