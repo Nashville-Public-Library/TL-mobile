@@ -3,7 +3,7 @@
 
     <datalist id="podcastSearchList"></datalist>
 
-    <div class="categorySearch">
+    <section class="categorySearch">
 
     <select id="categorySelector" class="categorySelector" onchange="App.categorySelector(this.value)">
         <option value="all" selected disabled hidden>Categories</option>
@@ -24,7 +24,7 @@
     <input type="search" id="podcastSearch" name="podcastSearch" class="podcastSearch" placeholder="search" 
         list="podcastSearchList" minlength="2" oninput="App.showMatchingTitleOnTextInput(this.value)" onchange="App.podcastSearch(this.value)"/>
 
-    </div>
+    </section>
 
     <div id="aarp" class="podcastIndividual" onclick="App.loadPodcast(this.id)" data-category="lifestyle-culture">
         <img 
