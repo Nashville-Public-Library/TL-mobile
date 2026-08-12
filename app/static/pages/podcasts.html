@@ -3,7 +3,7 @@
 
     <datalist id="podcastSearchList"></datalist>
 
-    <div class="categorySearch">
+    <section class="categorySearch">
 
     <select id="categorySelector" class="categorySelector" onchange="App.categorySelector(this.value)">
         <option value="all" selected disabled hidden>Categories</option>
@@ -24,7 +24,7 @@
     <input type="search" id="podcastSearch" name="podcastSearch" class="podcastSearch" placeholder="search" 
         list="podcastSearchList" minlength="2" oninput="App.showMatchingTitleOnTextInput(this.value)" onchange="App.podcastSearch(this.value)"/>
 
-    </div>
+    </section>
 
     <div id="aarp" class="podcastIndividual" onclick="App.loadPodcast(this.id)" data-category="lifestyle-culture">
         <img 
@@ -57,9 +57,9 @@
         <img 
             class="podcastImages" 
             src="https://assets.library.nashville.gov/talkinglibrary/shows/bookpage/image.jpg" 
-            alt="A purple open book icon with the letters “BP” above the title “BookPage” and the tagline “Discover Your Next Great Book,” with Nashville Talking Library and Nashville Public Library logos in the lower corners."
+            alt="A stack of books with the text 'Book Reviews' overlaid on the the spines of the books with Nashville Talking Library and Nashville Public Library logos in the lower corners."
             >
-        <div class="podcastTitle">Book Page</div>
+        <div class="podcastTitle">Book Reviews</div>
     </div>
 
     <div id="checklist" class="podcastIndividual"onclick="App.loadPodcast(this.id)" data-category="lifestyle-culture">
@@ -188,22 +188,22 @@
         <div class="podcastTitle">Hourly Weather Forecast</div>
     </div>
 
-       <div id="lgbt" class="podcastIndividual"onclick="App.loadPodcast(this.id)" data-category="arts-entertainment,lifestyle-culture">
+    <div id="keystrokes" class="podcastIndividual"onclick="App.loadPodcast(this.id)" data-category="science-technology">
+        <img 
+            class="podcastImages" 
+            src="https://assets.library.nashville.gov/talkinglibrary/shows/keystrokes/image.jpg" 
+            alt="The text 'keystrokes' with accessibility icons below it on a modern computer screen outline, with Nashville Talking Library and Nashville Public Library logos at the bottom."
+            >
+        <div class="podcastTitle">Keystrokes</div>
+    </div>
+
+    <div id="lgbt" class="podcastIndividual"onclick="App.loadPodcast(this.id)" data-category="arts-entertainment,lifestyle-culture">
         <img 
             class="podcastImages" 
             src="https://assets.library.nashville.gov/talkinglibrary/shows/lgbt/image.jpg" 
             alt="The title “LGBTQ Outlook” in rainbow colors and black text on a white background, with Nashville Talking Library and Nashville Public Library logos at the bottom."
             >
         <div class="podcastTitle">LGBTQ Outlook</div>
-    </div>
-
-    <div id="mens" class="podcastIndividual"onclick="App.loadPodcast(this.id)" data-category="health-fitness,lifestyle-culture">
-        <img 
-            class="podcastImages" 
-            src="https://assets.library.nashville.gov/talkinglibrary/shows/mens/image.jpg" 
-            alt="The words “Men’s Hour” in red with a clock for the letter “O,” and logos for Nashville Talking Library and Nashville Public Library at the bottom."
-            >
-        <div class="podcastTitle">Men's Hour</div>
     </div>
 
     <div id="moneytalk" class="podcastIndividual"onclick="App.loadPodcast(this.id)" data-category="business-finance">
