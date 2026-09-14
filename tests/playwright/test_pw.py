@@ -25,15 +25,15 @@ def test_mobile_installed_1(mobile_installed: Page):
 
 def test_schedule_1(mobile_installed: Page):
     '''navigate to /schedule page and check if various content is loaded'''
-    mobile_installed.wait_for_selector('a[href="#/schedule"]').click()
+    mobile_installed.locator('a[href="#/schedule"]').click()
     mobile_installed.wait_for_selector(".dailyScheduleLinksContainer")
     assert mobile_installed.get_by_text("Schedules").is_visible()
     assert mobile_installed.get_by_text("Tuesday").is_visible()
     assert mobile_installed.get_by_text("Broadcast Schedule").is_visible()
 
 def test_schedule_daily_1(mobile_installed: Page):
-    mobile_installed.wait_for_selector('a[href="#/schedule"]').click()
-    mobile_installed.wait_for_selector('a[href="#/schedule/monday"]').click()
+    mobile_installed.locator('a[href="#/schedule"]').click()
+    mobile_installed.locator('a[href="#/schedule/monday"]').click()
     mobile_installed.wait_for_selector(".dailyScheduleHeader")
     mobile_installed.wait_for_selector(".dailyScheduleContainerIndividual")
     assert "Monday" in mobile_installed.locator(".dailyScheduleHeader").text_content()
@@ -41,7 +41,7 @@ def test_schedule_daily_1(mobile_installed: Page):
 
 def test_podcasts_1(mobile_installed: Page):
     '''navigate to /podcasts page and check if various content is loaded'''
-    mobile_installed.wait_for_selector('a[href="#/podcasts"]').click()
+    mobile_installed.locator('a[href="#/podcasts"]').click()
     mobile_installed.wait_for_selector(".podcastIndividual")
     mobile_installed.wait_for_selector("#categorySelector")
     assert mobile_installed.locator(".podcastIndividual").count() > 0
@@ -49,7 +49,7 @@ def test_podcasts_1(mobile_installed: Page):
 
 def test_podcast_individual_1(mobile_installed: Page):
     '''navigate to /podcasts page, load individual podcast, check if various content is loaded. Checklist chosen at random'''
-    mobile_installed.wait_for_selector('a[href="#/podcasts"]').click()
+    mobile_installed.locator('a[href="#/podcasts"]').click()
     mobile_installed.wait_for_selector("#checklist")
     mobile_installed.locator("#checklist").click()
     mobile_installed.wait_for_selector("#podcastIndividualTitle")
@@ -57,54 +57,54 @@ def test_podcast_individual_1(mobile_installed: Page):
 
 def test_podcast_individual_2(mobile_installed: Page):
     '''navigate to /podcasts page, load individual podcast, check if various content is loaded. Checklist chosen at random.'''
-    mobile_installed.wait_for_selector('a[href="#/podcasts"]').click()
+    mobile_installed.locator('a[href="#/podcasts"]').click()
     mobile_installed.wait_for_selector("#checklist")
     mobile_installed.locator("#checklist").click()
     mobile_installed.wait_for_selector(".podcastEpisodeTitle")
     assert mobile_installed.locator(".podcastEpisodeTitle").count() > 0
 
 def test_about_1(mobile_installed: Page):
-    mobile_installed.wait_for_selector('a[href="#/about"]').click()
+    mobile_installed.locator('a[href="#/about"]').click()
     mobile_installed.wait_for_selector(".aboutIconsContainer")
     assert mobile_installed.locator(".aboutIconsContainer").count() > 0
  
 def test_about_2(mobile_installed: Page):
-    mobile_installed.wait_for_selector('a[href="#/about"]').click()
+    mobile_installed.locator('a[href="#/about"]').click()
     mobile_installed.wait_for_selector(".aboutIcons")
     assert mobile_installed.locator(".aboutIcons").count() > 0
 
 def test_privacy_1(mobile_installed: Page):
     '''navigate to about page, then navigate to privacy page. assert "Privacy" is in the <h1>.'''
-    mobile_installed.wait_for_selector('a[href="#/about"]').click()
-    mobile_installed.wait_for_selector('a[href="#/privacy"]').click()
+    mobile_installed.locator('a[href="#/about"]').click()
+    mobile_installed.locator('a[href="#/privacy"]').click()
     privacy_h1 = mobile_installed.locator("h1", has_text="Privacy")
     privacy_h1.wait_for(state="visible")
     assert "Privacy" in privacy_h1.text_content()
 
 def test_feedback_1(mobile_installed: Page):
     '''navigate to about page, then navigate to feedback page. assert "Feedback" is in the <h1>.'''
-    mobile_installed.wait_for_selector('a[href="#/about"]').click()
-    mobile_installed.wait_for_selector('a[href="#/feedback"]').click()
+    mobile_installed.locator('a[href="#/about"]').click()
+    mobile_installed.locator('a[href="#/feedback"]').click()
     feedback_h1 = mobile_installed.locator("h1", has_text="Feedback")
     feedback_h1.wait_for(state="visible")
     assert "Feedback" in feedback_h1.text_content()
 
 def test_settings_1(mobile_installed: Page):
     '''navigate to about page, then navigate to settings page. assert "Settings" is in the <h1>.'''
-    mobile_installed.wait_for_selector('a[href="#/about"]').click()
-    mobile_installed.wait_for_selector('a[href="#/settings"]').click()
+    mobile_installed.locator('a[href="#/about"]').click()
+    mobile_installed.locator('a[href="#/settings"]').click()
     settings_h1 = mobile_installed.locator("h1", has_text="Settings")
     settings_h1.wait_for(state="visible")
     assert "Settings" in settings_h1.text_content()
 
 def test_voice_selection_1(mobile_installed: Page):
     '''navigate to settings page, select the first voice, and check whether that voice has been stored in the browser's localStorage'''
-    mobile_installed.wait_for_selector('a[href="#/about"]').click()
-    mobile_installed.wait_for_selector('a[href="#/settings"]').click()
+    mobile_installed.locator('a[href="#/about"]').click()
+    mobile_installed.locator('a[href="#/settings"]').click()
     mobile_installed.wait_for_selector("#SpeechSynthesisVoiceSelector")
     all_voices_available = mobile_installed.evaluate("window.speechSynthesis.getVoices();")
     if len(all_voices_available) > 0: # apparently not all devices have even one system voice (linux, GitHub Actions)...
-        mobile_installed.wait_for_selector("#SpeechSynthesisVoiceSelector").select_option(index=0)
+        mobile_installed.locator("#SpeechSynthesisVoiceSelector").select_option(index=0)
         voice_selected = mobile_installed.locator("#SpeechSynthesisVoiceSelector").input_value()
         stored_voice = mobile_installed.evaluate('localStorage.getItem("voice");')
         assert voice_selected == stored_voice
@@ -112,11 +112,11 @@ def test_voice_selection_1(mobile_installed: Page):
 def test_voice_selection_2(mobile_installed: Page):
     '''navigate to settings page. IF there is more than one voice available on the device being tested, select the 2nd available option
     and ensure it is saved to the browser's local storage.'''
-    mobile_installed.wait_for_selector('a[href="#/about"]').click()
-    mobile_installed.wait_for_selector('a[href="#/settings"]').click()
+    mobile_installed.locator('a[href="#/about"]').click()
+    mobile_installed.locator('a[href="#/settings"]').click()
     all_voices_available = mobile_installed.evaluate("window.speechSynthesis.getVoices();")
     if len(all_voices_available) > 1:
-        mobile_installed.wait_for_selector("#SpeechSynthesisVoiceSelector").select_option(index=1)
+        mobile_installed.locator("#SpeechSynthesisVoiceSelector").select_option(index=1)
         voice_selected = mobile_installed.locator("#SpeechSynthesisVoiceSelector").input_value()
         stored_voice = mobile_installed.evaluate('localStorage.getItem("voice");')
         assert voice_selected == stored_voice

@@ -19,6 +19,11 @@
 
   <!-- Matomo -->
   <script>
+    const domain = location.hostname;
+    const dolly = "dolly";
+    const dev = "127.0.0.1";
+    const devOrDolly = (domain.includes(dolly) || domain.includes(dev));
+    if (!devOrDolly) {
     var _paq = window._paq = window._paq || [];
     /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
     _paq.push(['trackPageView']);
@@ -29,7 +34,8 @@
       _paq.push(['setSiteId', '17']);
       var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
       g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-    })();
+    })()
+  };
   </script>
   <!-- End Matomo Code -->
 
