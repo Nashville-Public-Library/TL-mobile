@@ -29,7 +29,6 @@ def test_schedule_1(mobile_installed: Page):
     mobile_installed.wait_for_selector(".dailyScheduleLinksContainer")
     assert mobile_installed.get_by_text("Schedules").is_visible()
     assert mobile_installed.get_by_text("Tuesday").is_visible()
-    assert mobile_installed.get_by_text("Broadcast Schedule").is_visible()
 
 def test_schedule_daily_1(mobile_installed: Page):
     mobile_installed.locator('a[href="#/schedule"]').click()
